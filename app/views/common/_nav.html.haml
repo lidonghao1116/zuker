@@ -1,0 +1,20 @@
+%nav.navbar.navbar-inverse.navbar-fixed-top
+  .container
+    .navbar-header
+      %button.navbar-toggle.collapsed{"aria-controls" => "navbar", "aria-expanded" => "false", "data-target" => "#navbar", "data-toggle" => "collapse", :type => "button"}
+        %span.sr-only Toggle navigation
+        %span.icon-bar
+        %span.icon-bar
+        %span.icon-bar
+      %a.navbar-brand{:href => "#"} Zuker
+    #navbar.navbar-collapse.collapse
+      - if current_user
+        .navbar-form.navbar-right
+          = content_tag(:span, "Hi! #{current_user.name}")
+          %span
+            = link_to 'logout', logout_path, class:'btn btn-success'
+      - else
+        = simple_form_for :user, url: login_path, wrapper: :inline_form, html: { class:'navbar-form navbar-right' } do |f|
+          = f.input :phone_number, placeholder: "Phone Number"
+          = f.input :password
+          = f.button :submit, "Sign in", class: "btn btn-success"
