@@ -1,16 +1,16 @@
 %p#notice= notice
 
 %p
-  %b Name:
+  %b= t "user.name"
   = @user.name
 %p
-  %b Phone number:
+  %b= t "user.phone_number"
   = @user.phone_number
 %p
-  %b Email:
+  %b= t "user.email"
   = @user.email
 %p
-  %b ExpectedGraduationTime:
+  %b= t "user.expected_graduation_date"
   = @user.expected_graduation_date
 
 = link_to 'Edit', edit_user_path(@user)
