@@ -9,6 +9,9 @@
 %p
   %b Email:
   = @user.email
+%p
+  %b ExpectedGraduationTime:
+  = @user.expected_graduation_date
 
 = link_to 'Edit', edit_user_path(@user)
 \|

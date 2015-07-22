@@ -7,6 +7,7 @@
     = f.input :password
     = f.input :password_confirmation
     = f.input :email
+    = f.input :expected_graduation_date, as: :date, start_year: Date.today.year, end_year: Date.today.year + 10, discard_day: true, order: [:month, :year]
 
   .form-actions
     = f.button :submit

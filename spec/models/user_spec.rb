@@ -31,6 +31,19 @@ RSpec.describe User, type: :model do
     expect(User.new(:name => "peter", :phone_number => nil, :password => "123456")).not_to be_valid
   end
 
+  it "必須輸入正確格式的電話號碼" do
+    test_user = User.new(:name => "username", :phone_number => "0800092000", :password => "password")
+    expect(test_user).not_to be_valid
+    test_user2 = User.new(:name => "username", :phone_number => "0920123456", :password => "password")
+    expect(test_user2).to be_valid
+  end
+
+  it "不可重複註冊同樣的電話號碼" do
+    test_user = User.create(:name => "test1", :phone_number => "0920123456", :password => "password")
+    expect(test_user).to be_valid
+    expect(User.new(:name => "test2", :phone_number => "0920123456", :password => "other_password")).not_to be_valid
+  end
+
   it "註冊完成後，可以利用密碼驗證機制確認密碼是否輸入正確" do
     test_user = User.new(:name => "test1", :phone_number => "0920123456", :password => "correct_password")
       expect(test_user).to be_valid
@@ -39,7 +52,7 @@ RSpec.describe User, type: :model do
       expect(test_user.authenticate("correct_password")).to eq test_user
   end
 
-  it "的密碼與某個使用者相同時，應該根據輸入的電話號碼回傳正確的使用者" do
+  it "密碼與某個使用者相同時，應該根據輸入的電話號碼回傳正確的使用者" do
     test_user = User.create(:name => "test1", :phone_number => "0920123456", :password => "the_same_password")
     test_user2 = User.create(:name => "test2", :phone_number => "0920654321", :password => "the_same_password")
 
@@ -49,12 +62,5 @@ RSpec.describe User, type: :model do
     returned_user = User.find_by_phone_number(test_user2.phone_number).try(:authenticate, "the_same_password")
       expect(returned_user.name).to eq "test2"
   end
-
-  it "不可重複註冊同樣的電話號碼" do
-    test_user = User.create(:name => "test1", :phone_number => "0920123456", :password => "password")
-    expect(test_user).to be_valid
-    expect(User.create(:name => "test2", :phone_number => "0920123456", :password => "other_password")).not_to be_valid
-  end
-
 
 end
