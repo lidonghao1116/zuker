@@ -1,17 +1,27 @@
 Rails.application.routes.draw do
-  get '/signup' => "users#new"
-  post '/login' => "sessions#create"
-  get '/logout' => "sessions#destroy"
   resources :users do
     member do
       get 'profile' => "users#show"
+      get 'signup' => "users#new"
     end
   end
+  root 'users#new'
+
+  scope :controller => 'sessions' do
+    post 'login' => :create
+    get 'logout' => :destroy
+  end
+
+  #post 'twilio/voice' => 'twilio#voice'
+  scope :path => '/notifications', :controller => 'notifications', :as => "sms" do
+    post 'notify' => :notify, :as => 'notify'
+    post 'status' => :status, :as => 'status'
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'users#new'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

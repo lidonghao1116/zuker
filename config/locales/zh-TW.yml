@@ -1,17 +1,8 @@
 zh-TW:
-  activerecord:
-    attributes:
-      user:
-        name: 姓名
-        phone_number: 真實的手機號碼
-        password: 密碼
-        password_confirmation: 密碼確認
-        email: 電子郵件
-        expected_graduation_date: 預計畢業日期
-
+  "Editing User": "編輯個人資料"
   user:
     name: 姓名
-    phone_number: 手機號碼
+    phone_number: 手機號碼2
     password: 密碼
     password_confirmation: 密碼確認
     email: 電子郵件

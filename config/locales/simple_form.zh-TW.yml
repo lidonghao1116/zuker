@@ -1,0 +1,73 @@
+zh-TW:
+  simple_form:
+    'Editing': '999'
+    "yes": '是'
+    "no": '否'
+    required:
+      text: '必填'
+      mark: '*'
+      # You can uncomment the line below if you need to overwrite the whole required html.
+      # When using html, text and mark won't be used.
+      # html: '<abbr title="required">*</abbr>'
+    error_notification:
+      default_message: "哎呀！您輸入的資料似乎有些錯誤"
+    labels:
+      user:
+        name: 姓名
+        email: 電子郵件
+        password: 密碼
+        password_confirmation: 確認密碼
+        phone_number: 手機號碼
+        zip_code: 郵遞區號
+        degree: 教育程度
+        gender: 性別
+        expected_graduation_date: 預計畢業日期
+      house:
+        title: 名稱
+        profile: 描述
+        amenity: 設施
+        add: 登錄房屋
+        add_new: 新增房屋
+        edit: 編輯
+        delete: 刪除
+        begin_date: 開始日期
+        end_date: 結束日期
+        contact: 聯絡人
+        phone_number: 聯絡電話
+        email: 聯絡人電子郵件
+        requirement: 需求
+        education: 所需學經歷
+        period: 時間
+        school_name: 學校
+        action: 選項
+        show: 詳細內容
+        apply: 申請
+        status: 狀態
+        name: 名稱
+        address: 地址
+        district: 鄉鎮市區
+        city: 縣市
+        zipcode: 郵遞區號
+    hints:
+      defaults:    
+        phone_number: '請輸入真實的手機號碼，例如：0912345678，此號碼未來將作為登入帳號'
+
+    # Examples
+    # labels:
+    #   defaults:
+    #     password: 'Password'
+    #   user:
+    #     new:
+    #       email: 'E-mail to sign in.'
+    #     edit:
+    #       email: 'E-mail.'
+    # hints:
+    #   defaults:
+    #     username: 'User name to sign in.'
+    #     password: 'No special characters, please.'
+    # include_blanks:
+    #   defaults:
+    #     age: 'Rather not say'
+    # prompts:
+    #   defaults:
+    #     age: 'Select your age'

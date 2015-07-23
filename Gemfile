@@ -27,6 +27,10 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem "haml-rails", "~> 0.9"
 gem 'simple_form'
 gem 'betterlorem'
+
+gem 'puma'
+gem 'twilio-ruby', '~> 4.0'
+
 # nested form
 gem 'cocoon'
 
@@ -57,6 +61,4 @@ group :production do
   gem 'pg'
   gem 'rails_12factor'
 end
-
-gem 'puma'
 
