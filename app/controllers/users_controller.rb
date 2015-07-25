@@ -40,21 +40,17 @@ class UsersController < ApplicationController
     end
   end
 
-  def phone_verify
-    
-  end
+  def phone_verify ; end
 
   def verify_pin
     @verified = current_user.verify(params[:pin])
-    respond_to do |format|
-      if @verified
-        format.js
-        format.json{ render json: current_user }
-      else      
-        format.js
-      end
+    if @verified
+      flash[:success] = "Success!"
+      redirect_to user_path
+    else
+      flash[:warning] = "Sorry, that wasn't the right pin."
+      render :phone_verify
     end
-
   end
 
   # PATCH/PUT /users/1
@@ -84,7 +80,7 @@ class UsersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
-      @user = current_user || User.find(params[:id])
+      @user = current_user
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
