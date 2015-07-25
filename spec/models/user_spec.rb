@@ -36,6 +36,8 @@ RSpec.describe User, type: :model do
     expect(test_user).not_to be_valid
     test_user2 = User.new(:name => "username", :phone_number => "0920123456", :password => "password")
     expect(test_user2).to be_valid
+    test_user3 = User.new(:name => "username", :phone_number => "0912345678910", :password => "password")
+    expect(test_user3).not_to be_valid
   end
 
   it "不可重複註冊同樣的電話號碼" do
