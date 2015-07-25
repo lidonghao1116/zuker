@@ -29,13 +29,32 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
         session[:user_id] = @user.id
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
+        @user.generate_pin
+        @user.send_pin
+        format.html { redirect_to phone_number_verify_user_path(@user), notice: 'Please check your verification code.' }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def phone_verify
+    
+  end
+
+  def verify_pin
+    @verified = current_user.verify(params[:pin])
+    respond_to do |format|
+      if @verified
+        format.js
+        format.json{ render json: current_user }
+      else      
+        format.js
+      end
+    end
+
   end
 
   # PATCH/PUT /users/1
@@ -65,7 +84,7 @@ class UsersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
-      @user = current_user
+      @user = current_user || User.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

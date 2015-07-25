@@ -1,0 +1,12 @@
+#verify-pin
+  %h3 Enter your PIN
+  = form_tag verify_pin_user_path(current_user.id), remote: true do |f|
+    = hidden_field_tag 'hidden_phone_number', ''
+    .form-group
+      = text_field_tag :pin
+    = submit_tag "Verify PIN", class: "btn btn-primary"
+
+#status-box.alert.alert-success
+  %p#status-message Status: Haven’t done anything yet
+
+= console

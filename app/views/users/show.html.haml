@@ -12,6 +12,9 @@
 %p
   %b= t "user.expected_graduation_date"
   = @user.expected_graduation_date
+%p
+  %b= t "user.pin"
+  = @user.pin.content
 
 = link_to 'Edit', edit_user_path(@user)
 \|

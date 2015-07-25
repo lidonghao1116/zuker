@@ -1,0 +1,14 @@
+- if @verified
+  :plain
+    $('#verify-pin').hide()
+    $('#status-box').removeClass()
+    $('#status-box').addClass('alert alert-success')
+    $('#status-message').text('Success!!')
+    $('#status-box').fadeIn()
+    /$("<%= escape_javascript(render current_user) %>").appendTo("#verify-pin");
+- else
+  :plain
+    $('#status-box').removeClass()
+    $('#status-box').addClass('alert alert-warning')
+    $('#status-message').text("Sorry, that wasn't the right pin.")
+    $('#status-box').fadeIn()

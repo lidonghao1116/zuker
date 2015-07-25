@@ -3,6 +3,8 @@ Rails.application.routes.draw do
     member do
       get 'profile' => "users#show"
       get 'signup' => "users#new"
+      get 'phone_verify' => "users#phone_verify"
+      post 'verify_pin' => "users#verify_pin"
     end
   end
   root 'users#new'
