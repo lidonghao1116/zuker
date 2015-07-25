@@ -15,6 +15,6 @@
             = link_to 'logout', logout_path, class:'btn btn-success'
       - else
         = simple_form_for :user, url: login_path, wrapper: :inline_form, html: { class:'navbar-form navbar-right' } do |f|
-          = f.input :phone_number, placeholder: "Phone Number"
+          = f.input :phone_number, hint: false
           = f.input :password
           = f.button :submit, "Sign in", class: "btn btn-success"

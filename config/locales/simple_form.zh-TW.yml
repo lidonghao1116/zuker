@@ -50,7 +50,12 @@ zh-TW:
         zipcode: 郵遞區號
     hints:
       defaults:    
-        phone_number: '請輸入真實的手機號碼，例如：0912345678，此號碼未來將作為登入帳號'
+        phone_number: '請輸入真實的手機號碼，未來將作為登入帳號'
+    placeholders:
+      defaults:
+        phone_number: '0912345678'
+        password: '請輸入密碼'
+        password_confirmation: '請再次輸入密碼'
 
     # Examples
     # labels:
