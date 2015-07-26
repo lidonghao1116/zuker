@@ -7,22 +7,13 @@ class UsersController < ApplicationController
     @users = User.all
   end
 
-  # GET /users/1
-  # GET /users/1.json
-  def show
-  end
-
   # GET /users/new
   def new
     @user = User.new
   end
 
-  # GET /users/1/edit
-  def edit
-  end
+  ####  After Register  ####
 
-  # POST /users
-  # POST /users.json
   def create
     @user = User.new(user_params)
 
@@ -30,7 +21,7 @@ class UsersController < ApplicationController
       if @user.save
         session[:user_id] = @user.id
         @user.generate_pin
-        @user.send_pin
+        #@user.send_pin
         format.html { redirect_to phone_verify_user_path(@user), notice: 'Please check your verification code.' }
         format.json { render :show, status: :created, location: @user }
       else
@@ -39,6 +30,8 @@ class UsersController < ApplicationController
       end
     end
   end
+
+  ####  After login  ####
 
   def phone_verify ; end
 
@@ -53,16 +46,26 @@ class UsersController < ApplicationController
     end
   end
 
+  # GET /users/1
+  # GET /users/1.json
+  def show
+  end
+
+  # GET /users/1/edit
+  def edit
+    @user = current_user
+  end
+
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
     respond_to do |format|
-      if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
-        format.json { render :show, status: :ok, location: @user }
+      if current_user.update(user_params)
+        format.html { redirect_to current_user, notice: 'User was successfully updated.' }
+        format.json { render :show, status: :ok, location: current_user }
       else
         format.html { render :edit }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+        format.json { render json: current_user.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -70,7 +73,7 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
-    @user.destroy
+    current_user.destroy
     respond_to do |format|
       format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
       format.json { head :no_content }
@@ -80,7 +83,12 @@ class UsersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_user
-      @user = current_user
+      if current_user
+        return current_user
+      else
+        flash[:warning] = "Sorry, you need to sign in or register."
+        redirect_to signup_users_path
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

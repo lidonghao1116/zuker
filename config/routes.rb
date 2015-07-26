@@ -2,9 +2,11 @@ Rails.application.routes.draw do
   resources :users do
     member do
       get 'profile' => "users#show"
-      get 'signup' => "users#new"
       get 'phone_verify' => "users#phone_verify"
       post 'verify_pin' => "users#verify_pin"
+    end
+    collection do
+      get 'signup' => "users#new"
     end
   end
   root 'users#new'
