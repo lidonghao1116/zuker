@@ -1,5 +1,6 @@
 zh-TW:
-  "Editing User": "編輯個人資料"
+  "Editing Profile": "編輯個人資料"
+  "Register": "加入租客"
   user:
     name: 姓名
     phone_number: 手機號碼2
@@ -7,3 +8,8 @@ zh-TW:
     password_confirmation: 密碼確認
     email: 電子郵件
     expected_graduation_date: 預計畢業日期
+  helpers:
+    submit:
+      user:
+        create: "成為租客"
+        update: "確認更新"
