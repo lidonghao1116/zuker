@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   validates :password, length: { in: 6..20 }, confirmation: true
   
   validates :name, presence: true
-  validates :phone_number, presence: true, uniqueness: true, format: { with: /\A[0][9][0-9]{2}[0-9]{6}\z/ }
+  validates :phone_number, presence: true, format: { with: /\A[0][9][0-9]{2}[0-9]{6}\z/ }, uniqueness: true
   #validates :email, uniqueness: true, :allow_blank => true
 
   include SmsConfirmable

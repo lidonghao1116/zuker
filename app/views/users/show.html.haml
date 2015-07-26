@@ -15,7 +15,12 @@
 %p
   %b= t "user.pin"
   = @user.pin.content
+%p
+  %b= t "user.pin"
+  = @user.verified
 
+= link_to 'Verify', phone_verify_user_path(current_user)
+\|
 = link_to 'Edit', edit_user_path(@user)
 \|
 = link_to 'Back', users_path

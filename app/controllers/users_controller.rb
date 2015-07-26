@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :edit, :update, :destroy, :phone_verify]
 
   # GET /users
   # GET /users.json
@@ -31,7 +31,7 @@ class UsersController < ApplicationController
         session[:user_id] = @user.id
         @user.generate_pin
         @user.send_pin
-        format.html { redirect_to phone_number_verify_user_path(@user), notice: 'Please check your verification code.' }
+        format.html { redirect_to phone_verify_user_path(@user), notice: 'Please check your verification code.' }
         format.json { render :show, status: :created, location: @user }
       else
         format.html { render :new }
@@ -43,8 +43,8 @@ class UsersController < ApplicationController
   def phone_verify ; end
 
   def verify_pin
-    @verified = current_user.verify(params[:pin])
-    if @verified
+    current_user.verify(params[:pin])
+    if current_user.verified
       flash[:success] = "Success!"
       redirect_to user_path
     else
@@ -85,6 +85,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:name, :password, :password_confirmation, :phone_number, :email, :expected_graduation_date)
+      params.require(:user).permit(:name, :password, :password_confirmation, :phone_number, :email, :expected_graduation_date, :verified)
     end
 end

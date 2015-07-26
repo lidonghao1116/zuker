@@ -28,8 +28,7 @@ module SmsConfirmable
   end
 
   def verify(entered_pin)
-    #update(verified: true) if 
-    self.pin.content == entered_pin
+    update_attribute(:verified, true) if self.pin.content == entered_pin
   end
 
 end
