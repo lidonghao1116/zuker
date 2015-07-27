@@ -52,6 +52,9 @@ zh-TW:
       defaults:    
         phone_number: '請輸入真實的手機號碼，未來將作為登入帳號'
         password: '密碼不可少於6個字元'
+      user:
+        edit:
+          password: '若不變更密碼則留白'
     placeholders:
       defaults:
         name: '姓名'

@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy, :phone_verify]
+  before_action :has_sign_in, only: [:show, :edit, :update, :destroy, :phone_verify]
 
   # GET /users
   # GET /users.json
@@ -59,13 +59,14 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
+    @user = current_user
     respond_to do |format|
-      if current_user.update(user_params)
-        format.html { redirect_to current_user, notice: 'User was successfully updated.' }
-        format.json { render :show, status: :ok, location: current_user }
+      if @user.update(user_params)
+        format.html { redirect_to @user, notice: 'User was successfully updated.' }
+        format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit }
-        format.json { render json: current_user.errors, status: :unprocessable_entity }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -82,10 +83,8 @@ class UsersController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def set_user
-      if current_user
-        return current_user
-      else
+    def has_sign_in
+      unless current_user
         flash[:warning] = "Sorry, you need to sign in or register."
         redirect_to signup_users_path
       end
@@ -94,5 +93,9 @@ class UsersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.require(:user).permit(:name, :password, :password_confirmation, :phone_number, :email, :expected_graduation_date, :verified)
+    end
+
+    def exist_user_params
+      params.require(:user).permit(:name, :phone_number, :email, :expected_graduation_date, :verified)
     end
 end

@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do
+  
+  render_views
 
   before :each do
     @user_1 = User.create(name: "peter1", phone_number: "0920085181", password: "123456")
@@ -19,8 +21,6 @@ RSpec.describe UsersController, type: :controller do
   end
 
   describe 'without login' do
-
-    render_views
 
     it "沒登入不能edit，會被轉到註冊頁面" do
       get :edit, id: @user_1[:id]

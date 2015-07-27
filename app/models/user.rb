@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   has_secure_password
-  validates :password, length: { in: 6..20 }, confirmation: true
+  validates :password, length: { in: 6..20 }, confirmation: true, on: :create
   
   validates :name, presence: true
   validates :phone_number, presence: true, format: { with: /\A[0][9][0-9]{2}[0-9]{6}\z/ }, uniqueness: true
