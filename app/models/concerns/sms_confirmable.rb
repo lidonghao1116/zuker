@@ -31,4 +31,10 @@ module SmsConfirmable
     update_attribute(:verified, true) if self.pin.content == entered_pin
   end
 
+  def resend_pin
+      self.pin.destroy
+      self.generate_pin
+      #current_user.send_pin
+  end
+
 end

@@ -4,6 +4,7 @@ Rails.application.routes.draw do
       get 'profile' => "users#show"
       get 'phone_verify' => "users#phone_verify"
       post 'verify_pin' => "users#verify_pin"
+      get 'verify_again' => "users#verify_again"
     end
     collection do
       get 'signup' => "users#new"

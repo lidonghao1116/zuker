@@ -40,7 +40,7 @@ class UsersController < ApplicationController
   end
 
   def verify_pin
-    current_user.verify(params[:pin])
+    current_user.pin.update(error_times: error_times + 1) unless current_user.verify(params[:pin])
     if current_user.verified
       flash[:success] = "Success!"
       redirect_to user_path
@@ -48,6 +48,11 @@ class UsersController < ApplicationController
       flash[:warning] = "Sorry, that wasn't the right pin."
       render :phone_verify
     end
+  end
+
+  def verify_again
+    current_user.resend_pin if current_user.pin.error_times > 2
+    redirect_to phone_verify_user_path(current_user)
   end
 
   # GET /users/1

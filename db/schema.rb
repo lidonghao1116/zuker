@@ -11,14 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150726070421) do
+ActiveRecord::Schema.define(version: 20150728091216) do
 
   create_table "pins", force: :cascade do |t|
     t.string   "content"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
     t.integer  "sms_confirmable_id"
     t.string   "sms_confirmable_type"
+    t.integer  "error_times",          default: 0
   end
 
   create_table "users", force: :cascade do |t|
