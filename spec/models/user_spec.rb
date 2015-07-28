@@ -15,11 +15,16 @@ RSpec.describe User, type: :model do
     expect(User.new).not_to be_valid
   end
 
+  it "必須確認密碼" do
+    expect(User.create(:name => "peter", :phone_number => "0920085181", :password => "123456", :password_confirmation => nil)).not_to be_valid
+    expect(User.create(:name => "peter", :phone_number => "0920085181", :password => "123456", :password_confirmation => "123456")).to be_valid
+  end
+
   it "密碼介於6~20個字元且不可空白" do
-    expect(User.new(:name => "peter", :phone_number => "0920085183", :password => nil)).not_to be_valid
-    expect(User.new(:name => "peter", :phone_number => "0920085183", :password => "12345")).not_to be_valid
-    expect(User.new(:name => "peter", :phone_number => "0920085183", :password => "12345678901234567890123")).not_to be_valid
-    expect(User.new(:name => "peter", :phone_number => "0920085183", :password => "123456")).to be_valid
+    expect(User.create(:name => "peter", :phone_number => "0920085181", :password => nil, :password_confirmation => nil)).not_to be_valid
+    expect(User.create(:name => "peter", :phone_number => "0920085182", :password => "12345", :password_confirmation => "12345")).not_to be_valid
+    expect(User.create(:name => "peter", :phone_number => "0920085183", :password => "12345678901234567890123", :password_confirmation => "12345678901234567890123")).not_to be_valid
+    expect(User.create(:name => "peter", :phone_number => "0920085184", :password => "123456", :password_confirmation => "123456")).to be_valid
   end
 
   it "姓名不可空白" do

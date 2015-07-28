@@ -17,6 +17,6 @@
   %b= t "user.verified"
   = current_user.verified
 
-= link_to 'Verify', phone_verify_user_path(current_user)
+= link_to I18n.t('Verify'), phone_verify_user_path(current_user)
 \|
-= link_to 'Edit', edit_user_path(current_user)
+= link_to I18n.t('Edit'), edit_user_path(current_user)

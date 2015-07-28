@@ -33,7 +33,12 @@ class UsersController < ApplicationController
 
   ####  After login  ####
 
-  def phone_verify ; end
+  def phone_verify
+    if has_verified?
+      flash[:success] = "You already have finished verification."
+      redirect_to user_path(current_user)
+    end
+  end
 
   def verify_pin
     current_user.verify(params[:pin])
@@ -88,6 +93,10 @@ class UsersController < ApplicationController
         flash[:warning] = "Sorry, you need to sign in or register."
         redirect_to signup_users_path
       end
+    end
+
+    def has_verified?
+      return current_user.verified
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

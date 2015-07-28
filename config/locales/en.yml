@@ -21,3 +21,21 @@
 
 en:
   hello: "Hello world"
+  "Editing Profile": "Editing Profile"
+  "Register": "加入租客"
+  "Verify": "驗證手機號碼"
+  "Edit" : "編輯個人資料"
+  "logout" : "登出"
+  "hello_nav" : "Hi，%{name} !"
+  user:
+    name: 姓名
+    phone_number: 手機號碼2
+    password: 密碼
+    password_confirmation: 密碼確認
+    email: 電子郵件
+    expected_graduation_date: 預計畢業日期
+  helpers:
+    submit:
+      user:
+        create: "成為租客"
+        update: "確認更新"
