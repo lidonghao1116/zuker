@@ -15,8 +15,10 @@
   = current_user.pin.content
 %p
   %b= t "user.verified"
-  = current_user.verified
-
-= link_to I18n.t('Verify'), phone_verify_user_path(current_user)
-\|
+  - if current_user.verified
+    您已完成手機驗證
+  - else
+    您尚未完成手機驗證
+    = link_to I18n.t('Verify'), phone_verify_user_path(current_user)
+    
 = link_to I18n.t('Edit'), edit_user_path(current_user)

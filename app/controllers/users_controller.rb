@@ -89,6 +89,10 @@ class UsersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def has_sign_in
+      unless correct_user?
+        flash[:danger] = "Sorry, you can't do this."
+        redirect_to signup_users_path
+      end
       unless current_user
         flash[:warning] = "Sorry, you need to sign in or register."
         redirect_to signup_users_path
