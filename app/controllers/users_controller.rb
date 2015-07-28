@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :has_sign_in, only: [:show, :edit, :update, :destroy, :phone_verify]
+  before_action :correct_user_sign_in?, only: [:show, :edit, :update, :destroy, :phone_verify]
 
   # GET /users
   # GET /users.json
@@ -34,10 +34,9 @@ class UsersController < ApplicationController
   ####  After login  ####
 
   def phone_verify
-    if has_verified?
-      flash[:success] = "You already have finished verification."
-      redirect_to user_path(current_user)
-    end
+    has_verified? or return
+    flash[:success] = "You already have finished verification."
+    redirect_to user_path(current_user)
   end
 
   def verify_pin
@@ -81,21 +80,17 @@ class UsersController < ApplicationController
   def destroy
     current_user.destroy
     respond_to do |format|
-      format.html { redirect_to users_url, notice: 'User was successfully destroyed.' }
+      format.html { redirect_to root_path, notice: 'User was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
     # Use callbacks to share common setup or constraints between actions.
-    def has_sign_in
-      unless correct_user?
-        flash[:danger] = "Sorry, you can't do this."
-        redirect_to signup_users_path
-      end
-      unless current_user
-        flash[:warning] = "Sorry, you need to sign in or register."
-        redirect_to signup_users_path
+    def correct_user_sign_in?
+      unless session[:user_id].to_s == params[:id]
+        flash[:danger] = "Sorry, you need to sign in or register."
+        redirect_to signup_users_path and return
       end
     end
 

@@ -3,6 +3,7 @@ zh-TW:
   "Register": "加入租客"
   "Verify": "立刻驗證"
   "Edit" : "編輯個人資料"
+  "Delete" : "刪除帳號"
   "logout" : "登出"
   "hello_nav" : "嗨，%{name} 您好！"
   user:

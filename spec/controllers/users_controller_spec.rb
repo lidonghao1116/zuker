@@ -79,10 +79,10 @@ RSpec.describe UsersController, type: :controller do
     end
 
     context 'DELETE #destroy' do
-      it "能destroy，會轉到users_url" do
+      it "能destroy，會轉到root_path" do
         delete :destroy, id: session[:user_id]
         expect(response).to have_http_status(302)
-        expect(response).to redirect_to users_url
+        expect(response).to redirect_to root_path
       end
     end
 

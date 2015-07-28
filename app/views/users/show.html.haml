@@ -20,5 +20,6 @@
   - else
     您尚未完成手機驗證
     = link_to I18n.t('Verify'), phone_verify_user_path(current_user)
-    
+
 = link_to I18n.t('Edit'), edit_user_path(current_user)
+= link_to I18n.t('Delete'), user_path(current_user), method: :delete, data: {confirm: "Are you sure?"}
