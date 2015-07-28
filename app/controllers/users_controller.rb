@@ -40,8 +40,13 @@ class UsersController < ApplicationController
   end
 
   def verify_pin
-    current_user.pin.update(error_times: error_times + 1) unless current_user.verify(params[:pin])
-    if current_user.verified
+    user = current_user
+    unless user.verify(params[:pin])
+      user.pin.error_times += 1
+      user.pin.save
+    end
+
+    if user.verified
       flash[:success] = "Success!"
       redirect_to user_path
     else

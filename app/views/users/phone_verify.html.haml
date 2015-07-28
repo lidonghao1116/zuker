@@ -6,6 +6,7 @@
       = text_field_tag :pin
     = submit_tag "Verify PIN", class: "btn btn-primary"
   = link_to 'resend', verify_again_user_path(current_user)
+  = current_user.pin.error_times
 
 #status-box.alert.alert-success
   %p#status-message Status: Haven’t done anything yet
