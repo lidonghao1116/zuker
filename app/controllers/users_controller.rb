@@ -21,7 +21,7 @@ class UsersController < ApplicationController
       if @user.save
         session[:user_id] = @user.id
         @user.generate_pin
-        #@user.send_pin
+        @user.send_pin
         format.html { redirect_to phone_verify_user_path(@user), notice: 'Please check your verification code.' }
         format.json { render :show, status: :created, location: @user }
       else

@@ -24,7 +24,7 @@ module SmsConfirmable
 
   def send_pin
     number = self.phone_number
-    message = twilio_client.account.messages.create from: '+18085183344', to: international_number('TW', number), body: "Plz input #{self.pin.content} to http://www.zuker.com.tw to finish your registration."
+    message = twilio_client.account.messages.create from: '+18085183344', to: international_number('TW', number), body: "您好，我們是租客，您的驗證碼為#{self.pin.content}, 請上www.zuker.com.tw完成您的註冊。"
     message.status
   end
 
@@ -45,7 +45,7 @@ module SmsConfirmable
   def resend_pin
     self.pin.destroy
     self.create_pin content: random_4_digits
-    #self.send_pin
+    self.send_pin
     return 'resend'
   end
 
