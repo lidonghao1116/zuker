@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :correct_user_sign_in?, only: [:show, :edit, :update, :destroy, :phone_verify]
+  before_action :correct_user_sign_in?, only: [:show, :edit, :update, :destroy, :phone_verify, :verify_pin, :resend_pin]
 
   # GET /users
   # GET /users.json
@@ -36,28 +36,27 @@ class UsersController < ApplicationController
   def phone_verify
     has_verified? or return
     flash[:success] = "You already have finished verification."
-    redirect_to user_path(current_user)
+    redirect_to user_path(@user)
   end
 
   def verify_pin
-    user = current_user
-    unless user.verify(params[:pin])
-      user.pin.error_times += 1
-      user.pin.save
-    end
-
-    if user.verified
+    case @user.verify(params[:verify][:pin])# && user.pin.error_times < 3
+    when false
+      flash[:warning] = "Sorry, that wasn't the right pin."
+      redirect_to phone_verify_user_path(@user)
+    when true
       flash[:success] = "Success!"
       redirect_to user_path
-    else
-      flash[:warning] = "Sorry, that wasn't the right pin."
-      render :phone_verify
+    when 'resend'
+      flash[:info] = "Hey, we have send you a new pin. Please check your phone."
+      redirect_to phone_verify_user_path(@user)
     end
   end
 
-  def verify_again
-    current_user.resend_pin if current_user.pin.error_times > 2
-    redirect_to phone_verify_user_path(current_user)
+  def resend_pin
+    @user.resend_pin
+    flash[:info] = "Hey, we have send you a new pin. Please check your phone."
+    redirect_to phone_verify_user_path(@user)
   end
 
   # GET /users/1
@@ -67,15 +66,21 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
-    @user = current_user
   end
 
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
-    @user = current_user
     respond_to do |format|
-      if @user.update(user_params)
+      if @user.attributes = user_params #@user.update(user_params)
+        if @user.phone_number_changed?
+          @user.update(user_params)
+          @user.update(verified: false)
+          @user.resend_pin
+          flash[:info] = 'Please check your verification code.'
+          redirect_to phone_verify_user_path(@user) and return
+        end
+        @user.update(user_params)
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
@@ -88,7 +93,7 @@ class UsersController < ApplicationController
   # DELETE /users/1
   # DELETE /users/1.json
   def destroy
-    current_user.destroy
+    @user.destroy
     session[:user_id] = nil
     respond_to do |format|
       format.html { redirect_to root_path, notice: 'User was successfully destroyed.' }
@@ -99,7 +104,7 @@ class UsersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def correct_user_sign_in?
-      unless session[:user_id].to_s == params[:id]
+      unless session[:user_id].to_s == params[:id] && current_user
         flash[:danger] = "Sorry, you need to sign in or register."
         redirect_to signup_users_path and return
       end

@@ -6,11 +6,16 @@ module SmsConfirmable
   included do 
     has_one :pin, as: :sms_confirmable
   end
+
+  VERIFY_TIME_LIMIT = 300
+
+  def random_4_digits
+    # 不滿四位就左邊補0
+    rand(0000..9999).to_s.rjust(4, "0")
+  end
   
   def generate_pin
-    # 不滿四位就左邊補0
-    r = rand(0000..9999).to_s.rjust(4, "0")
-    self.create_pin content: r
+    self.create_pin content: random_4_digits
   end
 
   def twilio_client
@@ -28,13 +33,20 @@ module SmsConfirmable
   end
 
   def verify(entered_pin)
-    update_attribute(:verified, true) if self.pin.content == entered_pin
+    if Time.current - self.pin.created_at > VERIFY_TIME_LIMIT
+      resend_pin
+    elsif self.pin.content == entered_pin# && self.pin.error_times < 5
+      return update_attribute(:verified, true)
+    else
+      return false
+    end
   end
 
   def resend_pin
-      self.pin.destroy
-      self.generate_pin
-      #current_user.send_pin
+    self.pin.destroy
+    self.create_pin content: random_4_digits
+    #self.send_pin
+    return 'resend'
   end
 
 end

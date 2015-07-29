@@ -17,4 +17,5 @@ class User < ActiveRecord::Base
 
   include SmsConfirmable
   
+  
 end

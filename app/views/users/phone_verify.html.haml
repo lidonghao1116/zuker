@@ -1,12 +1,16 @@
 #verify-pin
   %h3 Enter your PIN
-  = form_tag verify_pin_user_path(current_user.id) do |f|
-    = hidden_field_tag 'hidden_phone_number', ''
-    .form-group
-      = text_field_tag :pin
+  = simple_form_for :verify, { url: verify_pin_user_path(@user.id) } do |f|
+    .form-inputs
+      = f.input :pin, autofocus: true
     = submit_tag "Verify PIN", class: "btn btn-primary"
-  = link_to 'resend', verify_again_user_path(current_user)
-  = current_user.pin.error_times
+  /= current_user.pin.id
+  /\|
+  /= current_user.pin.content
+  /\|
+  /= Time.current
+  /\|
+  /= Time.current - current_user.pin.created_at
 
 #status-box.alert.alert-success
   %p#status-message Status: Haven’t done anything yet
