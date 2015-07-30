@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150726070421) do
+ActiveRecord::Schema.define(version: 20150730054723) do
 
   create_table "pins", force: :cascade do |t|
     t.string   "content"
@@ -26,10 +26,10 @@ ActiveRecord::Schema.define(version: 20150726070421) do
     t.string   "phone_number"
     t.string   "password_digest"
     t.string   "email"
-    t.datetime "created_at",                               null: false
-    t.datetime "updated_at",                               null: false
-    t.date     "expected_graduation_date"
-    t.boolean  "verified",                 default: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.date     "start_school_year"
+    t.boolean  "verified",          default: false
   end
 
   add_index "users", ["phone_number"], name: "index_users_on_phone_number", unique: true

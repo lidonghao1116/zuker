@@ -21,7 +21,7 @@ zh-TW:
         zip_code: 郵遞區號
         degree: 教育程度
         gender: 性別
-        expected_graduation_date: 預計畢業日期
+        start_school_year: 您何時進入大學的呢？
       house:
         title: 名稱
         profile: 描述

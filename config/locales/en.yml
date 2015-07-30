@@ -33,7 +33,7 @@ en:
     password: 密碼
     password_confirmation: 密碼確認
     email: 電子郵件
-    expected_graduation_date: 預計畢業日期
+    start_school_year: 入學年度
   helpers:
     submit:
       user:

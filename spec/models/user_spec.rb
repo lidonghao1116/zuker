@@ -7,7 +7,7 @@ RSpec.describe User, type: :model do
     expect(columns).to include("name")
     expect(columns).to include("email")
     expect(columns).to include("phone_number")
-    expect(columns).to include("expected_graduation_date")
+    expect(columns).to include("start_school_year")
     expect(columns).to include("password_digest")
   end
 

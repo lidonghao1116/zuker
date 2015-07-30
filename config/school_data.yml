@@ -1,0 +1,14 @@
+defaults: &defaults
+    school_categories:
+      National_Taiwan_University : 0
+      National_TsingHua_University : 1
+      National_ChouTong_University : 2
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+# instead read values from the environment.
+production:
+  <<: *defaults
