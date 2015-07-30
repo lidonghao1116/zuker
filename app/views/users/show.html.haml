@@ -8,6 +8,9 @@
   %b= t "user.email"
   = @user.email
 %p
+  %b= t "user.school"
+  = render_school_category(@user.school_id)
+%p
   %b= t "user.start_school_year"
   = @user.start_school_year
 %p

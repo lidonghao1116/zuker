@@ -10,3 +10,7 @@ for i in 1..9 do
   a = User.create(:name => "peter#{i}", :phone_number => "092008518#{i}", :password => "123456")
   a.generate_pin
 end
+
+for i in 0..SchoolData.school_categories.size - 1 do
+  School.create(:name => SchoolData.school_categories.key(i))
+end

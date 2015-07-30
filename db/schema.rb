@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150730054723) do
+ActiveRecord::Schema.define(version: 20150730132615) do
 
   create_table "pins", force: :cascade do |t|
     t.string   "content"
@@ -19,6 +19,12 @@ ActiveRecord::Schema.define(version: 20150730054723) do
     t.datetime "updated_at",           null: false
     t.integer  "sms_confirmable_id"
     t.string   "sms_confirmable_type"
+  end
+
+  create_table "schools", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -30,8 +36,10 @@ ActiveRecord::Schema.define(version: 20150730054723) do
     t.datetime "updated_at",                        null: false
     t.date     "start_school_year"
     t.boolean  "verified",          default: false
+    t.integer  "school_id"
   end
 
   add_index "users", ["phone_number"], name: "index_users_on_phone_number", unique: true
+  add_index "users", ["school_id"], name: "index_users_on_school_id"
 
 end

@@ -21,7 +21,8 @@ zh-TW:
         zip_code: 郵遞區號
         degree: 教育程度
         gender: 性別
-        start_school_year: 您何時進入大學的呢？
+        school: 就讀學校
+        start_school_year: 入學年度
       house:
         title: 名稱
         profile: 描述

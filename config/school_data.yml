@@ -1,8 +1,9 @@
 defaults: &defaults
-    school_categories:
-      National_Taiwan_University : 0
-      National_TsingHua_University : 1
-      National_ChouTong_University : 2
+  school_categories:
+    National_Taiwan_University : 1
+    National_TsingHua_University : 2
+    National_ChiaoTung_University : 3
+    National_Chengchi_University : 4
 
 development:
   <<: *defaults

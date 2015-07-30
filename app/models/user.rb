@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+
+  belongs_to :school
+
   include ActiveModel::Dirty
   has_secure_password
   # Password must be present on creation

@@ -9,8 +9,11 @@
         = f.input :password
         = f.input :password_confirmation
       = f.input :email
+      %h4 填寫以下資料，讓我們提供您更棒的服務
+      = f.label :school
+      = f.association :school, collection: School.categories, prompt: true
       = f.label :start_school_year
-      = f.input :start_school_year, as: :date, start_year: Date.today.year, end_year: Date.today.year - 15, discard_day: true, discard_month: true
+      = f.input :start_school_year, as: :date, start_year: Date.today.year, end_year: Date.today.year - 15, discard_day: true, discard_month: true, prompt: :translate
 
     .form-actions
       = f.button :submit
