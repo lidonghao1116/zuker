@@ -1,7 +1,7 @@
 module UsersHelper
   def render_school_category(school)
     key = SchoolData.school_categories.key(school)
-    I18n.t("school_categories.#{key}")
+    I18n.t("school_categories.#{key}") if key
   end
 
   def render_start_school_years
