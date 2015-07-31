@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :correct_user_sign_in?, only: [:show, :edit, :update, :destroy, :phone_verify, :verify_pin, :resend_pin]
+  before_action :correct_user_sign_in?, only: [:show, :edit, :update, :destroy, :phone_verify, :verify_pin, :resend_pin, :change_phone_number]
 
   # GET /users
   # GET /users.json
@@ -87,6 +87,17 @@ class UsersController < ApplicationController
         format.html { render :edit }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def change_phone_number
+    if @user.authenticate(params[:user][:password])
+      @user.update(params[:user][:phone_number])
+      flash[:info] = 'Please check your verification code.'
+      redirect_to phone_verify_user_path(@user) and return
+    else
+      flash[:info] = 'Please check your password.'
+      redirect_to phone_verify_user_path(@user) and return
     end
   end
 

@@ -1,0 +1,12 @@
+#user-form
+  = simple_form_for @user do |f|
+    = f.error_notification
+
+    .form-inputs
+      = f.input :phone_number
+    %h4 please confirm this change with your password
+      = f.input :password
+
+    .form-actions
+      = f.button :submit
+      = link_to 'Back', user_path, class:'btn btn-default' if action_name == 'edit'
