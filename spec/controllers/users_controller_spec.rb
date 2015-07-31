@@ -5,7 +5,7 @@ RSpec.describe UsersController, type: :controller do
   render_views
 
   before :each do
-    @user_1 = User.create(name: "peter1", phone_number: "0920085181", password: "123456")
+    @user_1 = User.create(first_name: "peter1", last_name: "thiel", phone_number: "0920085181", password: "123456")
     @user_1.generate_pin
   end
 

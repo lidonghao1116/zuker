@@ -8,7 +8,7 @@ zh-TW:
   "logout" : "登出"
   "hello_nav" : "嗨，%{name} 您好！"
   user:
-    name: 姓名
+    full_name: 姓名
     phone_number: 手機號碼2
     password: 密碼
     password_confirmation: 密碼確認

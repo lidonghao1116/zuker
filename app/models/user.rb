@@ -2,7 +2,10 @@ class User < ActiveRecord::Base
 
   belongs_to :school
 
-  include ActiveModel::Dirty
+  include SmsConfirmable
+
+  #include ActiveModel::Dirty
+  
   has_secure_password
   # Password must be present on creation
   # Password length should be less than or equal to 72 characters
@@ -14,11 +17,13 @@ class User < ActiveRecord::Base
   # when false
   #   編輯時必須輸入密碼&密碼確認
 
-  validates :name, presence: true
+  validates :first_name, presence: true
+  validates :last_name, presence: true
   validates :phone_number, presence: true, format: { with: /\A[0][9][0-9]{2}[0-9]{6}\z/ }, uniqueness: true
   #validates :email, uniqueness: true, :allow_blank => true
 
-  include SmsConfirmable
-  
+  def full_name
+    "#{first_name} #{last_name}"
+  end  
   
 end

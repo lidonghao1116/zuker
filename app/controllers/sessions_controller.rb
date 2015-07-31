@@ -3,7 +3,7 @@ class SessionsController < ApplicationController
   def create
     if authenticate_user
       session[:user_id] = @user.id
-      flash[:success] = "Welcome back. #{@user.name}"
+      flash[:success] = "Welcome back. #{@user.first_name}"
     else
       flash[:danger] = "Wrong phone number or password."
     end

@@ -12,6 +12,8 @@ en:
       default_message: "Please review the problems below:"
     placeholders:
       defaults:
+        first_name: 'first name'
+        last_name: 'last name'
         name: 'name'
         phone_number: '0912345678'
         password: 'password'

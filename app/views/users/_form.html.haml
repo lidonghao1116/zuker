@@ -3,9 +3,10 @@
     = f.error_notification
 
     .form-inputs
-      = f.input :name
+      = f.input :first_name
+      = f.input :last_name
       = f.input :phone_number
-      - if action_name == 'new'
+      - if action_name == 'create' || action_name == 'new'
         = f.input :password
         = f.input :password_confirmation
       = f.input :email

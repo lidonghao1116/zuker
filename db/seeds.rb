@@ -7,7 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 for i in 1..9 do
-  a = User.create(:name => "peter#{i}", :phone_number => "092008518#{i}", :password => "123456")
+  a = User.create(:first_name => "peter#{i}", :last_name => "thiel#{i}", :phone_number => "092008518#{i}", :password => "123456")
   a.generate_pin
 end
 

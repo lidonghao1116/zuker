@@ -28,7 +28,9 @@ en:
   "logout" : "登出"
   "hello_nav" : "Hi，%{name} !"
   user:
-    name: 姓名
+    full_name: 姓名
+    first_name: 名
+    last_name: 姓
     phone_number: 手機號碼2
     password: 密碼
     password_confirmation: 密碼確認

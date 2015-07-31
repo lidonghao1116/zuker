@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150730132615) do
+ActiveRecord::Schema.define(version: 20150731015736) do
 
   create_table "pins", force: :cascade do |t|
     t.string   "content"
@@ -28,7 +28,6 @@ ActiveRecord::Schema.define(version: 20150730132615) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "name"
     t.string   "phone_number"
     t.string   "password_digest"
     t.string   "email"
@@ -37,6 +36,8 @@ ActiveRecord::Schema.define(version: 20150730132615) do
     t.date     "start_school_year"
     t.boolean  "verified",          default: false
     t.integer  "school_id"
+    t.string   "first_name"
+    t.string   "last_name"
   end
 
   add_index "users", ["phone_number"], name: "index_users_on_phone_number", unique: true

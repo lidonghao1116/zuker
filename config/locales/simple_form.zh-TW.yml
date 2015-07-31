@@ -13,7 +13,9 @@ zh-TW:
       default_message: "哎呀！您輸入的資料似乎有些錯誤"
     labels:
       user:
-        name: 姓名
+        full_name: 姓名
+        first_name: 名
+        last_name: 姓
         email: 電子郵件
         password: 密碼
         password_confirmation: 確認密碼
@@ -58,7 +60,9 @@ zh-TW:
           password: '若不變更密碼則留白'
     placeholders:
       defaults:
-        name: '姓名'
+        full_name: '姓名'
+        first_name: 名
+        last_name: 姓
         phone_number: '0912345678'
         password: '密碼'
         password_confirmation: '確認密碼'

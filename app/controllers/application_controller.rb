@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate_user
-    @user = User.find_by_phone_number(params[:user][:phone_number]).try(:authenticate, params[:user][:password])
+    @user = User.find_by_phone_number(params[:user][:phone_number]).authenticate(params[:user][:password])
   end
  
   def set_locale

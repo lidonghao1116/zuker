@@ -11,7 +11,7 @@
       - if current_user
         .navbar-form.navbar-right
           %span.white-text
-            = link_to I18n.t("hello_nav", name: current_user.name), user_path(current_user)
+            = link_to I18n.t("hello_nav", name: current_user.first_name), user_path(current_user)
           %span
             = link_to I18n.t('logout'), logout_path, class:'btn btn-success'
       - else
