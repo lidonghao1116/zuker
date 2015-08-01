@@ -162,9 +162,9 @@ RSpec.describe User, type: :model do
 
   end
 
-  describe "use facebook sign up" do
-    it "only facebook info" do
-      expect(User.create(:provider => "facebook", :uid => "12345678999", :sign_with_zuker => false)).to be_valid
+  describe "can sign up with facebook" do
+    it "with only facebook info" do
+      expect(User.create_with_omniauth(:provider => "facebook", :uid => "12345678999", :sign_with_zuker => false)).to be_valid
     end
   end
 

@@ -9,8 +9,8 @@
       - if action_name == 'create' || action_name == 'new'
         = f.input :password
         = f.input :password_confirmation
-      = f.input :email
       %h4 填寫以下資料，讓我們提供您更棒的服務
+      = f.input :email
       = f.label :school
       = f.association :school, collection: School.categories, prompt: true
       = f.label :start_school_year

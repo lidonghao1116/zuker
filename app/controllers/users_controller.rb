@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :correct_user_sign_in?, only: [:show, :edit, :update, :destroy, :phone_verify, :verify_pin, :resend_pin, :change_phone_number]
+  before_action :has_sign_with_zuker?, only: [:edit]
 
   include SmsConfirmableActions
 
@@ -80,6 +81,12 @@ class UsersController < ApplicationController
       unless session[:user_id].to_s == params[:id] && current_user
         flash[:danger] = "Sorry, you need to sign in or register."
         redirect_to signup_users_path and return
+      end
+    end
+
+    def has_sign_with_zuker?
+      unless current_user.sign_with_zuker
+        flash[:info] = "Finish your profile to become a really Zuker."
       end
     end
 

@@ -26,9 +26,14 @@ module SmsConfirmableActions
   end
 
   def resend_pin
-    @user.resend_pin
-    flash[:info] = "Hey, we have send you a new pin. Please check your phone."
-    redirect_to phone_verify_user_path(@user)
+    case @user.resend_pin
+    when false
+      flash[:warning] = "please input phone number."
+      redirect_to edit_user_path(@user)
+    else
+      flash[:info] = "Hey, we have send you a new pin. Please check your phone."
+      redirect_to phone_verify_user_path(@user)
+    end
   end
 
   def has_verified?
@@ -41,5 +46,5 @@ module SmsConfirmableActions
       @user.resend_pin
     end
   end
-  
+
 end

@@ -4,8 +4,7 @@ class User < ActiveRecord::Base
 
   include SmsConfirmable
   include FacebookLogin
-
-  #include ActiveModel::Dirty
+  
   with_options if: :sign_with_zuker? do |z|
     z.has_secure_password
     # Password must be present on creation

@@ -8,7 +8,7 @@ module FacebookLogin
   module ClassMethods
     def create_with_omniauth(auth)
       create! do |user|
-        user.sign_with_zuker = false
+        user.sign_with_zuker = false # default is nil
         user.password = user.password_confirmation = ""
         user.password_digest = "facebook-authorized account"
         user.provider = auth['provider']
