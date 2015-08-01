@@ -30,7 +30,7 @@ gem 'simple_form'
 gem 'betterlorem'
 gem 'settingslogic'
 
-gem 'puma'
+#gem 'puma'
 gem 'twilio-ruby', '~> 4.0'
 
 # nested form

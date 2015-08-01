@@ -71,33 +71,20 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
+    @old_phone_number = @user.phone_number
     respond_to do |format|
-      if @user.attributes = user_params #@user.update(user_params)
-        if @user.phone_number_changed?
-          @user.update(user_params)
-          @user.update(verified: false)
-          @user.resend_pin
+      if @user.update(user_params)
+        if reverify_if_phone_changed?
           flash[:info] = 'Please check your verification code.'
-          redirect_to phone_verify_user_path(@user) and return
+          redirect_to phone_verify_user_path(@user) and return 
+        else
+          format.html { redirect_to @user, notice: 'User was successfully updated.' }
+          format.json { render :show, status: :ok, location: @user }
         end
-        @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
-        format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
-    end
-  end
-
-  def change_phone_number
-    if @user.authenticate(params[:user][:password])
-      @user.update(params[:user][:phone_number])
-      flash[:info] = 'Please check your verification code.'
-      redirect_to phone_verify_user_path(@user) and return
-    else
-      flash[:info] = 'Please check your password.'
-      redirect_to phone_verify_user_path(@user) and return
     end
   end
 
@@ -123,6 +110,13 @@ class UsersController < ApplicationController
 
     def has_verified?
       return current_user.verified
+    end
+
+    def reverify_if_phone_changed?
+      if @old_phone_number != @user.phone_number
+        @user.update_attribute(:verified, false)
+        @user.resend_pin
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

@@ -1,12 +1,12 @@
-#user-form
+%div{ :id => (action_name == 'edit' || action_name == 'update' ? "user-form-edit" : "user-form-new" ) }
   = simple_form_for @user do |f|
     = f.error_notification
 
     .form-inputs
       = f.input :first_name
       = f.input :last_name
+      = f.input :phone_number
       - if action_name == 'create' || action_name == 'new'
-        = f.input :phone_number
         = f.input :password
         = f.input :password_confirmation
       = f.input :email
