@@ -2,7 +2,7 @@ class SessionsController < ApplicationController
   def new ; end
 
   def create
-    if authenticate_user
+    if password_is_right
       session[:user_id] = @user.id
       flash[:success] = "Welcome back. #{@user.first_name}"
     else

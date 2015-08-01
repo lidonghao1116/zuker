@@ -1,11 +1,14 @@
 module FacebookLogin
+
+  #before_action :has_sign_with_zuker?, only: [:edit, :phone_verify]
+
   extend ActiveSupport::Concern
 
   def self.included(base)
     base.extend(ClassMethods)
   end
   
-  module ClassMethods
+  class_methods do
     def create_with_omniauth(auth)
       create! do |user|
         user.sign_with_zuker = false # default is nil
@@ -18,6 +21,16 @@ module FacebookLogin
         #end
       end
     end
+  end
+
+  def update_with_omniauth(auth)
+    self.update({
+      :provider => auth['provider'],
+      :uid => auth['uid']
+      #if auth['info']
+         #user.name = auth['info']['name'] || ""
+      #end
+    })
   end
   
 end

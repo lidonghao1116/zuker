@@ -88,4 +88,10 @@ RSpec.describe UsersController, type: :controller do
 
   end
 
+  describe 'can fb login' do
+
+    before do
+      request.env["omniauth.auth"] = OmniAuth.config.mock_auth[:facebook]
+    end
+
 end

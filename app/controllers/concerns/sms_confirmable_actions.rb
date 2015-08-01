@@ -2,17 +2,19 @@ module SmsConfirmableActions
 
   extend ActiveSupport::Concern
 
-  module ClassMethods
+  included do    
+    before_action :has_phone_number?, only:[:phone_verify, :verify_pin, :resend_pin]
+  end
+
+  class_methods do
   end
 
   def phone_verify
-    has_verified? or return
-    flash[:success] = "You already have finished verification."
-    redirect_to user_path(@user)
+    Not_verified_yet?
   end
 
   def verify_pin
-    case @user.verify(params[:verify][:pin])# && user.pin.error_times < 3
+    case @user.verify(params[:verify][:pin])
     when false
       flash[:warning] = "Sorry, that wasn't the right pin."
       redirect_to phone_verify_user_path(@user)
@@ -36,15 +38,19 @@ module SmsConfirmableActions
     end
   end
 
-  def has_verified?
-    return current_user.verified
-  end
+  private
 
-  def reverify_if_phone_changed?
-    if @old_phone_number != @user.phone_number
-      @user.update_attribute(:verified, false)
-      @user.resend_pin
+    def Not_verified_yet?
+      if current_user.verified  
+        flash[:success] = "You already have finished verification."
+        redirect_to user_path(@user)
+      end
     end
-  end
+
+    def has_phone_number?
+      unless @user.phone_number
+        redirect_to edit_user_path(@user)
+      end
+    end
 
 end

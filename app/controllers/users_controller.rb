@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  before_action :correct_user_sign_in?, only: [:show, :edit, :update, :destroy, :phone_verify, :verify_pin, :resend_pin, :change_phone_number]
-  before_action :has_sign_with_zuker?, only: [:edit]
+  before_action :correct_user_sign_in?, except: [:index, :new, :create]
+  before_action :has_sign_with_zuker?, only: [:edit, :update]
 
   include SmsConfirmableActions
 
@@ -50,13 +50,9 @@ class UsersController < ApplicationController
     @old_phone_number = @user.phone_number
     respond_to do |format|
       if @user.update(user_params)
-        if reverify_if_phone_changed?
-          flash[:info] = 'Please check your verification code.'
-          redirect_to phone_verify_user_path(@user) and return 
-        else
-          format.html { redirect_to @user, notice: 'User was successfully updated.' }
-          format.json { render :show, status: :ok, location: @user }
-        end
+        reverify_if_phone_changed and return
+        format.html { redirect_to @user, notice: 'User was successfully updated.' }
+        format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit }
         format.json { render json: @user.errors, status: :unprocessable_entity }
@@ -76,17 +72,16 @@ class UsersController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def correct_user_sign_in?
-      unless session[:user_id].to_s == params[:id] && current_user
-        flash[:danger] = "Sorry, you need to sign in or register."
-        redirect_to signup_users_path and return
-      end
-    end
 
-    def has_sign_with_zuker?
-      unless current_user.sign_with_zuker
-        flash[:info] = "Finish your profile to become a really Zuker."
+    def reverify_if_phone_changed
+      if @old_phone_number != @user.phone_number
+        if @user.update_attribute(:verified, false) && @user.resend_pin
+          flash[:info] = 'Please check your verification code.'
+          redirect_to phone_verify_user_path(@user)
+        else
+          flash[:info] = 'Please check your phone number.'
+          redirect_to edit_user_path(@user)
+        end
       end
     end
 

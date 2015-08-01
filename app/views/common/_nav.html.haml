@@ -14,9 +14,12 @@
             = link_to I18n.t("hello_nav", name: current_user.first_name || current_user.uid), user_path(current_user)
           %span
             = link_to I18n.t('signout'), signout_path, class:'btn btn-success'
+          - unless current_user.provider == 'facebook'
+            %span
+              = link_to 'FB', facebook_signin_path, class:'btn btn-info'
       - else
         = simple_form_for :user, url: signin_path, wrapper: :inline_form, html: { class:'navbar-form navbar-right' } do |f|
           = f.input :phone_number, hint: false
           = f.input :password, hint: false
           = f.button :submit, "Sign in", class: "btn btn-success"
-        = link_to 'Login', '/auth/facebook'
+        = link_to 'Login', facebook_signin_path
