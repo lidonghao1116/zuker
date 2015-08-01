@@ -15,6 +15,7 @@
       = f.association :school, collection: School.categories, prompt: true
       = f.label :start_school_year
       = f.input :start_school_year, as: :date, start_year: Date.today.year, end_year: Date.today.year - 15, discard_day: true, discard_month: true, prompt: :translate
+      = f.input :sign_with_zuker, :as => :hidden, :input_html => { :value => true }
 
     .form-actions
       = f.button :submit
