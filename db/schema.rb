@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150731015736) do
+ActiveRecord::Schema.define(version: 20150801055623) do
 
   create_table "pins", force: :cascade do |t|
     t.string   "content"
@@ -38,6 +38,9 @@ ActiveRecord::Schema.define(version: 20150731015736) do
     t.integer  "school_id"
     t.string   "first_name"
     t.string   "last_name"
+    t.string   "provider"
+    t.string   "uid"
+    t.boolean  "sign_with_zuker"
   end
 
   add_index "users", ["phone_number"], name: "index_users_on_phone_number", unique: true

@@ -13,8 +13,17 @@ Rails.application.routes.draw do
   root 'users#new'
 
   scope :controller => 'sessions' do
-    post 'login' => :create
-    get 'logout' => :destroy
+    post 'signin' => :create
+    get 'signout' => :destroy
+  end
+
+  get '/auth/facebook/callback' => "facebook/sessions#create"
+
+  namespace :facebook do
+    scope :controller => 'sessions' do
+      get '/signin' => 'sessions#new', :as => :signin
+      get '/signout' => 'sessions#destroy', :as => :signout
+    end
   end
 
   #post 'twilio/voice' => 'twilio#voice'

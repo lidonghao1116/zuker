@@ -11,11 +11,12 @@
       - if current_user
         .navbar-form.navbar-right
           %span.white-text
-            = link_to I18n.t("hello_nav", name: current_user.first_name), user_path(current_user)
+            = link_to I18n.t("hello_nav", name: current_user.first_name || current_user.uid), user_path(current_user)
           %span
-            = link_to I18n.t('logout'), logout_path, class:'btn btn-success'
+            = link_to I18n.t('signout'), signout_path, class:'btn btn-success'
       - else
-        = simple_form_for :user, url: login_path, wrapper: :inline_form, html: { class:'navbar-form navbar-right' } do |f|
+        = simple_form_for :user, url: signin_path, wrapper: :inline_form, html: { class:'navbar-form navbar-right' } do |f|
           = f.input :phone_number, hint: false
           = f.input :password, hint: false
           = f.button :submit, "Sign in", class: "btn btn-success"
+        = link_to 'Login', '/auth/facebook'

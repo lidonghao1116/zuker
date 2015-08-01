@@ -5,7 +5,7 @@ zh-TW:
   "Didn't get the code?": "重發驗證碼"
   "Edit" : "編輯個人資料"
   "Delete" : "刪除帳號"
-  "logout" : "登出"
+  "signout" : "登出"
   "hello_nav" : "嗨，%{name} 您好！"
   user:
     full_name: 姓名

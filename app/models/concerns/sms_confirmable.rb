@@ -1,7 +1,7 @@
 module SmsConfirmable
   extend ActiveSupport::Concern
   
-  include Webhookable
+  #include Webhookable
 
   included do 
     has_one :pin, as: :sms_confirmable
@@ -43,7 +43,7 @@ module SmsConfirmable
   end
 
   def resend_pin
-    self.pin.destroy
+    self.pin.destroy if self.pin
     self.create_pin content: random_4_digits
     self.send_pin
     return 'resend'

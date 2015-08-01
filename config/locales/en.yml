@@ -25,7 +25,7 @@ en:
   "Register": "加入租客"
   "Verify": "驗證手機號碼"
   "Edit" : "編輯個人資料"
-  "logout" : "登出"
+  "signout" : "登出"
   "hello_nav" : "Hi，%{name} !"
   user:
     full_name: 姓名

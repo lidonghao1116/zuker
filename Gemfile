@@ -29,6 +29,8 @@ gem "haml-rails", "~> 0.9"
 gem 'simple_form'
 gem 'betterlorem'
 gem 'settingslogic'
+gem 'omniauth'
+gem 'omniauth-facebook'
 
 #gem 'puma'
 gem 'twilio-ruby', '~> 4.0'

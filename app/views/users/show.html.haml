@@ -1,4 +1,10 @@
 %p
+  %b= t "user.provider"
+  = @user.provider
+%p
+  %b= t "user.uid"
+  = @user.uid
+%p
   %b= t "user.full_name"
   = @user.full_name
 %p
@@ -15,7 +21,7 @@
   = @user.start_school_year
 %p
   %b= t "user.pin"
-  = @user.pin.content
+  = @user.pin.content if @user.pin
 %p
   %b= t "user.verified"
   - if @user.verified
