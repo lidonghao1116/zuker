@@ -12,7 +12,8 @@
   = @user.phone_number
 %p
   %b= t "user.email"
-  = @user.email
+  = image_tag("#{@user.email}")
+  /= @user.email
 %p
   %b= t "user.school"
   = render_school_category(@user.school_id)
@@ -31,5 +32,6 @@
     = link_to I18n.t('Verify'), phone_verify_user_path(@user)
     = link_to I18n.t("Didn't get the code?"), resend_pin_user_path(@user)
 
+= link_to 'Connect with facebook', facebook_signin_path unless @user.provider == 'facebook'
 = link_to I18n.t('Edit'), edit_user_path(@user)
 = link_to I18n.t('Delete'), user_path(@user), method: :delete, data: {confirm: "Are you sure?"}

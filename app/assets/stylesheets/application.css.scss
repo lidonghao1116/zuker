@@ -15,11 +15,14 @@
 
   @import "bootstrap-sprockets";
   @import "bootstrap";
+  @import "font-awesome-sprockets";
+  @import "font-awesome";
   @import "users";
   
 body {
   padding-top: 70px;
   padding-bottom: 20px;
+  font-family: "Hiragino Sans GB","华文细黑","STHeiti","微软雅黑","Microsoft YaHei",SimHei,"Helvetica Neue",Helvetica,Arial,sans-serif !important;
 }
 
 #navbar {
@@ -29,4 +32,11 @@ body {
 .white-text {
   color: white;
   a { color: white; }
+}
+
+.btn-facebook {
+  border-color: #3B5998;
+  border-bottom-color: #263a63;
+  background-color: #3B5998;
+  color: #fff;
 }

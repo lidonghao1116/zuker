@@ -16,6 +16,7 @@ module FacebookLogin
         user.password_digest = "facebook-authorized account"
         user.provider = auth['provider']
         user.uid = auth['uid']
+        user.email = auth['info']['image']
         #if auth['info']
            #user.name = auth['info']['name'] || ""
         #end
@@ -27,9 +28,11 @@ module FacebookLogin
     self.update({
       :provider => auth['provider'],
       :uid => auth['uid'],
-      :sign_with_zuker => true
+      :sign_with_zuker => true,
       #if auth['info']
-         #user.name = auth['info']['name'] || ""
+         :first_name => auth['info']['first_name'],
+         :last_name => auth['info']['last_name'],
+         :email => auth['info']['image']
       #end
     })
   end
