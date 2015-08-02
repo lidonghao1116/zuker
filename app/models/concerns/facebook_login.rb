@@ -26,7 +26,8 @@ module FacebookLogin
   def update_with_omniauth(auth)
     self.update({
       :provider => auth['provider'],
-      :uid => auth['uid']
+      :uid => auth['uid'],
+      :sign_with_zuker => true
       #if auth['info']
          #user.name = auth['info']['name'] || ""
       #end

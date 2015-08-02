@@ -48,7 +48,7 @@ module SmsConfirmable
   end
 
   def resend_pin
-    self.pin.destroy if self.pin
+    self.pin.try(:destroy)
     self.create_pin content: random_4_digits
     self.send_pin
     #return 'resend'
