@@ -32,6 +32,14 @@
     = link_to I18n.t('Verify'), phone_verify_user_path(@user)
     = link_to I18n.t("Didn't get the code?"), resend_pin_user_path(@user)
 
-= link_to 'Connect with facebook', facebook_signin_path unless @user.provider == 'facebook'
+= render 'common/fb_login_button' unless @user.provider == 'facebook'
+/= link_to 'Connect with facebook', facebook_signin_path unless @user.provider == 'facebook'
+- unless @user.sign_with_zuker
+  %span.btn.btn-info#connect-fb
+    Connect with Zuker
+/= link_to 'Connect with Zuker', edit_user_path(@user), id:'connect-fb' unless @user.sign_with_zuker
 = link_to I18n.t('Edit'), edit_user_path(@user)
 = link_to I18n.t('Delete'), user_path(@user), method: :delete, data: {confirm: "Are you sure?"}
+
+#login_form.hide
+  = render 'login_form'
