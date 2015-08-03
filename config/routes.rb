@@ -5,6 +5,8 @@ Rails.application.routes.draw do
       get 'phone_verify' => "users#phone_verify"
       post 'verify_pin' => "users#verify_pin"
       get 'resend_pin' => "users#resend_pin"
+      post '/connect_with_zuker' => "facebook/users#connect_with_zuker", :as => :connect_with_zuker
+      get '/connect_with_fb' => 'facebook/users#connect_with_fb', :as => :connect_with_fb
     end
     collection do
       get 'signup' => "users#new"

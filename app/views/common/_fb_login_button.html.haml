@@ -3,4 +3,7 @@
     %span.icon-container
       = icon('facebook')
     %span.text-container
-      Facebook登入
+      - if action_name == 'show'
+        連結Facebook
+      - else
+        Facebook登入

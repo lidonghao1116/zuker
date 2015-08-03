@@ -24,7 +24,7 @@ module FacebookLogin
     end
   end
 
-  def update_with_omniauth(auth)
+  def update_existing_zuker_with_omniauth(auth)
     self.update({
       :provider => auth['provider'],
       :uid => auth['uid'],
@@ -35,6 +35,13 @@ module FacebookLogin
          :email => auth['info']['image']
       #end
     })
+  end
+
+  def merge_existing_fb_user_to(user)
+    self.update({
+      :provider => user.provider,
+      :uid => user.uid
+    }) 
   end
   
 end

@@ -42,4 +42,4 @@
 = link_to I18n.t('Delete'), user_path(@user), method: :delete, data: {confirm: "Are you sure?"}
 
 #login_form.hide
-  = render 'login_form'
+  = render partial: 'login_form', locals: { id: @user.id }
