@@ -6,7 +6,7 @@ class Facebook::SessionsController < ApplicationController
   def create
     auth = request.env["omniauth.auth"]
     if current_user.sign_with_zuker && current_user.provider != 'facebook' # PURE zuker w/o FB
-      if fb_used
+      if fb_used(auth)
         connect_with_this_fb(fb_used)
       else # never use fb before
         signin(@user) if @user.update_with_omniauth(auth)
@@ -35,7 +35,7 @@ class Facebook::SessionsController < ApplicationController
       redirect_to user_path(user)      
     end
 
-    def fb_used
+    def fb_used(auth)
       User.where(:provider => auth['provider'], :uid => auth['uid'].to_s).first
     end
 
