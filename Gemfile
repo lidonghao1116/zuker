@@ -35,7 +35,7 @@ gem 'omniauth-facebook'
 
 #gem 'puma'
 gem 'twilio-ruby', '~> 4.0'
-
+#gem "paperclip", "~> 4.3"
 # nested form
 gem 'cocoon'
 
