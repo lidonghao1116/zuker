@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :rooms
   resources :users do
     member do
       get 'profile' => "users#show"

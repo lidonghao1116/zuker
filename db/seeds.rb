@@ -7,8 +7,11 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 for i in 1..9 do
-  a = User.create(:first_name => "peter#{i}", :last_name => "thiel#{i}", :phone_number => "092008518#{i}", :password => "123456", :sign_with_zuker => true)
-  a.generate_pin
+  User.create(:first_name => "peter#{i}", :last_name => "thiel#{i}", :phone_number => "092008518#{i}", :password => "123456", :sign_with_zuker => true).generate_pin
+end
+
+for i in 1..9 do
+  Room.create(:title => BetterLorem.w(4, true, true), :description => BetterLorem.p(2, true, true), :location => BetterLorem.w(5, true, true), :price => 987 )
 end
 
 for i in 0..SchoolData.school_categories.size - 1 do

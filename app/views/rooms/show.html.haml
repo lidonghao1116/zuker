@@ -1,0 +1,21 @@
+%p#notice= notice
+
+%p
+  %b Title:
+  = @room.title
+%p
+  %b Description:
+  = @room.description
+%p
+  %b Location:
+  = @room.location
+%p
+  %b Price:
+  = "#{ number_to_currency(@room.price, precision: 0) } / month"
+%p
+  %b Last updated at:
+  = @room.updated_at.strftime("%Y-%m-%d")
+
+= link_to 'Edit', edit_room_path(@room)
+\|
+= link_to 'Back', rooms_path
