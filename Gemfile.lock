@@ -1,4 +1,14 @@
 GIT
+  remote: git://github.com/carrierwaveuploader/carrierwave.git
+  revision: 37cf31d34fa411db20e99cc654195020b06202c3
+  specs:
+    carrierwave (0.10.0)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
+      json (>= 1.7)
+      mime-types (>= 1.16)
+
+GIT
   remote: git://github.com/svenfuchs/rails-i18n.git
   revision: 6fe4bfa8f6f395d1cd58ff8229df065283746f09
   branch: master
@@ -236,6 +246,7 @@ DEPENDENCIES
   betterlorem
   bootstrap-sass (~> 3.3.4)
   byebug
+  carrierwave!
   cocoon
   coffee-rails (~> 4.1.0)
   font-awesome-sass (~> 4.3.0)
