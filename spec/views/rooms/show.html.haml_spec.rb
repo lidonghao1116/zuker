@@ -6,7 +6,7 @@ RSpec.describe "rooms/show", type: :view do
       :title => "Title",
       :description => "MyText",
       :location => "Location",
-      :price => "9.99"
+      :price => 9.99
     ))
   end
 
@@ -15,6 +15,6 @@ RSpec.describe "rooms/show", type: :view do
     expect(rendered).to match(/Title/)
     expect(rendered).to match(/MyText/)
     expect(rendered).to match(/Location/)
-    expect(rendered).to match(/9.99/)
+    expect(rendered).to eq(9.99)
   end
 end

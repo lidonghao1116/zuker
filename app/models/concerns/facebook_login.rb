@@ -16,7 +16,7 @@ module FacebookLogin
         user.password_digest = "facebook-authorized account"
         user.provider = auth['provider']
         user.uid = auth['uid']
-        user.email = auth['info']['image']
+        #user.email = auth['info']['image']
         #if auth['info']
            #user.name = auth['info']['name'] || ""
         #end
