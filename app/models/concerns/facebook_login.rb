@@ -24,7 +24,7 @@ module FacebookLogin
     end
   end
 
-  def update_existing_zuker_with_omniauth(auth)
+  def update_with_omniauth(auth)
     self.update({
       :provider => auth['provider'],
       :uid => auth['uid'],
@@ -34,6 +34,7 @@ module FacebookLogin
          :last_name => auth['info']['last_name'],
          :email => auth['info']['image']
       #end
+      # 之後補上從FB取得的其他參數
     })
   end
 
@@ -41,6 +42,7 @@ module FacebookLogin
     self.update({
       :provider => user.provider,
       :uid => user.uid
+      # 之後補上從FB取得的其他參數
     }) 
   end
   
