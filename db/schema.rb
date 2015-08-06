@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150804085957) do
+ActiveRecord::Schema.define(version: 20150806133515) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "pins", force: :cascade do |t|
     t.string   "content"
@@ -21,8 +24,15 @@ ActiveRecord::Schema.define(version: 20150804085957) do
     t.string   "sms_confirmable_type"
   end
 
-# Could not dump table "rooms" because of following NoMethodError
-#   undefined method `[]' for nil:NilClass
+  create_table "rooms", force: :cascade do |t|
+    t.string   "title"
+    t.text     "description"
+    t.string   "location"
+    t.decimal  "price",       precision: 8, scale: 2
+    t.json     "images"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+  end
 
   create_table "schools", force: :cascade do |t|
     t.string   "name"
@@ -46,7 +56,8 @@ ActiveRecord::Schema.define(version: 20150804085957) do
     t.boolean  "sign_with_zuker"
   end
 
-  add_index "users", ["phone_number"], name: "index_users_on_phone_number", unique: true
-  add_index "users", ["school_id"], name: "index_users_on_school_id"
+  add_index "users", ["phone_number"], name: "index_users_on_phone_number", unique: true, using: :btree
+  add_index "users", ["school_id"], name: "index_users_on_school_id", using: :btree
 
+  add_foreign_key "users", "schools"
 end

@@ -1,6 +1,7 @@
-= @room.images[1].url # => '/url/to/file.png'
-= @room.images[1].current_path # => 'path/to/file.png'
-= @room.images[1].identifier # => 'file.png'
+= @room.images
+/ = @room.images[1].url # => '/url/to/file.png'
+/ = @room.images[1].current_path # => 'path/to/file.png'
+/ = @room.images[1].identifier # => 'file.png'
 
 %p
   %b Title:
@@ -21,3 +22,5 @@
 = link_to 'Edit', edit_room_path(@room)
 \|
 = link_to 'Back', rooms_path
+
+= console

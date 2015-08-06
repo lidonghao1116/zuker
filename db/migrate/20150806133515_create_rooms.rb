@@ -4,10 +4,10 @@ class CreateRooms < ActiveRecord::Migration
       t.string :title
       t.text :description
       t.string :location
-      t.decimal :price
+      t.decimal :price, :precision => 8, :scale => 2
+      t.column :images, :json
 
       t.timestamps null: false
     end
-    change_column :rooms, :price, :decimal, :precision => 8, :scale => 2
   end
 end
