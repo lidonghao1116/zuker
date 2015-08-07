@@ -28,7 +28,7 @@ class RoomsController < ApplicationController
 
     respond_to do |format|
       if @room.save
-        format.html { redirect_to @room, notice: 'Room was successfully created.' }
+        format.html { redirect_to edit_room_path(@room), notice: 'Room was successfully created.' }
         format.json { render :json => @room }
       else
         format.html { render :new }
@@ -48,13 +48,13 @@ class RoomsController < ApplicationController
   end
 
   def upload_images
-      respond_to do |format|
-        if @room.update(:image => params[:image])
-          format.json { render :json => @room }
-        else
-           format.html { render :edit }
-        end
-      end    
+    respond_to do |format|
+      if @room.update(:image => params[:image])
+        format.json { render :json => @room }
+      else
+         format.html { render :edit }
+      end
+    end    
   end
 
   # DELETE /rooms/1

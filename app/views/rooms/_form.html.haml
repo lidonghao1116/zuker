@@ -1,4 +1,4 @@
-= simple_form_for @room, remote: true do |f|
+= simple_form_for @room do |f|
   = f.error_notification
 
   .form-inputs
@@ -10,4 +10,7 @@
   .form-actions
     = f.button :submit
 
-= render 'upload_image'
+- if @room.image
+  = image_tag @room.image_url(:thumb)
+
+= render 'upload_image' if action_name == 'edit' || action_name == 'update'

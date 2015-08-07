@@ -25,7 +25,7 @@ zh-TW:
         gender: 性別
         school: 就讀學校
         start_school_year: 入學年度
-      house:
+      room:
         title: 名稱
         profile: 描述
         amenity: 設施

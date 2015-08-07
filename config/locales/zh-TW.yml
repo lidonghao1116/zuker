@@ -19,3 +19,6 @@ zh-TW:
       user:
         create: "成為租客"
         update: "確認更新"
+      room:
+        create: "預覽物件"
+        update: "確認上傳"

@@ -1,9 +1,9 @@
 $(function() {
   //var mediaDropzone;
   //mediaDropzone = new Dropzone("#media-dropzone");
-
+  $("form#mediaDropzone").dropzone({ 
   // "myAwesomeDropzone" is the camelized version of the HTML element's ID
-  Dropzone.options.mediaDropzone = {
+  //Dropzone.options.mediaDropzone = {
     paramName: "image", // The name that will be used to transfer the file
     maxFilesize: 1, // MB
     addRemoveLinks: true,
@@ -28,7 +28,7 @@ $(function() {
     //   }
     //   else { done(); }
     // }
-  };
+  });
 
 
 });
