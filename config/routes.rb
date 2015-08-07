@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
-  resources :rooms
+
+  resources :rooms do
+    member do
+      post 'upload_images' => "rooms#upload_images"
+    end
+  end
+
   resources :users do
     member do
       get 'profile' => "users#show"
@@ -12,6 +18,7 @@ Rails.application.routes.draw do
       get 'signup' => "users#new"
     end
   end
+
   root 'users#new'
 
   scope :controller => 'sessions' do

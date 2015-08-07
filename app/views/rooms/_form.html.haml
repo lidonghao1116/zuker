@@ -1,4 +1,4 @@
-= simple_form_for(@room) do |f|
+= simple_form_for @room, remote: true do |f|
   = f.error_notification
 
   .form-inputs
@@ -6,7 +6,8 @@
     = f.input :description
     = f.input :location
     = f.input :price
-    = f.input :image, as: :file
 
   .form-actions
     = f.button :submit
+
+= render 'upload_image'

@@ -1,5 +1,5 @@
 class RoomsController < ApplicationController
-  before_action :set_room, only: [:show, :edit, :update, :destroy]
+  before_action :set_room, only: [:show, :edit, :update, :destroy, :upload_images]
 
   # GET /rooms
   # GET /rooms.json
@@ -29,7 +29,7 @@ class RoomsController < ApplicationController
     respond_to do |format|
       if @room.save
         format.html { redirect_to @room, notice: 'Room was successfully created.' }
-        format.json { render :show, status: :created, location: @room }
+        format.json { render :json => @room }
       else
         format.html { render :new }
         format.json { render json: @room.errors, status: :unprocessable_entity }
@@ -40,12 +40,21 @@ class RoomsController < ApplicationController
   # PATCH/PUT /rooms/1
   # PATCH/PUT /rooms/1.json
   def update
-      #@room.images = ActiveSupport::JSON.encode(params[:room][:images])
-      if @room.update(room_params)
-        redirect_to room_path(@room)
-      else
-        render :edit
-      end
+    if @room.update(room_params)
+      redirect_to room_path(@room)
+    else
+       render :edit
+    end  
+  end
+
+  def upload_images
+      respond_to do |format|
+        if @room.update(:image => params[:image])
+          format.json { render :json => @room }
+        else
+           format.html { render :edit }
+        end
+      end    
   end
 
   # DELETE /rooms/1
