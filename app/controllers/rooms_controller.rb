@@ -15,10 +15,12 @@ class RoomsController < ApplicationController
   # GET /rooms/new
   def new
     @room = Room.new
+    @room.pictures.build
   end
 
   # GET /rooms/1/edit
   def edit
+    @room.pictures.build
   end
 
   # POST /rooms
@@ -41,6 +43,11 @@ class RoomsController < ApplicationController
   # PATCH/PUT /rooms/1.json
   def update
     if @room.update(room_params)
+      if params[:images]
+        params[:images].each do |image|
+          @room.pictures.create(image: image)
+        end
+      end
       redirect_to room_path(@room)
     else
        render :edit
@@ -75,6 +82,6 @@ class RoomsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def room_params
-      params.require(:room).permit(:title, :description, :location, :price, :image)
+      params.require(:room).permit(:title, :description, :location, :price, pictures_attributes: [:id, :image] )
     end
 end

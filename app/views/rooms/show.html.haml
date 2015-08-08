@@ -1,6 +1,6 @@
-- if @room.image?
-  = image_tag @room.image_url(:thumb)
-  = image_tag @room.image_url(:large)
+- if @room.pictures
+  = image_tag @room.pictures[0].image_url(:thumb)
+  /= image_tag @room.image_url(:large)
 
 %p
   %b Title:
