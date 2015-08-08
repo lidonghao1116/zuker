@@ -1,6 +1,8 @@
-- if @room.pictures
-  = image_tag @room.pictures[0].image_url(:thumb)
-  /= image_tag @room.image_url(:large)
+
+= @room.images
+/ = @room.images[1].url # => '/url/to/file.png'
+/ = @room.images[1].current_path # => 'path/to/file.png'
+/ = @room.images[1].identifier # => 'file.png'
 
 %p
   %b Title:

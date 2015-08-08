@@ -1,4 +1,14 @@
 GIT
+  remote: git://github.com/carrierwaveuploader/carrierwave.git
+  revision: 37cf31d34fa411db20e99cc654195020b06202c3
+  specs:
+    carrierwave (0.10.0)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
+      json (>= 1.7)
+      mime-types (>= 1.16)
+
+GIT
   remote: git://github.com/svenfuchs/rails-i18n.git
   revision: 6fe4bfa8f6f395d1cd58ff8229df065283746f09
   branch: master
@@ -45,7 +55,7 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
-    arel (6.0.3)
+    arel (6.0.2)
     autoprefixer-rails (5.2.1.1)
       execjs
       json
@@ -59,11 +69,6 @@ GEM
     builder (3.2.2)
     byebug (5.0.0)
       columnize (= 0.9.0)
-    carrierwave (0.10.0)
-      activemodel (>= 3.2.0)
-      activesupport (>= 3.2.0)
-      json (>= 1.7)
-      mime-types (>= 1.16)
     cocoon (1.2.6)
     coffee-rails (4.1.0)
       coffee-script (>= 2.2.0)
@@ -83,7 +88,7 @@ GEM
       multipart-post (>= 1.2, < 3)
     font-awesome-sass (4.3.2.1)
       sass (~> 3.2)
-    globalid (0.3.6)
+    globalid (0.3.5)
       activesupport (>= 4.1.0)
     haml (4.0.6)
       tilt
@@ -118,7 +123,7 @@ GEM
       mime-types (>= 1.16, < 3)
     mime-types (2.6.1)
     mini_portile (0.6.2)
-    minitest (5.8.0)
+    minitest (5.7.0)
     multi_json (1.11.2)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
@@ -173,7 +178,6 @@ GEM
       thor (>= 0.18.1, < 2.0)
     rake (10.4.2)
     rdoc (4.2.0)
-    rmagick (2.15.3)
     rspec-core (3.3.2)
       rspec-support (~> 3.3.0)
     rspec-expectations (3.3.1)
@@ -191,7 +195,7 @@ GEM
       rspec-mocks (~> 3.3.0)
       rspec-support (~> 3.3.0)
     rspec-support (3.3.0)
-    ruby_parser (3.7.1)
+    ruby_parser (3.7.0)
       sexp_processor (~> 4.1)
     sass (3.4.16)
     sass-rails (5.0.3)
@@ -243,7 +247,7 @@ DEPENDENCIES
   betterlorem
   bootstrap-sass (~> 3.3.4)
   byebug
-  carrierwave
+  carrierwave!
   cocoon
   coffee-rails (~> 4.1.0)
   dropzonejs-rails
@@ -258,7 +262,6 @@ DEPENDENCIES
   rails (= 4.2.3)
   rails-i18n!
   rails_12factor
-  rmagick
   rspec-rails (~> 3.0)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)

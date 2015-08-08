@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 20150807145829) do
     t.text     "description"
     t.string   "location"
     t.decimal  "price",       precision: 8, scale: 2
-    t.string   "image"
+    t.json     "images"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
   end

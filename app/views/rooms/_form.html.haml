@@ -1,4 +1,4 @@
-= simple_form_for @room do |f|
+= simple_form_for(@room, html: {multipart: true}) do |f|
   = f.error_notification
 
   .form-inputs
@@ -6,9 +6,7 @@
     = f.input :description
     = f.input :location
     = f.input :price
-    = f.simple_fields_for :pictures do |p|
-      = p.input :image, as: :file, input_html:{ multiple: true }
-
+    = f.file_field :images, multiple: true
 
   .form-actions
     = f.button :submit

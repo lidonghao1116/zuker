@@ -38,10 +38,8 @@ gem 'omniauth-facebook'
 gem 'twilio-ruby', '~> 4.0'
 
 #gem "paperclip", "~> 4.3"
-gem 'carrierwave'#, github:'carrierwaveuploader/carrierwave'
 gem "rmagick"
-gem 'dropzonejs-rails'
-
+gem 'carrierwave', github:'carrierwaveuploader/carrierwave'
 # nested form
 gem 'cocoon'
 
