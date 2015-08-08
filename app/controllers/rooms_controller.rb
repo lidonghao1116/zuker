@@ -1,5 +1,5 @@
 class RoomsController < ApplicationController
-  before_action :set_room, only: [:show, :edit, :update, :destroy, :upload_images]
+  before_action :set_room, only: [:show, :edit, :update, :destroy]
 
   # GET /rooms
   # GET /rooms.json
@@ -65,6 +65,6 @@ class RoomsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def room_params
-      params.require(:room).permit(:title, :description, :location, :price, :image)
+      params.require(:room).permit(:title, :description, :location, :price, images:[])
     end
 end

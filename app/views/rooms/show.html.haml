@@ -1,7 +1,5 @@
-= image_tag @room.image_url(:medium)
-/ = @room.images[1].url # => '/url/to/file.png'
-/ = @room.images[1].current_path # => 'path/to/file.png'
-/ = @room.images[1].identifier # => 'file.png'
+- for i in 0 .. @room.images.size - 1 do
+  = image_tag @room.images[i].url(:thumb)
 
 %p
   %b Title:
@@ -18,7 +16,7 @@
 %p
   %b Last updated at:
   = @room.updated_at.strftime("%Y-%m-%d")
-
+  
 = link_to 'Edit', edit_room_path(@room)
 \|
 = link_to 'Back', rooms_path

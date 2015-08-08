@@ -1,3 +1,4 @@
 class Room < ActiveRecord::Base
-  mount_uploader :image, ImageUploader
+  has_many :attachments
+  mount_uploaders :images, ImageUploader
 end

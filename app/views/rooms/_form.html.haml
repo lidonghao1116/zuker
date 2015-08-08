@@ -6,9 +6,10 @@
     = f.input :description
     = f.input :location
     = f.input :price
-    - if @room.image
-      = image_tag @room.image_url(:thumb)
-    = f.input :image, as: :file
+    = f.file_field :images, multiple: true
+    - for i in 0 .. @room.images.size - 1 do
+      = image_tag @room.images[i].url(:thumb)
+      = f.check_box :remove_images
 
   .form-actions
     = f.button :submit

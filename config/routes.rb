@@ -1,9 +1,7 @@
 Rails.application.routes.draw do
 
   resources :rooms do
-    member do
-      post 'upload_images' => "rooms#upload_images"
-    end
+    resources :attachments
   end
 
   resources :users do
