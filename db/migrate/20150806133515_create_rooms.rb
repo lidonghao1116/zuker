@@ -5,7 +5,7 @@ class CreateRooms < ActiveRecord::Migration
       t.text :description
       t.string :location
       t.decimal :price, :precision => 8, :scale => 2
-      t.column :images, :json
+      t.string :image
 
       t.timestamps null: false
     end

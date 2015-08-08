@@ -15,12 +15,10 @@ class RoomsController < ApplicationController
   # GET /rooms/new
   def new
     @room = Room.new
-    @room.pictures.build
   end
 
   # GET /rooms/1/edit
   def edit
-    @room.pictures.build
   end
 
   # POST /rooms
@@ -42,12 +40,11 @@ class RoomsController < ApplicationController
   # PATCH/PUT /rooms/1
   # PATCH/PUT /rooms/1.json
   def update
-      if @room.update(room_params)
-        redirect_to room_path(@room)
-      else
-         format.html { render :edit }
-      end
-    end    
+    if @room.update(room_params)
+      redirect_to room_path(@room)
+    else
+      render :edit
+    end
   end
 
   # DELETE /rooms/1

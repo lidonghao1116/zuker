@@ -1,5 +1,4 @@
-
-= @room.images
+= image_tag @room.image_url(:medium)
 / = @room.images[1].url # => '/url/to/file.png'
 / = @room.images[1].current_path # => 'path/to/file.png'
 / = @room.images[1].identifier # => 'file.png'

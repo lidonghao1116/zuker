@@ -6,13 +6,13 @@
     = f.input :description
     = f.input :location
     = f.input :price
-    = f.file_field :images, multiple: true
+    - if @room.image
+      = image_tag @room.image_url(:thumb)
+    = f.input :image, as: :file
 
   .form-actions
     = f.button :submit
 
-- if @room.pictures
-  /= image_tag @room.pictures[0].image_url(:thumb)
 
 
 /= render 'upload_image' if action_name == 'edit' || action_name == 'update'
