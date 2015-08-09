@@ -3,27 +3,9 @@
 %p
   %b Title:
   = @room.title
-%p
-  %b Amenities:
-  - if @room.amenity?
-    - @room.amenity.each do |a|
-      = render_option_category(a, "amenity")
-  - else
-    = t 'empty'
-%p
-  %b Furnitures:
-  - if @room.furniture?
-    - @room.furniture.each do |a|
-      = render_option_category(a, "furniture")
-  - else
-    = t 'empty'
-%p
-  %b Extra fee:
-  - if @room.extra_fee?
-    - @room.extra_fee.each do |a|
-      = render_option_category(a, "extra_fee")
-  - else
-    = t 'empty'
+
+- ["amenity", "furniture", "extra_fee"].each do |x|
+  = render partial: 'checked_options', locals: {x: x}
 %p
   %b Description:
   = @room.description

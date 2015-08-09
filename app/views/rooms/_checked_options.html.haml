@@ -1,0 +1,8 @@
+/change this partial to button-alike
+%p
+  %b= "#{x.capitalize}:"
+  - if @room.public_send("#{x}?")
+    - @room.public_send(x).each do |a|
+      = render_option_category(a, x)
+  - else
+    = t 'empty'
