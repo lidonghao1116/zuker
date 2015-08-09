@@ -2,10 +2,10 @@
   = f.error_notification
 
   .form-inputs
-    = f.input :title
-    = f.input :description
-    = f.input :location
-    = f.input :price
+    - [:title, :description, :location, :price].each do |input|
+      = f.input input
+    - ["amenity", "furniture", "extra_fee"].each do |x|
+      = f.input x.to_sym, as: :check_boxes, collection: Room.option_categories(x), prompt: true, :input_html => { :include_hidden => false }
 
     = render 'room_images'
 

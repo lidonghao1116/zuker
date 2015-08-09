@@ -1,0 +1,35 @@
+defaults: &defaults
+  amenity_categories:
+    laundry: 1
+    fridge: 2
+    tv: 3
+    ac: 4
+    water_heater: 5
+    net: 6
+    local_channel: 7
+    gas: 8
+  furniture_categories:
+    bed: 1
+    closet: 2
+    sofa: 3
+    desk: 4
+    chair: 5
+    cook_stuff: 6
+    bed_stuff: 7
+  extra_fee_categories:
+    security_fee: 1
+    clean_fee: 2
+    local_channel_fee: 3
+    net_fee: 4
+    water_fee: 5
+    electricity_fee: 6
+    gas_fee: 7
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+# instead read values from the environment.
+production:
+  <<: *defaults

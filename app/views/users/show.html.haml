@@ -2,38 +2,40 @@
   %b ID
   = @user.id
 %p
-  %b= t "user.provider"
+  %b= t User.human_attribute_name(:provider)
   = @user.provider
 %p
-  %b= t "user.uid"
+  %b= t User.human_attribute_name(:uid)
   = @user.uid
 %p
-  %b= t "user.full_name"
+  %b= User.human_attribute_name(:full_name)
   = @user.full_name
 %p
-  %b= t "user.phone_number"
+  %b= t User.human_attribute_name(:phone_number)
   = @user.phone_number
 %p
-  %b= t "user.email"
+  %b= t User.human_attribute_name(:email)
   = image_tag("#{@user.email}")
   /= @user.email
 %p
-  %b= t "user.school"
+  %b= t User.human_attribute_name(:school)
   = render_school_category(@user.school_id)
 %p
-  %b= t "user.start_school_year"
+  %b= t User.human_attribute_name(:start_school_year)
   = @user.start_school_year
 %p
-  %b= t "user.pin"
+  %b= t User.human_attribute_name(:pin)
   = @user.pin.content if @user.pin
 %p
-  %b= t "user.verified"
+  %b= t User.human_attribute_name(:verified)
   - if @user.verified
     您已完成手機驗證
   - else
     您尚未完成手機驗證
-    = link_to I18n.t('Verify'), phone_verify_user_path(@user)
-    = link_to I18n.t("Didn't get the code?"), resend_pin_user_path(@user)
+    = link_to phone_verify_user_path(@user) do
+      = t ".verify"
+    = link_to resend_pin_user_path(@user) do
+      = t ".resend_pin"
 
 = render 'common/fb_login_button' unless @user.provider == 'facebook'
 /= link_to 'Connect with facebook', facebook_signin_path unless @user.provider == 'facebook'
@@ -41,8 +43,10 @@
   %span.btn.btn-info#connect-fb
     Connect with Zuker
 /= link_to 'Connect with Zuker', edit_user_path(@user), id:'connect-fb' unless @user.sign_with_zuker
-= link_to I18n.t('Edit'), edit_user_path(@user)
-= link_to I18n.t('Delete'), user_path(@user), method: :delete, data: {confirm: "Are you sure?"}
+= link_to edit_user_path(@user) do
+  = t '.edit'
+= link_to user_path(@user), method: :delete, data: {confirm: "Are you sure?"} do
+  = t '.delete'
 
 #login_form.hide
   = render partial: 'login_form', locals: { id: @user.id }

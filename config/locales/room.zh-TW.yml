@@ -1,0 +1,26 @@
+"zh-TW":
+  amenity_categories:
+    laundry: 洗衣機
+    fridge: 冰箱
+    tv: 電視
+    ac: 冷氣
+    water_heater: 熱水器
+    net: 網路
+    local_channel: 第四台
+    gas: 天然瓦斯
+  furniture_categories:
+    bed: 床
+    closet: 衣櫃
+    sofa: 沙發
+    desk: 桌子
+    chair: 椅子
+    cook_stuff: 廚具
+    bed_stuff: 寢具
+  extra_fee_categories:
+    security_fee: 管理費
+    clean_fee: 清潔費
+    local_channel_fee: 第四台
+    net_fee: 網路費
+    water_fee: 水費
+    electricity_fee: 電費
+    gas_fee: 瓦斯費

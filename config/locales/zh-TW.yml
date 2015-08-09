@@ -1,19 +1,47 @@
 zh-TW:
-  "Editing Profile": "編輯個人資料"
-  "Register": "加入租客"
-  "Verify": "立刻驗證"
-  "Didn't get the code?": "重發驗證碼"
-  "Edit" : "編輯個人資料"
-  "Delete" : "刪除帳號"
-  "signout" : "登出"
-  "hello_nav" : "嗨，%{name} 您好！"
-  user:
-    full_name: 姓名
-    phone_number: 手機號碼2
-    password: 密碼
-    password_confirmation: 密碼確認
-    email: 電子郵件
-    start_school_year: 入學年度
+  # Global
+  Register : "加入租客"
+  signout : "登出"
+  hello_nav : "嗨，%{name} 您好！"
+
+  # View
+  users:
+    edit:
+      title: "編輯個人資料"
+    show:
+      verify: "立刻驗證"
+      resend_pin: "重發驗證碼"
+      delete: "刪除帳號"
+      edit: "編輯個人資料"
+
+  # Model
+  activerecord:
+    models:
+      user: "租客"
+    attributes:
+      user:
+        full_name: 姓名
+        phone_number: 手機號碼2
+        password: 密碼
+        password_confirmation: 密碼確認
+        email: 電子郵件
+        start_school_year: 入學年度
+        school: 就讀學校
+      # room:
+      #   amenity:
+      #     laundry: 洗衣機
+      #     fridge: 冰箱
+      #     tv: 電視
+      #     ac: 冷氣
+      #     water_heater: 熱水器
+      #     net: 網路
+      #     local_channel: 第四台
+      #     gas: 天然瓦斯
+  # Form
+  flash:
+    messages:
+      success: "更新成功！"
+      fail: "更新失敗！"
   helpers:
     submit:
       user:
