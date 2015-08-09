@@ -28,6 +28,12 @@ class RoomsController < ApplicationController
 
     respond_to do |format|
       if @room.save
+        if params[:image]
+          params[:image].each do |picture|
+            @room.attachments.create(:image => picture)
+            # Don't forget to mention :avatar(field name)
+          end
+        end
         format.html { redirect_to edit_room_path(@room), notice: 'Room was successfully created.' }
         format.json { render :json => @room }
       else
@@ -41,6 +47,10 @@ class RoomsController < ApplicationController
   # PATCH/PUT /rooms/1.json
   def update
     if @room.update(room_params)
+      params[:image].each do |picture|
+        @room.attachments.create(:image => picture)
+        # Don't forget to mention :avatar(field name)
+      end
       redirect_to room_path(@room)
     else
       render :edit
@@ -65,6 +75,6 @@ class RoomsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def room_params
-      params.require(:room).permit(:title, :description, :location, :price, images:[])
+      params.require(:room).permit(:title, :description, :location, :price, :image)
     end
 end

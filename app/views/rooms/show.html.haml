@@ -1,5 +1,4 @@
-- for i in 0 .. @room.images.size - 1 do
-  = image_tag @room.images[i].url(:thumb)
+= render 'room_images'
 
 %p
   %b Title:

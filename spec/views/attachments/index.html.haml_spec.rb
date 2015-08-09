@@ -1,5 +1,14 @@
 require 'rails_helper'
 
-RSpec.describe "attachments/index.html.haml", type: :view do
-  pending "add some examples to (or delete) #{__FILE__}"
+RSpec.describe "attachments/index", type: :view do
+  before(:each) do
+    assign(:attachments, [
+      Attachment.create!(),
+      Attachment.create!()
+    ])
+  end
+
+  it "renders a list of attachments" do
+    render
+  end
 end

@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
 
-  resources :rooms do
-    resources :attachments
-  end
+  resources :attachments
+  resources :rooms
 
   resources :users do
     member do

@@ -1,0 +1,4 @@
+#images
+  - @room.attachments.each_with_index do |a, i|  
+    = image_tag @room.attachments[i].image_url(:thumb), id: "image#{a.id}"
+    = link_to 'X', attachment_path(id: a.id), method: :delete, id:"image#{a.id}_remove_btn", class:'btn btn-large'
