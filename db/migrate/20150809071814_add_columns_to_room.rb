@@ -1,9 +1,9 @@
 class AddColumnsToRoom < ActiveRecord::Migration
   def change
     change_table(:rooms) do |t|
-      # t.string :room_type
-      # t.string :direction
-      # t.string :gender
+      t.integer :room_type
+      t.integer :direction
+      t.integer :gender
 
       t.integer :amenity, array: true, default: []
       t.integer :furniture, array: true, default: []

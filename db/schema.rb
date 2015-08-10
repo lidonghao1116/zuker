@@ -41,6 +41,9 @@ ActiveRecord::Schema.define(version: 20150809071814) do
     t.json     "images"
     t.datetime "created_at",                                       null: false
     t.datetime "updated_at",                                       null: false
+    t.integer  "room_type"
+    t.integer  "direction"
+    t.integer  "gender"
     t.integer  "amenity",                             default: [],              array: true
     t.integer  "furniture",                           default: [],              array: true
     t.integer  "extra_fee",                           default: [],              array: true

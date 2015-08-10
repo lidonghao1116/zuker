@@ -24,6 +24,13 @@ defaults: &defaults
     water_fee: 5
     electricity_fee: 6
     gas_fee: 7
+  room_type_categories:
+    family: 1
+    multi_rooms: 2
+  room_gender_categories:
+    male_only: 1
+    female_only: 2
+    both: 3
 
 development:
   <<: *defaults
