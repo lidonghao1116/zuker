@@ -5,6 +5,8 @@ class Room < ActiveRecord::Base
 
   def no_empty_array
     amenity.reject! { |r| r.blank? }
+    furniture.reject! { |r| r.blank? }
+    extra_fee.reject! { |r| r.blank? }
   end
 
   def self.option_categories(option)

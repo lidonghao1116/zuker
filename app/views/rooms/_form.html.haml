@@ -6,11 +6,12 @@
       = f.input attribute_name
     - [:room_type, :gender].each do |attribute_name|
       = f.input attribute_name#, as: :hidden
-      = render partial:'act_as_radio_buttons', locals: { attribute_name: attribute_name, obj: @room }
+      = render partial:'act_as_radio_button', locals: { attribute_name: attribute_name, obj: @room, act_as: "act_as_radio_button" }
 
     - [:amenity, :furniture, :extra_fee].each do |x|
       .pseudo-hidden
-        = f.input x.to_sym, as: :check_boxes, collection: Room.option_categories(x), prompt: true, :input_html => { :include_hidden => false }
+        = f.input x, as: :check_boxes, collection: Room.option_categories(x), prompt: true, :input_html => { :include_hidden => false }
+        = render partial:'act_as_check_box', locals: { attribute_name: x, obj: @room, act_as: "act_as_check_box" }
 
     = render 'room_images'
 
