@@ -24,7 +24,7 @@
     water_fee: 水費
     electricity_fee: 電費
     gas_fee: 瓦斯費
-  room_type_categories:
+  room_room_type_categories:
     family: 整層住家
     multi_rooms: 分租套雅房
   room_gender_categories:

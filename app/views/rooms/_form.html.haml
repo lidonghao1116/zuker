@@ -2,21 +2,15 @@
   = f.error_notification
 
   .form-inputs
-    - [:title, :description, :location, :price].each do |input|
-      = f.input input
-    - [:room_type, :gender].each do |input|
-      = f.input input
+    - [:title, :description, :location, :price].each do |attribute_name|
+      = f.input attribute_name
+    - [:room_type, :gender].each do |attribute_name|
+      = f.input attribute_name#, as: :hidden
+      = render partial:'act_as_radio_buttons', locals: { attribute_name: attribute_name, obj: @room }
 
-    - RoomData.room_type_categories.each do |key, value| # e.g. ["family", 1]
-      = button_tag(:onclick => 'hidden_helper_btn(room_room_type, this.id)', data: { value: value }, type: 'button', class:'btn btn-default room_type_btn', id: "room_type_btn#{value}" ) do
-        = render_option_category(value, "room_type")
-
-    - RoomData.room_gender_categories.each do |key, value| # e.g. ["family", 1]
-      = button_tag(:onclick => 'hidden_helper_btn(room_gender, this.id)', data: { value: value }, type: 'button', class:'btn btn-default room_gender_btn', id: "room_gender_btn#{value}" ) do
-        = render_option_category(value, "room_gender")
-
-    - ["amenity", "furniture", "extra_fee"].each do |x|
-      = f.input x.to_sym, as: :check_boxes, collection: Room.option_categories(x), prompt: true, :input_html => { :include_hidden => false }
+    - [:amenity, :furniture, :extra_fee].each do |x|
+      .pseudo-hidden
+        = f.input x.to_sym, as: :check_boxes, collection: Room.option_categories(x), prompt: true, :input_html => { :include_hidden => false }
 
     = render 'room_images'
 
