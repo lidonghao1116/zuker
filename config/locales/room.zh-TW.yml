@@ -14,8 +14,8 @@
     sofa: 沙發
     desk: 桌子
     chair: 椅子
-    cook_stuff: 廚具
-    bed_stuff: 寢具
+    cook_ware: 廚具
+    bedding: 寢具
   extra_fee_categories:
     security_fee: 管理費
     clean_fee: 清潔費
@@ -28,6 +28,22 @@
     family: 整層住家
     multi_rooms: 分租套雅房
   gender_categories:
-    male_only: 限男
-    female_only: 限女
+    female_only: 女性優先
+    male_only: 男性優先
     both: 不限
+  public_facility_categories:    
+    parking_lot: 停車場
+    security: 管理員
+    elevator: 電梯
+    garbage: 垃圾場
+    disabled: 身障人士設施
+  rule_categories:
+    family: 歡迎家庭
+    foreigner: 歡迎外籍人士
+    pet: 可養寵物
+    cooking: 可開伙
+  personal_parking_lot_categories:
+    zero: 無
+    one: '1'
+    two: '2'
+    two_plus: '2個以上'

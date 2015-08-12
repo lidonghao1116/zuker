@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150809071814) do
+ActiveRecord::Schema.define(version: 20150808162257) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,16 +37,20 @@ ActiveRecord::Schema.define(version: 20150809071814) do
     t.string   "title"
     t.text     "description"
     t.string   "location"
-    t.decimal  "price",       precision: 8, scale: 2
+    t.decimal  "price",                precision: 8, scale: 2
     t.json     "images"
-    t.datetime "created_at",                                       null: false
-    t.datetime "updated_at",                                       null: false
     t.integer  "room_type"
-    t.integer  "direction"
     t.integer  "gender"
-    t.integer  "amenity",                             default: [],              array: true
-    t.integer  "furniture",                           default: [],              array: true
-    t.integer  "extra_fee",                           default: [],              array: true
+    t.integer  "personal_parking_lot"
+    t.integer  "english"
+    t.integer  "direction",                                    default: [],              array: true
+    t.integer  "amenity",                                      default: [],              array: true
+    t.integer  "furniture",                                    default: [],              array: true
+    t.integer  "extra_fee",                                    default: [],              array: true
+    t.integer  "public_facility",                              default: [],              array: true
+    t.integer  "rule",                                         default: [],              array: true
+    t.datetime "created_at",                                                null: false
+    t.datetime "updated_at",                                                null: false
   end
 
   create_table "schools", force: :cascade do |t|

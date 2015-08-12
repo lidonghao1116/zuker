@@ -51,6 +51,15 @@ zh-TW:
         district: 鄉鎮市區
         city: 縣市
         zipcode: 郵遞區號
+    options:
+      room:
+        personal_parking_lot:
+          zero: 無
+          one: '1'
+          two: '2'
+          two_plus: '2個以上'
+
+
     hints:
       defaults:    
         phone_number: '請輸入真實的手機號碼，未來將作為登入帳號'

@@ -2,7 +2,21 @@
 <% prefix = model_name + "_" %>
 <% model_data = (model_name.camelize + "Data").constantize %>
 <% model_data.public_send( "#{attribute_name}_categories").each do |key, value| %>
-  <button name=<%= "#{prefix}#{attribute_name}"%> data-value=<%= value %> type="button" class="btn btn-default <%= act_as %> <%= obj.public_send("#{attribute_name}") == value ? 'btn-info' : 'btn-default' %>">
+  <button name=<%= "#{prefix}#{attribute_name}"%> data-value=<%= value %> data-selected=<%= selected %> type="button" class="btn <%= unselected if defined?(unselected) %> <%= extra_class if defined?(extra_class) %> <%= obj.public_send("#{attribute_name}") == value ? selected : '' %>">
     <%= render_option_category(value, attribute_name) %>
   </button>
+<% end %>
+
+<% comment do %>
+<script type="text/javascript">
+  $('button.act_as_radio_button').click(function(){
+    var this_hidden = $('#' + this.name);
+    var selected_btn = $('button' + '<%= ".#{selected}" %>' + "[name=" + this.name + "]");
+    //console.log(selected_btn);
+
+    this_hidden.val( $(this).data("value") );
+    selected_btn.removeClass('<%= selected %>');
+    $(this).addClass('<%= selected %>');
+  });
+</script>
 <% end %>

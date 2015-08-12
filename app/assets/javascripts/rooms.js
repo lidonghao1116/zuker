@@ -5,21 +5,21 @@ $(function(){
     //console.log(selected_btn);
 
     this_hidden.val( $(this).data("value") );
-    selected_btn.removeClass('btn-info');
-    $(this).addClass('btn-info');
+    selected_btn.removeClass($(this).data("selected"));
+    $(this).addClass($(this).data("selected"));
   });
   
   $('button.act_as_check_box').click(function(){
     var value = $(this).data("value");
     var this_hidden = $('#' + this.name + '_' + value);
     var checked = this_hidden.prop("checked");
-    //console.log(checked);
+    //console.log($(this).data("selected"));
     if(checked){
       this_hidden.prop('checked', false);
-      $(this).removeClass('btn-info');
+      $(this).removeClass($(this).data("selected"));
     }else{
       this_hidden.prop('checked', true);
-      $(this).addClass('btn-info');
+      $(this).addClass($(this).data("selected"));
     }
     //console.log(checked);
   });

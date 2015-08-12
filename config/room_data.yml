@@ -14,8 +14,8 @@ defaults: &defaults
     sofa: 3
     desk: 4
     chair: 5
-    cook_stuff: 6
-    bed_stuff: 7
+    cook_ware: 6
+    bedding: 7
   extra_fee_categories:
     security_fee: 1
     clean_fee: 2
@@ -28,9 +28,24 @@ defaults: &defaults
     family: 1
     multi_rooms: 2
   gender_categories:
-    male_only: 1
     female_only: 2
+    male_only: 1
     both: 3
+  public_facility_categories:
+    security: 1
+    elevator: 2
+    garbage: 3
+    disabled: 4
+  rule_categories:
+    family: 1
+    foreigner: 2
+    pet: 3
+    cooking: 4
+  personal_parking_lot_categories:
+    zero: 1
+    one: 2
+    two: 3
+    two_plus: 4
 
 development:
   <<: *defaults
