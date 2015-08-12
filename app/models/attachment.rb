@@ -1,4 +1,4 @@
 class Attachment < ActiveRecord::Base
   mount_uploader :image, ImageUploader
-  belongs_to :room
+  belongs_to :house
 end

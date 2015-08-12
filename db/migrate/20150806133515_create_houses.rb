@@ -1,13 +1,13 @@
-class CreateRooms < ActiveRecord::Migration
+class CreateHouses < ActiveRecord::Migration
   def change
-    create_table :rooms do |t|
+    create_table :houses do |t|
       t.string :title
       t.text :description
       t.string :location
       t.decimal :price, :precision => 8, :scale => 2
       t.json :images
       
-      t.integer :room_type
+      t.integer :house_type
       t.integer :gender
       t.integer :personal_parking_lot
       t.integer :english

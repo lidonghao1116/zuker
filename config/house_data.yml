@@ -24,7 +24,7 @@ defaults: &defaults
     water_fee: 5
     electricity_fee: 6
     gas_fee: 7
-  room_type_categories:
+  house_type_categories:
     family: 1
     multi_rooms: 2
   gender_categories:

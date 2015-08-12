@@ -25,7 +25,7 @@ zh-TW:
         gender: 性別
         school: 就讀學校
         start_school_year: 入學年度
-      room:
+      house:
         title: 名稱
         profile: 描述
         amenity: 設施
@@ -52,7 +52,7 @@ zh-TW:
         city: 縣市
         zipcode: 郵遞區號
     options:
-      room:
+      house:
         personal_parking_lot:
           zero: 無
           one: '1'
@@ -76,7 +76,7 @@ zh-TW:
         password: '密碼'
         password_confirmation: '確認密碼'
         email: '電子郵件'
-      room:
+      house:
         title: 房源名稱
         location: 地址
         price: 租金

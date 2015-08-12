@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe "rooms/show", type: :view do
+RSpec.describe "houses/show", type: :view do
   before(:each) do
-    @room = assign(:room, Room.create!(
+    @house = assign(:house, House.create!(
       :title => "Title",
       :description => "MyText",
       :location => "Location",
@@ -15,6 +15,6 @@ RSpec.describe "rooms/show", type: :view do
     expect(rendered).to match(/Title/)
     expect(rendered).to match(/MyText/)
     expect(rendered).to match(/Location/)
-    expect(rendered).to eq(9.99)
+    #expect(rendered).to eq(10) # set precision: 0 in show.html.haml
   end
 end

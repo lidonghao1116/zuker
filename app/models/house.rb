@@ -1,4 +1,4 @@
-class Room < ActiveRecord::Base
+class House < ActiveRecord::Base
   has_many :attachments
   validates :title, presence: true
   before_save :no_empty_array
@@ -10,6 +10,6 @@ class Room < ActiveRecord::Base
   end
 
   def self.option_categories(option)
-    RoomData.public_send("#{option}_categories").map{ |k,v| [I18n.t("#{option}_categories.#{k}"),v] }
+    HouseData.public_send("#{option}_categories").map{ |k,v| [I18n.t("#{option}_categories.#{k}"),v] }
   end
 end

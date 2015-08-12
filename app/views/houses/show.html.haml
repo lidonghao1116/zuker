@@ -1,0 +1,26 @@
+= render 'house_images'
+
+%p
+  %b Title:
+  = @house.title
+
+- ["amenity", "furniture", "extra_fee"].each do |x|
+  = render partial: 'checked_options', locals: {x: x}
+%p
+  %b Description:
+  = @house.description
+%p
+  %b Location:
+  = @house.location
+%p
+  %b Price:
+  = "#{ number_to_currency(@house.price, precision: 0) } / month"
+%p
+  %b Last updated at:
+  = @house.updated_at.strftime("%Y-%m-%d")
+  
+= link_to 'Edit', edit_house_path(@house)
+\|
+= link_to 'Back', houses_path
+
+= console

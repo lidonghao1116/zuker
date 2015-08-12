@@ -17,29 +17,21 @@ ActiveRecord::Schema.define(version: 20150808162257) do
   enable_extension "plpgsql"
 
   create_table "attachments", force: :cascade do |t|
-    t.integer  "room_id"
+    t.integer  "house_id"
     t.string   "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "attachments", ["room_id"], name: "index_attachments_on_room_id", using: :btree
+  add_index "attachments", ["house_id"], name: "index_attachments_on_house_id", using: :btree
 
-  create_table "pins", force: :cascade do |t|
-    t.string   "content"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
-    t.integer  "sms_confirmable_id"
-    t.string   "sms_confirmable_type"
-  end
-
-  create_table "rooms", force: :cascade do |t|
+  create_table "houses", force: :cascade do |t|
     t.string   "title"
     t.text     "description"
     t.string   "location"
     t.decimal  "price",                precision: 8, scale: 2
     t.json     "images"
-    t.integer  "room_type"
+    t.integer  "house_type"
     t.integer  "gender"
     t.integer  "personal_parking_lot"
     t.integer  "english"
@@ -51,6 +43,14 @@ ActiveRecord::Schema.define(version: 20150808162257) do
     t.integer  "rule",                                         default: [],              array: true
     t.datetime "created_at",                                                null: false
     t.datetime "updated_at",                                                null: false
+  end
+
+  create_table "pins", force: :cascade do |t|
+    t.string   "content"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+    t.integer  "sms_confirmable_id"
+    t.string   "sms_confirmable_type"
   end
 
   create_table "schools", force: :cascade do |t|
@@ -78,6 +78,6 @@ ActiveRecord::Schema.define(version: 20150808162257) do
   add_index "users", ["phone_number"], name: "index_users_on_phone_number", unique: true, using: :btree
   add_index "users", ["school_id"], name: "index_users_on_school_id", using: :btree
 
-  add_foreign_key "attachments", "rooms"
+  add_foreign_key "attachments", "houses"
   add_foreign_key "users", "schools"
 end

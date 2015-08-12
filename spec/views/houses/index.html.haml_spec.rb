@@ -1,15 +1,15 @@
 require 'rails_helper'
 
-RSpec.describe "rooms/index", type: :view do
+RSpec.describe "houses/index", type: :view do
   before(:each) do
-    assign(:rooms, [
-      Room.create!(
+    assign(:houses, [
+      House.create!(
         :title => "Title",
         :description => "MyText",
         :location => "Location",
         :price => "9.99"
       ),
-      Room.create!(
+      House.create!(
         :title => "Title",
         :description => "MyText",
         :location => "Location",
