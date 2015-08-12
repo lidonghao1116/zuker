@@ -4,17 +4,22 @@
   .form-inputs
     - [:title, :description, :location, :price].each do |attribute_name|
       = f.input attribute_name
+
     - [:room_type, :gender].each do |attribute_name|
-      = f.input attribute_name#, as: :hidden
-      = render partial:'act_as_radio_button', locals: { attribute_name: attribute_name, obj: @room, act_as: "act_as_radio_button" }
+      = f.input attribute_name, as: :hidden
+      %h4
+        %span= t attribute_name
+        %span= render partial:'act_as_radio_button', locals: { attribute_name: attribute_name, obj: @room, act_as: "act_as_radio_button" }
 
     - [:amenity, :furniture, :extra_fee].each do |x|
-      .pseudo-hidden
+      .hidden
         = f.input x, as: :check_boxes, collection: Room.option_categories(x), prompt: true, :input_html => { :include_hidden => false }
-        = render partial:'act_as_check_box', locals: { attribute_name: x, obj: @room, act_as: "act_as_check_box" }
+      %h4
+        %span= t x
+        %span= render partial:'act_as_check_box', locals: { attribute_name: x, obj: @room, act_as: "act_as_check_box" }
 
+    %h4= t "images"
     = render 'room_images'
-
     = file_field_tag "image[]", multiple: true
 
   .form-actions

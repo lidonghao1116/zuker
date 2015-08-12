@@ -27,16 +27,16 @@ zh-TW:
         email: 電子郵件
         start_school_year: 入學年度
         school: 就讀學校
-      # room:
-      #   amenity:
-      #     laundry: 洗衣機
-      #     fridge: 冰箱
-      #     tv: 電視
-      #     ac: 冷氣
-      #     water_heater: 熱水器
-      #     net: 網路
-      #     local_channel: 第四台
-      #     gas: 天然瓦斯
+      room:
+        amenity:
+          laundry: 洗衣機
+          fridge: 冰箱
+          tv: 電視
+          ac: 冷氣
+          water_heater: 熱水器
+          net: 網路
+          local_channel: 第四台
+          gas: 天然瓦斯
   # Form
   flash:
     messages:

@@ -11,7 +11,7 @@ class AddColumnsToRoom < ActiveRecord::Migration
 
       # t.integer :space
       # t.integer :building_level
-      # t.integer :at_level      
+      # t.integer :at_level
 
       # t.boolean :foreigner
       # t.boolean :parking_lot
