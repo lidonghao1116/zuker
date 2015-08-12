@@ -12,8 +12,4 @@ class Room < ActiveRecord::Base
   def self.option_categories(option)
     RoomData.public_send("#{option}_categories").map{ |k,v| [I18n.t("#{option}_categories.#{k}"),v] }
   end
-
-  def self.school_categories
-    SchoolData.school_categories.map{ |k,v| [I18n.t("school_categories.#{k}"),v] }
-  end
 end

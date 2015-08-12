@@ -2,30 +2,30 @@
   = f.error_notification
 
   .form-inputs
-    %h3 Step1
+    %h2 Step1
     %hr
     - [:room_type, :gender, :personal_parking_lot].each do |x|
       = f.input x, as: :hidden
-      %h4= t x
-      = render partial:'act_as_radio_button', locals: { attribute_name: x, obj: @room, extra_class: 'act_as_radio_button btn-lg', selected: 'btn-info', unselected: '' }#, unselected: 'btn-default' }      
+      %h3= t x
+      = render partial:'act_as_radio_button', locals: { attribute_name: x, obj: @room, extra_class: 'act_as_radio_button btn-lg', selected: 'btn-info', unselected: 'btn-default' }#, unselected: 'btn-default' }      
 
-    %h3 Step2
+    %h2 Step2
     %hr
     - [:title, :description, :location, :price].each do |x|
       = f.input x
 
-    %h3 Step3
+    %h2 Step3
     %hr
-    %h4= t "images"
+    %h3= t "images"
     = render 'room_images'
     = file_field_tag "image[]", multiple: true
 
-    %h3 Step4
+    %h2 Step4
     %hr
     - [:amenity, :furniture, :extra_fee, :public_facility, :rule].each do |x|
       .hidden
         = f.input x, as: :check_boxes, collection: Room.option_categories(x)
-      %h4= t x
+      %h3= t x
       = render partial:'act_as_check_box', locals: { attribute_name: x, obj: @room, extra_class: 'act_as_check_box btn-lg', selected: 'btn-danger', unselected: '' }
 
   .form-actions.text-center

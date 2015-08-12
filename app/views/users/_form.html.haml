@@ -3,12 +3,12 @@
     = f.error_notification
 
     .form-inputs
-      = f.input :first_name
-      = f.input :last_name
-      = f.input :phone_number
+      = f.input :first_name, required: true
+      = f.input :last_name, required: true
+      = f.input :phone_number, required: true
       - if action_name == 'create' || action_name == 'new'
-        = f.input :password
-        = f.input :password_confirmation
+        = f.input :password, required: true
+        = f.input :password_confirmation, required: true
       %h4 填寫以下資料，讓我們提供您更棒的服務
       = f.input :email
       = f.label :school
