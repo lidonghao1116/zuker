@@ -46,6 +46,11 @@ defaults: &defaults
     one: 2
     two: 3
     two_plus: 4
+  safety_categories:
+    fog: 1
+    extinguisher: 2
+    co_sensor: 3
+    medicine_bag: 4
 
 development:
   <<: *defaults

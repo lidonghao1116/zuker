@@ -47,3 +47,8 @@
     one: '1'
     two: '2'
     two_plus: '2個以上'
+  safety_categories:
+    fog: 煙霧探測器
+    extinguisher: 滅火器
+    co_sensor: 一氧化碳探測器
+    medicine_bag: 急救包
