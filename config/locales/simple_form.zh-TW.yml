@@ -68,7 +68,7 @@ zh-TW:
         edit:
           password: '若不變更密碼則留白'
     placeholders:
-      defaults:
+      user:
         full_name: '姓名'
         first_name: 名
         last_name: 姓
@@ -76,6 +76,11 @@ zh-TW:
         password: '密碼'
         password_confirmation: '確認密碼'
         email: '電子郵件'
+      room:
+        title: 房源名稱
+        location: 地址
+        price: 租金
+        description: 描述
 
     # Examples
     # labels:
