@@ -4,16 +4,14 @@
   .form-inputs
     - [:title, :description, :location, :price].each do |attribute_name|
       = f.input attribute_name
-
     - [:room_type, :gender].each do |attribute_name|
-      .btn-group{ data: { toggle: "buttons" } }  
-        = render partial:'act_as_radio_button', locals: { attribute_name: attribute_name, obj: @room, act_as: "radio", f: f }
+      = f.input attribute_name#, as: :hidden
+      = render partial:'act_as_radio_button', locals: { attribute_name: attribute_name, obj: @room, act_as: "act_as_radio_button" }
 
     - [:amenity, :furniture, :extra_fee].each do |x|
-      .btn-group{ data: { toggle: "buttons" } }  
-        /= render partial:'act_as_check_box', locals: { attribute_name: x, obj: @room, act_as: "checkbox", f: f }
+      .pseudo-hidden
         = f.input x, as: :check_boxes, collection: Room.option_categories(x), prompt: true, :input_html => { :include_hidden => false }
-        /= render partial:'act_as_check_box', locals: { attribute_name: x, obj: @room, act_as: "act_as_check_box" }
+        = render partial:'act_as_check_box', locals: { attribute_name: x, obj: @room, act_as: "act_as_check_box" }
 
     = render 'room_images'
 
@@ -21,5 +19,3 @@
 
   .form-actions
     = f.button :submit
-
-= console
