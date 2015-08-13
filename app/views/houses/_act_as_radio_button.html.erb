@@ -2,7 +2,7 @@
 <% prefix = model_name + "_" %>
 <% model_data = (model_name.camelize + "Data").constantize %>
 <% model_data.public_send( "#{attribute_name}_categories").each do |key, value| %>
-  <button name=<%= "#{prefix}#{attribute_name}"%> data-value=<%= value %> data-selected=<%= selected %> type="button" class="btn <%= unselected if defined?(unselected) %> <%= extra_class if defined?(extra_class) %> <%= obj.public_send("#{attribute_name}") == value ? selected : '' %>">
+  <button name=<%= "#{prefix}#{attribute_name}"%> data-value=<%= value %> data-selected=<%= selected %> type="submit" class="btn act_as_radio_button <%= unselected if defined?(unselected) %> <%= extra_class if defined?(extra_class) %> <%= obj.public_send("#{attribute_name}") == value ? selected : '' %>">
     <%= render_option_category(value, attribute_name) %>
   </button>
 <% end %>

@@ -51,4 +51,17 @@
     fog: 煙霧探測器
     extinguisher: 滅火器
     co_sensor: 一氧化碳探測器
-    medicine_bag: 急救包
+    medicine_bag: 急救包    
+  english_categories:
+    great: 溝通無礙
+    normal: 簡單對話
+    bad: 無法溝通
+  special_floor_categories:
+    basement: 地下室
+    rooftop: 頂樓加蓋
+    whole_building: 整棟
+  direction_categories:
+    north: 北
+    east: 東
+    west: 西
+    south: 南

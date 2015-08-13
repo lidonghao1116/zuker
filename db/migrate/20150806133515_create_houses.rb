@@ -1,6 +1,6 @@
 class CreateHouses < ActiveRecord::Migration
   def change
-    create_table :houses do |t|
+    create_table :houses do |t|      
       t.string :title
       t.text :description
       t.string :location
@@ -10,6 +10,7 @@ class CreateHouses < ActiveRecord::Migration
       t.json :images
       
       #### select and store as integer
+      t.integer :school_id
       t.integer :house_type
       t.integer :gender
       t.integer :personal_parking_lot

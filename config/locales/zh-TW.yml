@@ -13,6 +13,10 @@ zh-TW:
       resend_pin: "重發驗證碼"
       delete: "刪除帳號"
       edit: "編輯個人資料"
+  houses:
+    form:
+      basic_information: "基本資訊"
+      house_type: 房源類型
 
   # Model
   activerecord:

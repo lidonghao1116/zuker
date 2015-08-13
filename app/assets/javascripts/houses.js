@@ -21,6 +21,8 @@ $(function(){
       this_hidden.prop('checked', true);
       $(this).addClass($(this).data("selected"));
     }
-    //console.log(checked);
+  });
+  $('form.edit_house input').change(function() {
+    console.log('123');
   });
 })

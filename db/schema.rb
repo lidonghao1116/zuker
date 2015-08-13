@@ -29,20 +29,28 @@ ActiveRecord::Schema.define(version: 20150808162257) do
     t.string   "title"
     t.text     "description"
     t.string   "location"
+    t.boolean  "hide_location"
     t.decimal  "price",                precision: 8, scale: 2
+    t.decimal  "security_fee",         precision: 8, scale: 2, default: 0.0
     t.json     "images"
     t.integer  "house_type"
     t.integer  "gender"
     t.integer  "personal_parking_lot"
     t.integer  "english"
-    t.integer  "direction",                                    default: [],              array: true
-    t.integer  "amenity",                                      default: [],              array: true
-    t.integer  "furniture",                                    default: [],              array: true
-    t.integer  "extra_fee",                                    default: [],              array: true
-    t.integer  "public_facility",                              default: [],              array: true
-    t.integer  "rule",                                         default: [],              array: true
-    t.datetime "created_at",                                                null: false
-    t.datetime "updated_at",                                                null: false
+    t.integer  "special_floor"
+    t.integer  "min_lease"
+    t.integer  "direction",                                    default: [],               array: true
+    t.integer  "amenity",                                      default: [],               array: true
+    t.integer  "furniture",                                    default: [],               array: true
+    t.integer  "extra_fee",                                    default: [],               array: true
+    t.integer  "public_facility",                              default: [],               array: true
+    t.integer  "rule",                                         default: [],               array: true
+    t.integer  "safety",                                       default: [],               array: true
+    t.integer  "area"
+    t.integer  "building_floor"
+    t.integer  "at_floor"
+    t.datetime "created_at",                                                 null: false
+    t.datetime "updated_at",                                                 null: false
   end
 
   create_table "pins", force: :cascade do |t|

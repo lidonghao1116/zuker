@@ -1,18 +1,28 @@
-= simple_form_for(@house, html: {multipart: true}) do |f|
+= simple_form_for(@house, remote: true, html: {multipart: true}) do |f|
   = f.error_notification
 
   .form-inputs
-    %h2 Step1
+    %h2= t ".basic_information"
     %hr
-    - [:house_type, :gender, :personal_parking_lot].each do |x|
-      = f.input x, as: :hidden
-      %h3= t x
-      = render partial:'act_as_radio_button', locals: { attribute_name: x, obj: @house, extra_class: 'act_as_radio_button btn-lg', selected: 'btn-info', unselected: 'btn-default' }#, unselected: 'btn-default' }      
+    - [:house_type, :gender, :personal_parking_lot, :special_floor, :english, :direction].each do |x|
+      = f.input x#, as: :hidden
+      %h3= t ".#{x}"
+      = render partial:'act_as_radio_button', locals: { attribute_name: x, obj: @house, extra_class: 'btn-lg', selected: 'btn-info', unselected: 'btn-default' }
+    坪
+    = f.input :area
+    %span 總樓層
+    = f.input :building_floor
+    %span 所在樓層
+    = f.input :at_floor    
 
     %h2 Step2
     %hr
-    - [:title, :location, :price].each do |x|
-      = f.input x
+    = f.input :title
+    = f.input :location
+    = f.input :hide_location, as: :boolean
+    = f.input :price
+    = f.input :min_lease, collection: 1..12
+    = f.input :security_fee
 
     =f.input :description, :input_html => {:rows => 10}
 
@@ -25,10 +35,15 @@
     %h2 Step4
     %hr
     - [:amenity, :furniture, :extra_fee, :public_facility, :rule].each do |x|
-      .hidden
+      .hiddeen
         = f.input x, as: :check_boxes, collection: House.option_categories(x)
       %h3= t x
-      = render partial:'act_as_check_box', locals: { attribute_name: x, obj: @house, extra_class: 'act_as_check_box btn-lg', selected: 'btn-danger', unselected: '' }
+      / - HouseData.public_send("#{x}_categories").each do |k, v|
+      /   - selected = @house.public_send("#{x}").include?(v) ? "btn-danger" : ""
+      /   = f.button :button, class: "btn-lg act_as_check_box #{selected}", name: "house_#{x}", data: { value: v, disable_with: "<i class='fa fa-spinner fa-spin'></i>", selected: "btn-danger" } do
+      /     = render_option_category(v, x)
+      /disable_with: "<i class='fa fa-spinner fa-spin'></i>",
+      = render partial:'act_as_check_box', locals: { attribute_name: x, obj: @house, extra_class: 'btn-lg', mark: 'btn-danger', f: f}
 
   .form-actions.text-center
-    = f.button :submit
+    /= f.button :submit

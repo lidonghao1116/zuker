@@ -49,18 +49,20 @@ class HousesController < ApplicationController
   # PATCH/PUT /houses/1
   # PATCH/PUT /houses/1.json
   def update
-    if @house.update(house_params)
-      if params[:image]
-        params[:image].each do |picture|
-          @house.attachments.create(:image => picture)
-          # Don't forget to mention :avatar(field name)
+    respond_to do |format|
+      if @house.update(house_params)
+        if params[:image]
+          params[:image].each do |picture|
+            @house.attachments.create(:image => picture)
+            # Don't forget to mention :avatar(field name)
+          end
         end
+        #flash[:success] = t('flash.messages.success')
+        #redirect_to house_path(@house)
+        format.json { render :json => @house }
+      else
+        render :edit
       end
-      flash[:success] = t('flash.messages.success')
-      redirect_to house_path(@house)
-
-    else
-      render :edit
     end
   end
 

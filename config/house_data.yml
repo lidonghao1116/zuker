@@ -51,6 +51,20 @@ defaults: &defaults
     extinguisher: 2
     co_sensor: 3
     medicine_bag: 4
+  english_categories:
+    great: 1
+    normal: 2
+    bad: 3
+  special_floor_categories:
+    basement: 1
+    rooftop: 2
+    whole_building: 3
+  direction_categories:
+    north: 1
+    east: 2
+    west: 3
+    south: 4
+
 
 development:
   <<: *defaults
