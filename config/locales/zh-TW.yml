@@ -17,6 +17,11 @@ zh-TW:
     form:
       basic_information: "基本資訊"
       house_type: 房源類型
+      amenity: 設施
+      furniture: 傢俱
+      extra_fee: 額外費用
+      public_facility: 公共設施
+      rule: 提醒
 
   # Model
   activerecord:

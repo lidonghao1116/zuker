@@ -81,6 +81,9 @@ zh-TW:
         location: 地址
         price: 租金
         description: 描述
+    include_blanks:
+      house:
+        min_lease: '最短租期（月）'
 
     # Examples
     # labels:

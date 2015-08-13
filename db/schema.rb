@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 20150808162257) do
     t.decimal  "price",                precision: 8, scale: 2
     t.decimal  "security_fee",         precision: 8, scale: 2, default: 0.0
     t.json     "images"
+    t.integer  "school_id"
     t.integer  "house_type"
     t.integer  "gender"
     t.integer  "personal_parking_lot"

@@ -1,6 +1,6 @@
 class House < ActiveRecord::Base
   has_many :attachments
-  validates :title, presence: true
+  #validates :title, presence: true
   before_save :no_empty_array
 
   def no_empty_array
