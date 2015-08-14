@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 20150808162257) do
     t.integer  "house_type"
     t.integer  "gender"
     t.integer  "personal_parking_lot"
+    t.integer  "foreigner"
     t.integer  "english"
     t.integer  "special_floor"
     t.integer  "min_lease"
@@ -47,9 +48,15 @@ ActiveRecord::Schema.define(version: 20150808162257) do
     t.integer  "public_facility",                              default: [],               array: true
     t.integer  "rule",                                         default: [],               array: true
     t.integer  "safety",                                       default: [],               array: true
-    t.integer  "area"
     t.integer  "building_floor"
     t.integer  "at_floor"
+    t.integer  "area"
+    t.integer  "bedroom"
+    t.integer  "shared_space"
+    t.integer  "bathroom"
+    t.integer  "balcony"
+    t.date     "available_date"
+    t.date     "reservable_date"
     t.datetime "created_at",                                                 null: false
     t.datetime "updated_at",                                                 null: false
   end

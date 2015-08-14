@@ -1,7 +1,14 @@
 Rails.application.routes.draw do
 
   resources :attachments
-  resources :houses
+  resources :houses do
+    member do
+      get "amenity" => "houses#amenity"
+      get "description" => "houses#description"
+      get "photo" => "houses#photo"
+      get "date_status" => "houses#date_status"
+    end
+  end
 
   resources :users do
     member do

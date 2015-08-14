@@ -38,9 +38,8 @@ defaults: &defaults
     disabled: 4
   rule_categories:
     family: 1
-    foreigner: 2
-    pet: 3
-    cooking: 4
+    pet: 2
+    cooking: 3
   personal_parking_lot_categories:
     zero: 1
     one: 2
@@ -51,6 +50,9 @@ defaults: &defaults
     extinguisher: 2
     co_sensor: 3
     medicine_bag: 4
+  foreigner_categories:
+    good: 1
+    bad: 2
   english_categories:
     great: 1
     normal: 2

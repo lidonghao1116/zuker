@@ -1,5 +1,6 @@
 class House < ActiveRecord::Base
   has_many :attachments
+  belongs_to :school
   #validates :title, presence: true
   before_save :no_empty_array
 

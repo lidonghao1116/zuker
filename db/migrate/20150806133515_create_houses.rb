@@ -14,6 +14,7 @@ class CreateHouses < ActiveRecord::Migration
       t.integer :house_type
       t.integer :gender
       t.integer :personal_parking_lot
+      t.integer :foreigner
       t.integer :english
       t.integer :special_floor
       t.integer :min_lease #### only family
@@ -28,13 +29,16 @@ class CreateHouses < ActiveRecord::Migration
       t.integer :safety, array: true, default: []
 
       #### input integer
-      # t.integer :space model or array? #### only family
-      t.integer :area #### only family
       t.integer :building_floor
       t.integer :at_floor
+      t.integer :area #### only family
+      t.integer :bedroom #### only family
+      t.integer :shared_space #### only family
+      t.integer :bathroom #### only family
+      t.integer :balcony #### only family
 
-      # t.date :unavailable_date
-      # t.boolean :unavailable
+      t.date :available_date
+      t.date :reservable_date
       
       # Rails generates ? methods for all columns. They appear to return true only if the value is truthy. So this is a perfect match for booleans
 

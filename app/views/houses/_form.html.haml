@@ -1,49 +1,30 @@
-= simple_form_for(@house, remote: true, html: {multipart: true}) do |f|
+= simple_form_for @house, html: {multipart: true, class: 'form-horizontal' }, wrapper: :horizontal_form, wrapper_mappings: { boolean: :horizontal_boolean } do |f|
   = f.error_notification
 
   .form-inputs
     %h2= t ".basic_information"
     %hr
-    - [:house_type, :gender, :personal_parking_lot, :special_floor, :english, :direction].each do |x|
+    - [:house_type, :special_floor, :foreigner, :english].each do |x|
       = f.input x, as: :hidden
       %h3= t ".#{x}"
-      = render partial:'act_as_radio_button', locals: { attribute_name: x, obj: @house, extra_class: 'btn-lg', selected: 'btn-info', unselected: 'btn-default' }
-    %div 室內坪數
-    = f.input :area
-    %span 總樓層
-    = f.input :building_floor
-    %span 所在樓層
-    = f.input :at_floor    
-
-    %h2 Step2
+      = render partial:'act_as_radio_button', locals: { attribute_name: x, obj: @house, extra_class: 'btn-lg', mark: 'btn-info', type: "button" }
     %hr
-    = f.input :title
+    = f.input :building_floor
+    = f.input :at_floor
+    %hr
+    = f.input :bedroom
+    = f.input :shared_space
+    = f.input :bathroom
+    = f.input :balcony
+    %hr
     = f.input :location
     = f.input :hide_location, as: :boolean
+    %hr
     = f.input :price
     = f.input :min_lease, collection: 1..12, prompt: true
     = f.input :security_fee
-
-    =f.input :description, :input_html => {:rows => 10}
-
-    %h2 Step3
     %hr
-    %h3= t "images"
-    = render 'house_images'
-    = file_field_tag "image[]", multiple: true
-
-    %h2 Step4
-    %hr
-    - [:amenity, :furniture, :extra_fee, :public_facility, :rule].each do |x|
-      .hidden
-        = f.input x, as: :check_boxes, collection: House.option_categories(x)
-      %h3= t ".#{x}"
-      / - HouseData.public_send("#{x}_categories").each do |k, v|
-      /   - selected = @house.public_send("#{x}").include?(v) ? "btn-danger" : ""
-      /   = f.button :button, class: "btn-lg act_as_check_box #{selected}", name: "house_#{x}", data: { value: v, disable_with: "<i class='fa fa-spinner fa-spin'></i>", selected: "btn-danger" } do
-      /     = render_option_category(v, x)
-      /disable_with: "<i class='fa fa-spinner fa-spin'></i>",
-      = render partial:'act_as_check_box', locals: { attribute_name: x, obj: @house, extra_class: 'btn-lg', mark: 'btn-danger', f: f}
+    = f.association :school, collection: School.categories, prompt: true
 
   .form-actions.text-center
-    /= f.button :submit
+    = f.button :submit

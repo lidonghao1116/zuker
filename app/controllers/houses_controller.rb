@@ -1,5 +1,5 @@
 class HousesController < ApplicationController
-  before_action :set_house, only: [:show, :edit, :update, :destroy]
+  before_action :set_house, only: [:show, :edit, :update, :destroy, :amenity, :description, :photo, :date_status]
 
   # GET /houses
   # GET /houses.json
@@ -28,14 +28,8 @@ class HousesController < ApplicationController
 
     respond_to do |format|
       if @house.save
-        if params[:image]
-          params[:image].each do |picture|
-            @house.attachments.create(:image => picture)
-            # Don't forget to mention :avatar(field name)
-          end
-        end
         format.html {
-          redirect_to edit_house_path(@house)          
+          redirect_to description_house_path(@house)
           flash[:success] = t('flash.messages.success')
         }
         format.json { render :json => @house }
@@ -59,11 +53,26 @@ class HousesController < ApplicationController
         end
         #flash[:success] = t('flash.messages.success')
         #redirect_to house_path(@house)
+        format.html {
+          redirect_to :back
+          flash[:success] = t('flash.messages.success')
+        }
         format.json { render :json => @house }
       else
         render :edit
       end
     end
+  end
+
+  def amenity
+  end
+  def description
+  end
+
+  def photo
+  end
+
+  def date_status
   end
 
   # DELETE /houses/1
@@ -84,6 +93,6 @@ class HousesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def house_params
-      params.require(:house).permit(:title, :description, :location, :price, :image, :house_type, :gender, :foreigner, :personal_parking_lot, amenity: [], furniture: [], extra_fee: [], public_facility: [], rule: [])
+      params.require(:house).permit(:title, :description, :location, :price, :image, :house_type, :gender, :foreigner, :english, :personal_parking_lot, :available_date, :area, :building_floor, :at_floor, :special_floor, :direction, :bedroom, :shared_space, :bathroom, :balcony, :hide_location, :school_id, :min_lease, :security_fee, :reservable_date, amenity: [], furniture: [], extra_fee: [], public_facility: [], rule: [])
     end
 end

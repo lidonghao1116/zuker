@@ -1,0 +1,14 @@
+.col-md-3
+  = render "profile_options"
+.col-md-9
+  = simple_form_for @house, remote: true, html: {multipart: true, class: 'form-horizontal' }, wrapper: :horizontal_form, wrapper_mappings: { boolean: :horizontal_boolean } do |f|
+    = f.error_notification
+
+    .form-inputs
+      %h2 Step4
+      %hr
+      - [:amenity, :furniture, :extra_fee, :public_facility].each do |x|
+        .hidden
+          = f.input x, as: :check_boxes, collection: House.option_categories(x)
+        %h3= t ".#{x}"
+        = render partial:'act_as_check_box', locals: { attribute_name: x, obj: @house, extra_class: 'btn-lg', mark: 'btn-danger', f: f, type: "submit" }

@@ -1,0 +1,13 @@
+.col-md-3
+  = render "profile_options"
+.col-md-9
+  = simple_form_for @house, html: {multipart: true, class: 'form-horizontal' }, wrapper: :horizontal_form, wrapper_mappings: { boolean: :horizontal_boolean } do |f|
+    = f.error_notification
+
+    .form-inputs
+      = f.input :area
+      %h3= t "images"
+      = render 'house_images'
+      = file_field_tag "image[]", multiple: true
+      
+    = f.button :submit

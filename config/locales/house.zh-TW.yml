@@ -39,7 +39,6 @@
     disabled: 身障人士設施
   rule_categories:
     family: 歡迎家庭
-    foreigner: 歡迎外籍人士
     pet: 可養寵物
     cooking: 可開伙
   personal_parking_lot_categories:
@@ -51,7 +50,10 @@
     fog: 煙霧探測器
     extinguisher: 滅火器
     co_sensor: 一氧化碳探測器
-    medicine_bag: 急救包    
+    medicine_bag: 急救包
+  foreigner_categories: 
+    good: 很樂意
+    bad: 不需要
   english_categories:
     great: 溝通無礙
     normal: 簡單對話

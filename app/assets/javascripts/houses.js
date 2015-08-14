@@ -25,4 +25,8 @@ $(function(){
   $('form.edit_house input').change(function() {
     console.log('123');
   });
+
+  $('.datetimepicker').datetimepicker({
+    format: 'YYYY-MM-DD'
+  });
 })

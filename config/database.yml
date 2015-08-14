@@ -11,7 +11,7 @@ default: &default
   encoding: utf8
   database: zuker_development
   pool: 5
-  username: hungmi
+  username: swit
   password: ming
 
 development:

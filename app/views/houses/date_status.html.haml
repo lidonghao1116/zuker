@@ -1,0 +1,11 @@
+.col-md-3
+  = render "profile_options"
+.col-md-9
+  = simple_form_for @house, remote: true, html: {multipart: true, class: 'form-horizontal' }, wrapper: :horizontal_form, wrapper_mappings: { boolean: :horizontal_boolean } do |f|
+    = f.error_notification
+
+    .form-inputs
+      -# as: :string is for datetimepicker, actually store as date
+      = f.input :available_date, as: :string, input_html: { class: "datetimepicker" }
+      -# if available_earlier? && Date.current >= available_date.months_ago(1)
+      = f.input :reservable_date, as: :string, input_html: { class: "datetimepicker" }, hint: "it's recommend that being reservable ASAP."
