@@ -1,5 +1,3 @@
-%h1 New house
-
-= render 'form'
-
-= link_to 'Back', houses_path
+%h1= t ".title"
+= simple_form_for @house, html: { multipart: true } do |f|
+  = render partial:'basic_form', locals: { f: f, btn_type: 'button' }

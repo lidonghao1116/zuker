@@ -1,0 +1,44 @@
+= f.error_notification
+
+.form-inputs
+  .row
+    .col-sm-7
+      - [:house_type, :special_floor].each do |x|
+        = f.label x
+        = f.input x, as: :hidden
+        .form-group
+          = render partial:'act_as_radio_button', locals: { attribute_name: x, obj: @house, mark: 'btn-info', type: btn_type, f: f }
+    .col-sm-5
+      - [:foreigner].each do |x|
+        = f.label x
+        = f.input x, as: :hidden
+        .form-group
+          = render partial:'act_as_radio_button', locals: { attribute_name: x, obj: @house, mark: 'btn-info', type: btn_type, f: f }
+      = f.input :english_help, as: :boolean
+  
+  %hr
+  = f.association :school, collection: School.categories, prompt: true
+  .row
+    = f.input :city, wrapper_html: { class: 'col-sm-4'}
+    = f.input :address, wrapper_html: { class: 'col-sm-8'}
+  = f.input :hide_address, as: :boolean
+  .row
+    %hr
+    = f.input :building_floor, wrapper_html: { class: 'col-sm-4'}
+    = f.input :at_floor, wrapper_html: { class: 'col-sm-4'}
+    = f.input :area, wrapper_html: { class: 'col-sm-4'}
+  .row
+    %hr
+    = f.input :bedroom, collection: 1..12, wrapper_html: { class: 'col-sm-3'}
+    = f.input :shared_space, collection: 1..12, wrapper_html: { class: 'col-sm-3'}
+    = f.input :bathroom, collection: 1..12, wrapper_html: { class: 'col-sm-3'}
+    = f.input :balcony, collection: 1..12, wrapper_html: { class: 'col-sm-3'}
+  .row
+    %hr
+    = f.input :price, wrapper_html: { class: 'col-sm-4'}
+    = f.input :min_lease, collection: 1..12, prompt: true, wrapper_html: { class: 'col-sm-4'}
+    = f.input :security_fee, wrapper_html: { class: 'col-sm-4'}
+
+.form-actions.text-center
+  = f.button :submit
+  = link_to I18n.t(".back"), houses_path

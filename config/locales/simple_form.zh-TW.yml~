@@ -29,9 +29,7 @@ zh-TW:
         title: 名稱
         profile: 描述
         amenity: 設施
-        furniture: 傢俱
-        extra_fee: 額外費用
-        public_facility: 公共設施
+        
         add: 登錄房屋
         add_new: 新增房屋
         edit: 編輯

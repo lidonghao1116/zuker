@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :attachments
   resources :houses do
     member do
+      get "basic" => "houses#basic"
       get "amenity" => "houses#amenity"
       get "description" => "houses#description"
       get "photo" => "houses#photo"

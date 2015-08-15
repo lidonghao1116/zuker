@@ -17,10 +17,13 @@
   @import 'bootstrap-datetimepicker';
   @import "font-awesome-sprockets";
   @import "font-awesome";
+  @import "nprogress";
+  @import "nprogress-bootstrap";
+  @import "sidebar";
   @import "users";
   
 body {
-  padding-top: 70px;
+  padding-top: 100px;
   padding-bottom: 20px;
   font-family: "Hiragino Sans GB","华文细黑","STHeiti","微软雅黑","Microsoft YaHei",SimHei,"Helvetica Neue",Helvetica,Arial,sans-serif !important;
 }
@@ -39,4 +42,8 @@ body {
   border-bottom-color: #263a63;
   background-color: #3B5998;
   color: #fff;
+}
+
+.ajax-text {
+  font-size: 20px;
 }

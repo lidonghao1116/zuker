@@ -8,16 +8,15 @@
         %span.icon-bar
       = link_to 'Zuker', root_path, class:'navbar-brand'
     #navbar.navbar-collapse.collapse
-      .navbar-form.navbar-right
-        - if current_user
-          %span.white-text
-            = link_to I18n.t("hello_nav", name: current_user.first_name || current_user.uid), user_path(current_user)
-          %span
-            = link_to I18n.t('signout'), signout_path, class:'btn btn-success'          
-        - else
-          = simple_form_for :user, url: signin_path, wrapper: :inline_form, html: { class:'navbar-form navbar-right' } do |f|
-            = f.input :phone_number, hint: false
-            = f.input :password, hint: false
-            = f.button :submit, "Sign in", class: "btn btn-success"
-            = render 'common/fb_login_button'
-            /= link_to 'FB', facebook_signin_path, class:'btn btn-info'
+      - if current_user
+        %span.white-text
+          = link_to I18n.t("hello_nav", name: current_user.first_name || current_user.uid), user_path(current_user)
+        %span
+          = link_to I18n.t('signout'), signout_path, class:'btn btn-success'          
+      - else
+        = simple_form_for :user, url: signin_path, wrapper: :inline_form, html: { class:'navbar-form navbar-right' } do |f|
+          = f.input :phone_number, hint: false
+          = f.input :password, hint: false
+          = f.button :submit, "Sign in", class: "btn btn-success"
+          = render 'common/fb_login_button'
+          /= link_to 'FB', facebook_signin_path, class:'btn btn-info'

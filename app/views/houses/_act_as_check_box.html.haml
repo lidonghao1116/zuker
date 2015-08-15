@@ -3,5 +3,5 @@
 - model_data = (model_name.camelize + "Data").constantize
 - model_data.public_send( "#{attribute_name}_categories").each do |key, value|
   - selected = mark if @house.public_send("#{attribute_name}").include?(value)
-  = f.button :button, class: "btn-lg act_as_check_box #{selected}", name: "#{prefix}#{attribute_name}", type: type, data: { value: value, disable_with: "<i class='fa fa-spinner fa-spin'></i>", selected: mark } do
+  %button{ name:"#{prefix}#{attribute_name}", type: type, class:"btn btn-default btn-lg act_as_check_box #{selected}", data: { value: value, selected: mark } }
     = render_option_category(value, attribute_name)

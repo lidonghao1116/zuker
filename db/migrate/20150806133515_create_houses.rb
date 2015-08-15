@@ -3,21 +3,24 @@ class CreateHouses < ActiveRecord::Migration
     create_table :houses do |t|      
       t.string :title
       t.text :description
-      t.string :location
-      t.boolean :hide_location
+      t.string :address
+      t.boolean :hide_address
       t.decimal :price, :precision => 8, :scale => 2 #### only family
       t.decimal :security_fee, :precision => 8, :scale => 2, default: 0
       t.json :images
       
       #### select and store as integer
+      t.integer :city
       t.integer :school_id
       t.integer :house_type
       t.integer :gender
       t.integer :personal_parking_lot
       t.integer :foreigner
-      t.integer :english
       t.integer :special_floor
       t.integer :min_lease #### only family
+
+      t.boolean :english_help      
+      t.boolean :photo_help
       
       #### select and store as integer array
       t.integer :direction, array: true, default: []

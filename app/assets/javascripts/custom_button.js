@@ -7,6 +7,7 @@ $(function(){
     this_hidden.val( $(this).data("value") );
     selected_btn.removeClass($(this).data("selected"));
     $(this).addClass($(this).data("selected"));
+    $('button.act_as_radio_button').blur();
   });
   
   $('button.act_as_check_box').click(function(){
@@ -21,12 +22,6 @@ $(function(){
       this_hidden.prop('checked', true);
       $(this).addClass($(this).data("selected"));
     }
-  });
-  $('form.edit_house input').change(function() {
-    console.log('123');
-  });
-
-  $('.datetimepicker').datetimepicker({
-    format: 'YYYY-MM-DD'
+    $('button.act_as_check_box').blur();
   });
 })

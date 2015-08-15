@@ -26,8 +26,6 @@ zh-TW:
     photo:
       title: "拍攝您房屋的每個角落"
       upload_photo: "開始上傳圖片"
-    date_status:
-      title: "讓您的房屋隨時都有人住"
     form:      
       house_type: 房源類型
       amenity: 設施
