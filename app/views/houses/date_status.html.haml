@@ -6,10 +6,10 @@
   %span.ajax-text
   %hr
   
-  = simple_form_for @house do |f|
+  = simple_form_for @house, remote: true do |f|
     = f.error_notification
 
-    .form-inputs
+    .form-inputs.ajax-input
       -# as: :string is for datetimepicker, actually store as date
       = f.input :available_date, as: :string, input_html: { id: "datetimepicker1" }
       -# if available_earlier? && Date.current >= available_date.months_ago(1)
@@ -26,5 +26,5 @@
       inline: true,
       useCurrent: false
     });
-    $('#datetimepicker1').focus();
+    //$('#datetimepicker1').focus();
   });

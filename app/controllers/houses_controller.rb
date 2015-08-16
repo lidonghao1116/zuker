@@ -57,9 +57,8 @@ class HousesController < ApplicationController
           redirect_to :back
           flash[:success] = t('flash.messages.success')
         }
-        format.json { render :json => @house }
+        format.json { head :ok }
       else
-        format.html { render :edit }
         format.json { render :json => { :error => @house.errors.full_messages }, :status => 422 }
       end
     end
