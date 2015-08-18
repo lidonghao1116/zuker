@@ -1,5 +1,5 @@
 %div{ :id => (action_name == 'edit' || action_name == 'update' ? "user-form-edit" : "user-form-new" ) }
-  = simple_form_for @user do |f|
+  = simple_form_for @user, wrapper: :clean_vertical_form do |f|
     = f.error_notification
 
     .form-inputs

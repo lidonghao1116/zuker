@@ -5,7 +5,7 @@
   = @house.title
 
 - ["amenity", "furniture", "extra_fee"].each do |x|
-  = render partial: 'checked_options', locals: {x: x}
+  = render 'checked_options', x: x
 %p
   %b Description:
   = @house.description

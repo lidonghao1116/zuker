@@ -16,3 +16,7 @@ $(document).ready ->
     if $(this).attr('value') isnt $(this).val()
       $(this).attr('value', $(this).val())
       $('form.edit_house input[type="submit"]').click()
+
+  $('#twzipcode').twzipcode({
+    detect: true;
+  })

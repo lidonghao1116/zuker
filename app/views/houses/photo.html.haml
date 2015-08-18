@@ -1,19 +1,15 @@
-.col-sm-3.col-md-2.sidebar
-  = render "profile_options"
-.col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
-  = notice_message
-  %h1{ style: "display:inline"}= t ".title"
-  %span.ajax-text
-  %hr
-  = simple_form_for @house, html: { multipart: true } do |f|
-    = f.error_notification
+%h1{ style: "display:inline"}= t ".title"
+%span.ajax-text
+%hr
+= simple_form_for @house, html: { multipart: true } do |f|
+  = f.error_notification
 
-    .form-inputs
-      = t "images"
-      = render 'house_images'
-      = file_field_tag "image[]", multiple: true
+  .form-inputs
+    = t "images"
+    = render 'house_images'
+    = file_field_tag "image[]", multiple: true
+  
+  = f.input :photo_help, as: :boolean
     
-    = f.input :photo_help, as: :boolean
-      
-    = f.button :button do
-      = t ".upload_photo"
+  = f.button :button do
+    = t ".upload_photo"

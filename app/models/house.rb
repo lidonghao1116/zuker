@@ -1,8 +1,8 @@
 class House < ActiveRecord::Base
   has_many :attachments
   belongs_to :school
-  validates :title, presence: true, length: { in: 2..20 }
-  validates :description, length: { in: 20..200 }
+  #validates :title, presence: true, length: { in: 2..20 }
+  #validates :description, length: { in: 20..200 }
   before_save :no_empty_array
 
   def no_empty_array

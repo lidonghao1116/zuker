@@ -7,21 +7,20 @@
         = f.label x
         = f.input x, as: :hidden
         .form-group
-          = render partial:'act_as_radio_button', locals: { attribute_name: x, obj: @house, mark: 'btn-info', type: btn_type, f: f }
+          = render 'act_as_radio_button', attribute_name: x, obj: @house, mark: 'btn-info', type: btn_type, f: f
     .col-sm-5
       - [:foreigner].each do |x|
         = f.label x
         = f.input x, as: :hidden
         .form-group
-          = render partial:'act_as_radio_button', locals: { attribute_name: x, obj: @house, mark: 'btn-info', type: btn_type, f: f }
+          = render 'act_as_radio_button', attribute_name: x, obj: @house, mark: 'btn-info', type: btn_type, f: f
       = f.input :english_help, as: :boolean
   
   %hr
   = f.association :school, collection: School.categories, prompt: true
-  .row
-    = f.input :city, wrapper_html: { class: 'col-sm-4'}
-    = f.input :address, wrapper_html: { class: 'col-sm-8'}
-  = f.input :hide_address, as: :boolean
+
+  = render 'address_form', f: f
+
   .row
     %hr
     = f.input :building_floor, wrapper_html: { class: 'col-sm-4'}
