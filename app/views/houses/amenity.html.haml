@@ -1,11 +1,11 @@
-%h1{ style: "display:inline"}= t ".title"
+%h1{ style: "display:inline" }= t ".title"
 %span.ajax-text
 %hr
 
 = simple_form_for @house, remote: true do |f|
   = f.error_notification
   .form-inputs
-    - [:amenity, :furniture, :extra_fee, :public_facility].each do |x|
+    - [:amenity, :furniture, :extra_fee, :public_facility, :safety].each do |x|
       = f.label x
       .form-group
         = render 'act_as_check_box', attribute_name: x, obj: @house, mark: 'btn-danger', f: f, type: "submit"

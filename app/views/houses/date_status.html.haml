@@ -1,4 +1,4 @@
-%h1{ style: "display:inline"}= t ".title"
+%h1{ style: "display:inline" }= t ".title"
 %span.ajax-text
 %hr
 
@@ -10,8 +10,9 @@
     = f.input :available_date, as: :string, input_html: { id: "datetimepicker1" }
     -# if available_earlier? && Date.current >= available_date.months_ago(1)
     = f.input :reservable_date, as: :string, input_html: { id: "datetimepicker2" }, hint: "it's recommend that being reservable ASAP."
-    
-    = f.button :submit
+
+    .hidden
+      = f.button :submit
 
 :javascript
 

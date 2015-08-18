@@ -27,13 +27,15 @@ ActiveRecord::Schema.define(version: 20150808162257) do
 
   create_table "houses", force: :cascade do |t|
     t.string   "title"
-    t.text     "description"
+    t.string   "city"
+    t.string   "district"
     t.string   "address"
+    t.string   "zipcode"
     t.boolean  "hide_address"
+    t.text     "description"
     t.decimal  "price",                precision: 8, scale: 2
     t.decimal  "security_fee",         precision: 8, scale: 2, default: 0.0
     t.json     "images"
-    t.integer  "city"
     t.integer  "school_id"
     t.integer  "house_type"
     t.integer  "gender"

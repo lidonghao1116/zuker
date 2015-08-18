@@ -1,6 +1,6 @@
 = f.error_notification
 
-.form-inputs
+.form-inputs{ class: ('ajax-input' if action_name == "basic") }
   .row
     .col-sm-7
       - [:house_type, :special_floor].each do |x|
@@ -38,6 +38,6 @@
     = f.input :min_lease, collection: 1..12, prompt: true, wrapper_html: { class: 'col-sm-4'}
     = f.input :security_fee, wrapper_html: { class: 'col-sm-4'}
 
-.form-actions.text-center
+.form-actions.text-center{ class: ('hidden' if action_name == "basic") }
   = f.button :submit
   = link_to I18n.t(".back"), houses_path
