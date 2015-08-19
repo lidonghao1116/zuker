@@ -1,4 +1,7 @@
 class House < ActiveRecord::Base
+
+  include Commentable
+  
   attr_accessor :validate
 
   belongs_to :school

@@ -1,9 +1,11 @@
 class User < ActiveRecord::Base
 
-  belongs_to :school
-
   include SmsConfirmable
+  include Commentable
   include FacebookLogin
+
+  #has_many :comments
+  belongs_to :school
   
   with_options if: :sign_with_zuker? do |z|
     z.has_secure_password

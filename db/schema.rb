@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150808162257) do
+ActiveRecord::Schema.define(version: 20150819135513) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,18 @@ ActiveRecord::Schema.define(version: 20150808162257) do
 
   add_index "attachments", ["house_id"], name: "index_attachments_on_house_id", using: :btree
 
+  create_table "comments", force: :cascade do |t|
+    t.text     "content"
+    t.integer  "user_id"
+    t.integer  "commentable_id"
+    t.string   "commentable_type"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  add_index "comments", ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id", using: :btree
+  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
+
   create_table "houses", force: :cascade do |t|
     t.string   "title"
     t.string   "city"
@@ -35,7 +47,6 @@ ActiveRecord::Schema.define(version: 20150808162257) do
     t.text     "description"
     t.decimal  "price",                precision: 8, scale: 2
     t.decimal  "security_fee",         precision: 8, scale: 2, default: 0.0
-    t.json     "images"
     t.integer  "school_id"
     t.integer  "house_type"
     t.integer  "gender"
@@ -67,11 +78,13 @@ ActiveRecord::Schema.define(version: 20150808162257) do
 
   create_table "pins", force: :cascade do |t|
     t.string   "content"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
     t.integer  "sms_confirmable_id"
     t.string   "sms_confirmable_type"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
+
+  add_index "pins", ["sms_confirmable_type", "sms_confirmable_id"], name: "index_pins_on_sms_confirmable_type_and_sms_confirmable_id", using: :btree
 
   create_table "schools", force: :cascade do |t|
     t.string   "name"
@@ -99,5 +112,6 @@ ActiveRecord::Schema.define(version: 20150808162257) do
   add_index "users", ["school_id"], name: "index_users_on_school_id", using: :btree
 
   add_foreign_key "attachments", "houses"
+  add_foreign_key "comments", "users"
   add_foreign_key "users", "schools"
 end
