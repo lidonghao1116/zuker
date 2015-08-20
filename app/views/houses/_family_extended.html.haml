@@ -1,6 +1,13 @@
-= simple_form_for @house, remote: true do |f|
-  .row
-    %hr
-    = f.input :building_floor, wrapper_html: { class: 'col-sm-4'}
-    = f.input :at_floor, wrapper_html: { class: 'col-sm-4'}
-    = f.input :area, wrapper_html: { class: 'col-sm-4'}
+- case @house.house_type
+- when 1
+  = simple_form_for @house, remote: true do |f|
+    .row
+      %hr
+      = f.input :building_floor, wrapper_html: { class: 'col-sm-4'}
+      = f.input :at_floor, wrapper_html: { class: 'col-sm-4'}
+      = f.input :area, wrapper_html: { class: 'col-sm-4'}
+- when 2
+  = simple_form_for @house, remote: true do |f|
+    .row
+      %hr
+      = f.input :building_floor, wrapper_html: { class: 'col-sm-4'}

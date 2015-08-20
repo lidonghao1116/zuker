@@ -17,3 +17,7 @@ end
 for i in 0..SchoolData.school_categories.size - 1 do
   School.create(:name => SchoolData.school_categories.key(i))
 end
+
+House.all.each_with_index do |h, i|
+  h.comments.create(author_id: i+1, content: BetterLorem.p(2, true, true))
+end

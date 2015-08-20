@@ -4,6 +4,7 @@ zh-TW:
   signout : "登出"
   hello_nav : "嗨，%{name} 您好！"
   back: 返回
+  price: 
 
   # View
   users:
@@ -62,7 +63,7 @@ zh-TW:
   # Form
   flash:
     messages:
-      upload_success: 
+      upload_success: "上傳圖片完成！"
       success: "更新成功！"
       fail: "更新失敗！"
   helpers:

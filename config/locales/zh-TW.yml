@@ -4,6 +4,7 @@ zh-TW:
   signout : "登出"
   hello_nav : "嗨，%{name} 您好！"
   back: 返回
+  price: 租金
 
   # View
   users:

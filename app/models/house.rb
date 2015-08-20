@@ -4,11 +4,12 @@ class House < ActiveRecord::Base
   
   attr_accessor :validate
 
-  belongs_to :school
+  belongs_to :school, inverse_of: :houses
   has_many :attachments
-
+  
   with_options if: "validate == 'basic'" do |z|
-    z.validates_presence_of :house_type, :special_floor, :foreigner, :school_id, :city, :district, :zipcode, :address, :building_floor
+    z.validates_presence_of :house_type, :special_floor, :foreigner, :school_id, :city, :district, :zipcode, :address
+    z.validates_with HouseValidator
   end
   with_options if: "validate == 'description'" do |z|
     z.validates :title, presence: true, length: { in: 2..20 }
@@ -26,4 +27,5 @@ class House < ActiveRecord::Base
   def self.option_categories(option)
     HouseData.public_send("#{option}_categories").map{ |k,v| [I18n.t("#{option}_categories.#{k}"),v] }
   end
+
 end

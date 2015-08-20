@@ -1,7 +1,14 @@
 Rails.application.routes.draw do
 
   resources :attachments
-  resources :houses do
+
+  concern :commentable do
+    member do
+      post 'new_comment'
+    end
+  end
+
+  resources :houses, concerns: :commentable do
     member do
       get "basic" => "houses#basic"
       get "amenity" => "houses#amenity"
@@ -11,12 +18,17 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :users do
+  concern :sms_confirmable do
+    member do
+      get 'phone_verify'
+      post 'verify_pin'
+      get 'resend_pin'
+    end
+  end
+
+  resources :users, concerns: :sms_confirmable do
     member do
       get 'profile' => "users#show"
-      get 'phone_verify' => "users#phone_verify"
-      post 'verify_pin' => "users#verify_pin"
-      get 'resend_pin' => "users#resend_pin"
       post '/connect_with_zuker' => "facebook/users#connect_with_zuker", :as => :connect_with_zuker
     end
     collection do
@@ -80,8 +92,7 @@ Rails.application.routes.draw do
 
   # Example resource route with more complex sub-resources:
   #   resources :products do
-  #     resources :comments
-  #     resources :sales do
+  #     #     resources :sales do
   #       get 'recent', on: :collection
   #     end
   #   end

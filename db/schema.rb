@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150819135513) do
+ActiveRecord::Schema.define(version: 20150820072331) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 20150819135513) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "content"
-    t.integer  "user_id"
+    t.integer  "author_id"
     t.integer  "commentable_id"
     t.string   "commentable_type"
     t.datetime "created_at",       null: false
@@ -35,7 +35,6 @@ ActiveRecord::Schema.define(version: 20150819135513) do
   end
 
   add_index "comments", ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id", using: :btree
-  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
 
   create_table "houses", force: :cascade do |t|
     t.string   "title"
@@ -63,13 +62,13 @@ ActiveRecord::Schema.define(version: 20150819135513) do
     t.integer  "public_facility",                              default: [],               array: true
     t.integer  "rule",                                         default: [],               array: true
     t.integer  "safety",                                       default: [],               array: true
-    t.integer  "building_floor"
-    t.integer  "at_floor"
-    t.integer  "area"
-    t.integer  "bedroom"
-    t.integer  "shared_space"
-    t.integer  "bathroom"
-    t.integer  "balcony"
+    t.integer  "building_floor",                               default: 0
+    t.integer  "at_floor",                                     default: 0
+    t.integer  "area",                                         default: 0
+    t.integer  "bedroom",                                      default: 0
+    t.integer  "shared_space",                                 default: 0
+    t.integer  "bathroom",                                     default: 0
+    t.integer  "balcony",                                      default: 0
     t.date     "available_date"
     t.date     "reservable_date"
     t.datetime "created_at",                                                 null: false
@@ -112,6 +111,5 @@ ActiveRecord::Schema.define(version: 20150819135513) do
   add_index "users", ["school_id"], name: "index_users_on_school_id", using: :btree
 
   add_foreign_key "attachments", "houses"
-  add_foreign_key "comments", "users"
   add_foreign_key "users", "schools"
 end

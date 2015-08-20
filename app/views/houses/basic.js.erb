@@ -1,1 +1,5 @@
-$("<%= escape_javascript(render 'family_extended') %>").appendTo("#content");
+<% if @house.house_type == 2 %>
+  $('#conditional_inputs').fadeOut().addClass('hide');
+<% else %>
+  $('#conditional_inputs').fadeIn().removeClass('hide');
+<% end %>

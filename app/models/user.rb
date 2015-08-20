@@ -3,9 +3,8 @@ class User < ActiveRecord::Base
   include SmsConfirmable
   include Commentable
   include FacebookLogin
-
-  #has_many :comments
-  belongs_to :school
+  
+  belongs_to :school, inverse_of: :users
   
   with_options if: :sign_with_zuker? do |z|
     z.has_secure_password
@@ -27,6 +26,10 @@ class User < ActiveRecord::Base
 
   def full_name
     "#{first_name} #{last_name}"
+  end
+
+  def my_comments
+    Comment.where(author_id: id)
   end
   
 end

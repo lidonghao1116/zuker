@@ -23,16 +23,24 @@
 
   .row
     %hr
-    = f.input :bedroom, collection: 1..12, wrapper_html: { class: 'col-sm-3'}
-    = f.input :shared_space, collection: 1..12, wrapper_html: { class: 'col-sm-3'}
-    = f.input :bathroom, collection: 1..12, wrapper_html: { class: 'col-sm-3'}
-    = f.input :balcony, collection: 1..12, wrapper_html: { class: 'col-sm-3'}
+    = f.input :bedroom, collection: 0..12, wrapper_html: { class: 'col-sm-3'}
+    = f.input :shared_space, collection: 0..12, wrapper_html: { class: 'col-sm-3'}
+    = f.input :bathroom, collection: 0..12, wrapper_html: { class: 'col-sm-3'}
+    = f.input :balcony, collection: 0..12, wrapper_html: { class: 'col-sm-3'}
   .row
     %hr
     = f.input :price, wrapper_html: { class: 'col-sm-4'}
     = f.input :min_lease, collection: 1..12, prompt: true, wrapper_html: { class: 'col-sm-4'}
     = f.input :security_fee, wrapper_html: { class: 'col-sm-4'}
+  .row
+    %hr
+    #conditional_inputs{ class: ('hide' if @house.house_type == 2)}
+      = f.input :building_floor, wrapper_html: { class: 'col-sm-4'}
+      = f.input :at_floor, wrapper_html: { class: 'col-sm-4'}
+      = f.input :area, wrapper_html: { class: 'col-sm-4'}
 
 .form-actions.text-center{ class: ('hidden' if action_name == "basic") }
   = f.button :submit
   = link_to I18n.t(".back"), houses_path
+
+= console

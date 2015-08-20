@@ -1,8 +1,11 @@
 class HousesController < ApplicationController
-  before_action :set_house, only: [:show, :edit, :update, :destroy, :basic, :amenity, :description, :photo, :date_status]
   layout "house_panel", only: [:basic, :amenity, :description, :photo, :date_status]
+
+  before_action :set_house, except: [:index, :new, :create]
   before_action :no_validate, only: [:basic, :amenity, :description, :photo, :date_status]
   before_action :action_based_validation, only: [:basic, :amenity, :description, :photo, :date_status]
+
+  include CommentableActions
 
   # GET /houses
   # GET /houses.json
@@ -13,6 +16,7 @@ class HousesController < ApplicationController
   # GET /houses/1
   # GET /houses/1.json
   def show
+    @comments = @house.comments
   end
 
   # GET /houses/new
@@ -48,26 +52,17 @@ class HousesController < ApplicationController
   # PATCH/PUT /houses/1.json
   def update
     @house.validate = session[:validate]
-    respond_to do |format|
       if @house.update(house_params)
         if params[:image]
           params[:image].each do |picture|
             @house.attachments.create(:image => picture)
-            # Don't forget to mention :avatar(field name)
           end
           flash[:success] = t('flash.messages.upload_success')
         end
-        #flash[:success] = t('flash.messages.success')
-        #redirect_to house_path(@house)
-        format.html {
-          redirect_to :back
-          #flash[:success] = t('flash.messages.success')
-        }
-        format.json { head :ok }
+        redirect_to :back
       else
-        format.json { render :json => { :error => @house.errors.full_messages }, :status => 422 }
+        render :json => { :error => @house.errors.full_messages }, :status => 422
       end
-    end
   end
 
   def basic
