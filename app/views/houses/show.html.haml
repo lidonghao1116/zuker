@@ -1,23 +1,33 @@
+= render 'carousel'
+/ .container-fluid
+/   #images.row
+/     .col-sm-7
+/       = image_tag @house.attachments[0].image_url(:large)
+/     .col-sm-5
+/       - @house.attachments.each_with_index do |a, i|  
+/         = image_tag @house.attachments[i].image_url(:thumb), id: "image#{a.id}"
 .container
-  = render 'house_images'
+  .row
+    .col-sm-7
+      %h1= @house.title
+      %address= "#{@house.address}, #{@house.city}, #{@house.district}"
 
-  .col-sm-8
-    %h2= @house.title
-    %h5= @house.address
-
-  .col-sm-4
-    = "#{ number_to_currency(@house.price, precision: 0) } / month"
-    %p= "Last updated at: #{ @house.updated_at.strftime('%Y-%m-%d') }"
+    .col-sm-5
+      %h2= "#{ number_to_currency(@house.price, precision: 0) } / month"
+      = link_to 'Book', basic_house_path(@house), class: 'btn btn-success btn-lg'
+      /%p= "Last updated at: #{ @house.updated_at.strftime('%Y-%m-%d') }"
   
   - ["amenity", "furniture", "extra_fee"].each do |x|
     = render 'checked_options', x: x
 
-  %p= sanitize @house.description
+  .well
+    %h4 Description
+    %p= sanitize @house.description
 
   = simple_form_for :comment, { url: new_comment_house_path(@house), remote: true } do |f|
     = f.label :content, 'Leave a comment'
     = f.input :content, as: :text, label: false
-    = f.submit
+    = f.button 'submit'
   
   #comments-section
     = render @comments
@@ -25,5 +35,3 @@
   = link_to 'Edit', basic_house_path(@house)
   \|
   = link_to 'Back', houses_path
-
-  = console

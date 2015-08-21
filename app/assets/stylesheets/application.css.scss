@@ -20,10 +20,11 @@
   @import "nprogress";
   @import "nprogress-bootstrap";
   @import "sidebar";
+  @import "carousel";
   @import "users";
   
 body {
-  padding-top: 100px;
+  padding-top: 40px;
   padding-bottom: 20px;
   font-family: "Hiragino Sans GB","华文细黑","STHeiti","微软雅黑","Microsoft YaHei",SimHei,"Helvetica Neue",Helvetica,Arial,sans-serif !important;
 }
@@ -46,4 +47,10 @@ body {
 
 .ajax-text {
   font-size: 20px;
+}
+
+h1, h2, h3, h4, h5 {
+  &.inline {
+    display: inline;
+  }
 }
