@@ -102,22 +102,20 @@ ActiveRecord::Schema.define(version: 20150820072331) do
     t.string   "password_digest"
     t.boolean  "verified",          default: false
     t.date     "start_school_year"
-    t.integer  "school_id"
+    t.boolean  "sign_with_zuker"
     t.string   "provider"
     t.string   "email"
     t.string   "uid"
-    t.boolean  "sign_with_zuker"
     t.string   "image"
     t.string   "fb_url"
     t.string   "location"
+    t.string   "school_name",       default: [],                 array: true
     t.datetime "created_at",                        null: false
     t.datetime "updated_at",                        null: false
   end
 
   add_index "users", ["phone_number"], name: "index_users_on_phone_number", using: :btree
-  add_index "users", ["school_id"], name: "index_users_on_school_id", using: :btree
   add_index "users", ["uid"], name: "index_users_on_uid", using: :btree
 
   add_foreign_key "attachments", "houses"
-  add_foreign_key "users", "schools"
 end

@@ -25,7 +25,8 @@
   = @user.location
 %p
   %b= t User.human_attribute_name(:school)
-  = render_school_category(@user.school_id)
+  = @user.school_name
+  /= render_school_category(@user.school_id)
 %p
   %b= t User.human_attribute_name(:start_school_year)
   = @user.start_school_year

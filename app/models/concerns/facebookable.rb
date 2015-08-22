@@ -22,7 +22,10 @@ module Facebookable
           user.email = auth['info']['email']
           user.image = auth['info']['image']
           user.fb_url = auth['info']['urls']['Facebook']
-          user.location = auth['extra']['raw_info']['education'] #auth['info']['location']          
+          user.location = auth['info']['location']
+          auth['extra']['raw_info']['education'].try(:each) do |school|
+            user.school_name << school['school']['name']
+          end
         end
       end
     end
@@ -52,10 +55,15 @@ module Facebookable
       first_name: user.first_name,
       last_name: user.last_name,
       email: user.email,
-      name: user.name,
+      image: user.image,
       fb_url: user.fb_url,
       location: user.location
-    }) 
+    })
+    
+    # self.houses.try(:each) do |house|
+    #   house.owner_id = self.id
+    # end
+
   end
   
 end

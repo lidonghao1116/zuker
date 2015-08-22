@@ -8,7 +8,7 @@ class CreateUsers < ActiveRecord::Migration
       t.boolean :verified, :default => false
       t.date :start_school_year
       t.boolean :sign_with_zuker
-      t.references :school, index: true, foreign_key: true
+      #t.references :school, index: true, foreign_key: true
 
       ### FB columns
       t.string :provider
@@ -17,6 +17,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :image
       t.string :fb_url
       t.string :location
+      t.string :school_name, array: true, default: []
 
       t.timestamps null: false
     end
