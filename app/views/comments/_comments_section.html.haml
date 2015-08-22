@@ -3,3 +3,4 @@
   = f.input :content, as: :text, label: false
   = f.button 'submit'
 = render @comments
+= paginate @comments, :remote => true

@@ -46,6 +46,9 @@ gem 'carrierwave', github:'carrierwaveuploader/carrierwave'
 # nested form
 gem 'cocoon'
 
+# pagination
+gem 'kaminari'
+
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 

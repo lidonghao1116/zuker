@@ -10,13 +10,13 @@ class HousesController < ApplicationController
   # GET /houses
   # GET /houses.json
   def index
-    @houses = House.all
+    @houses = House.all.page params[:page]
   end
 
   # GET /houses/1
   # GET /houses/1.json
   def show
-    @comments = @house.comments
+    @comments = @house.comments.page params[:page]
   end
 
   # GET /houses/new

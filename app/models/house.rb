@@ -1,5 +1,7 @@
 class House < ActiveRecord::Base
 
+  paginates_per 3
+
   include Commentable
   
   attr_accessor :validate
