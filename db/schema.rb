@@ -27,13 +27,14 @@ ActiveRecord::Schema.define(version: 20150820072331) do
 
   create_table "comments", force: :cascade do |t|
     t.text     "content"
-    t.integer  "author_id"
+    t.integer  "author_id",        null: false
     t.integer  "commentable_id"
     t.string   "commentable_type"
     t.datetime "created_at",       null: false
     t.datetime "updated_at",       null: false
   end
 
+  add_index "comments", ["author_id"], name: "index_comments_on_author_id", using: :btree
   add_index "comments", ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id", using: :btree
 
   create_table "houses", force: :cascade do |t|
@@ -69,11 +70,14 @@ ActiveRecord::Schema.define(version: 20150820072331) do
     t.integer  "shared_space",                                 default: 0
     t.integer  "bathroom",                                     default: 0
     t.integer  "balcony",                                      default: 0
+    t.integer  "owner_id",                                                   null: false
     t.date     "available_date"
     t.date     "reservable_date"
     t.datetime "created_at",                                                 null: false
     t.datetime "updated_at",                                                 null: false
   end
+
+  add_index "houses", ["owner_id"], name: "index_houses_on_owner_id", using: :btree
 
   create_table "pins", force: :cascade do |t|
     t.string   "content"
@@ -92,23 +96,27 @@ ActiveRecord::Schema.define(version: 20150820072331) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "phone_number"
-    t.string   "password_digest"
-    t.string   "email"
-    t.datetime "created_at",                        null: false
-    t.datetime "updated_at",                        null: false
-    t.date     "start_school_year"
-    t.boolean  "verified",          default: false
-    t.integer  "school_id"
     t.string   "first_name"
     t.string   "last_name"
+    t.string   "phone_number"
+    t.string   "password_digest"
+    t.boolean  "verified",          default: false
+    t.date     "start_school_year"
+    t.integer  "school_id"
     t.string   "provider"
+    t.string   "email"
     t.string   "uid"
     t.boolean  "sign_with_zuker"
+    t.string   "image"
+    t.string   "fb_url"
+    t.string   "location"
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
   end
 
-  add_index "users", ["phone_number"], name: "index_users_on_phone_number", unique: true, using: :btree
+  add_index "users", ["phone_number"], name: "index_users_on_phone_number", using: :btree
   add_index "users", ["school_id"], name: "index_users_on_school_id", using: :btree
+  add_index "users", ["uid"], name: "index_users_on_uid", using: :btree
 
   add_foreign_key "attachments", "houses"
   add_foreign_key "users", "schools"

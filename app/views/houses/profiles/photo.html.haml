@@ -1,5 +1,5 @@
 = notice_message
-%h1{ style: "display:inline" }= t ".title"
+%h1.inline= t ".title"
 %span.ajax-text
 %hr
 = simple_form_for @house, html: { multipart: true } do |f|
@@ -7,7 +7,7 @@
 
   .form-inputs
     = t "images"
-    = render 'house_images'
+    = render 'houses/partials/house_images'
     = file_field_tag "image[]", multiple: true
   
   = f.input :photo_help, as: :boolean

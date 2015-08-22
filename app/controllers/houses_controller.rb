@@ -4,6 +4,7 @@ class HousesController < ApplicationController
   before_action :set_house, except: [:index, :new, :create]
   before_action :no_validate, only: [:basic, :amenity, :description, :photo, :date_status]
   before_action :action_based_validation, only: [:basic, :amenity, :description, :photo, :date_status]
+  before_action :render_folded_views, only: [:basic, :amenity, :description, :photo, :date_status]
 
   include CommentableActions
 
@@ -102,6 +103,11 @@ class HousesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_house
       @house = House.find(params[:id])
+    end
+
+    def render_folded_views
+      @prefix = "houses/profiles"
+      render "#{@prefix}/#{action_name}"
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

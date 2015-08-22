@@ -1,5 +1,5 @@
 $(document).ready ->
-  $(".main").on("ajax:send", (xhr) ->
+  $("#house-profile").on("ajax:send", (xhr) ->
     $(".ajax-text").text "Saving..."
   ).on("ajax:error", (e, xhr, status, error) ->
     $(".ajax-text").text $.parseJSON(xhr.responseText).error

@@ -34,6 +34,7 @@ Rails.application.routes.draw do
     collection do
       get 'signup' => "users#new"
     end
+    resources :houses
   end
 
   root 'users#new'

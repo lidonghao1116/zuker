@@ -5,12 +5,13 @@ $(function(){
     //console.log(selected_btn);
 
     this_hidden.val( $(this).data("value") );
-    selected_btn.removeClass($(this).data("selected"));
-    $(this).addClass($(this).data("selected"));
+    //selected_btn.removeClass($(this).data("selected"));
+    //$(this).addClass($(this).data("selected"));
     $('button.act_as_radio_button').blur();
   });
   
   $('button.act_as_check_box').click(function(){
+    console.log('123');
     var value = $(this).data("value");
     var this_hidden = $('#' + this.name + '_' + value);
     var checked = this_hidden.prop("checked");

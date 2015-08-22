@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
 
   include SmsConfirmable
   include Commentable
-  include FacebookLogin
+  include Facebookable
   
   belongs_to :school, inverse_of: :users
   

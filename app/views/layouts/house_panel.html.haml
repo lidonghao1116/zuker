@@ -10,8 +10,8 @@
     #fb-root
     = render 'common/nav'
     .col-sm-3.col-md-2.sidebar
-      = render "profile_options"
-    .col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2.main
+      = render 'houses/profiles/partials/profile_options'
+    #house-profile.col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2
       /= notice_message
       .container
         = yield

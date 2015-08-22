@@ -7,6 +7,7 @@ class House < ActiveRecord::Base
   attr_accessor :validate
 
   belongs_to :school, inverse_of: :houses
+  belongs_to :owner, class_name: "User", foreign_key: :owner_id
   has_many :attachments
   
   with_options if: "validate == 'basic'" do |z|

@@ -37,6 +37,8 @@ class CreateHouses < ActiveRecord::Migration
       t.integer :bathroom, default: 0 #### only family
       t.integer :balcony, default: 0 #### only family
 
+      t.integer :owner_id, null: false, index: true, foreign_key: true
+
       t.date :available_date
       t.date :reservable_date
       

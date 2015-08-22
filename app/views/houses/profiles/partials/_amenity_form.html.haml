@@ -1,18 +1,14 @@
-%h1{ style: "display:inline" }= t ".title"
-%span.ajax-text
-%hr
-
 = simple_form_for @house, remote: true do |f|
   = f.error_notification
   .form-inputs
     - [:amenity, :furniture, :extra_fee, :public_facility, :safety].each do |x|
       = f.label x
       .form-group
-        = render 'act_as_check_box', attribute_name: x, obj: @house, mark: 'btn-danger', f: f, type: "submit"
+        = render 'partials/act_as_check_box', attribute_name: x, obj: @house, mark: 'btn-danger', f: f, type: "submit"
         .hidden
           = f.input x, as: :check_boxes, collection: House.option_categories(x)
     - [:personal_parking_lot].each do |x|
       = f.label x
       = f.input x, as: :hidden
       .form-group
-        = render 'act_as_radio_button', attribute_name: x, obj: @house, mark: 'btn-danger', f: f, type: "submit"
+        = render 'partials/act_as_radio_button', attribute_name: x, obj: @house, mark: 'btn-danger', f: f, type: "submit"

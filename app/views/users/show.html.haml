@@ -1,3 +1,4 @@
+= image_tag("#{@user.image}")
 %p
   %b ID
   = @user.id
@@ -15,8 +16,13 @@
   = @user.phone_number
 %p
   %b= t User.human_attribute_name(:email)
-  = image_tag("#{@user.email}")
-  /= @user.email
+  = @user.email
+%p
+  %b= t User.human_attribute_name(:facebook_page)
+  = link_to @user.fb_url
+%p
+  %b= t User.human_attribute_name(:location)
+  = @user.location
 %p
   %b= t User.human_attribute_name(:school)
   = render_school_category(@user.school_id)
@@ -50,3 +56,5 @@
 
 #login_form.hide
   = render 'login_form', id: @user.id
+
+= console
