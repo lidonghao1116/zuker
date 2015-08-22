@@ -23,14 +23,9 @@
   .well
     %h4 Description
     %p= sanitize @house.description
-
-  = simple_form_for :comment, { url: new_comment_house_path(@house), remote: true } do |f|
-    = f.label :content, 'Leave a comment'
-    = f.input :content, as: :text, label: false
-    = f.button 'submit'
   
   #comments-section
-    = render @comments
+    = render "comments/comments_section"
     
   = link_to 'Edit', basic_house_path(@house)
   \|

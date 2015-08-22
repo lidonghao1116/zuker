@@ -1,2 +1,1 @@
-$('#comment-section').html('<%= @comments.to_s %>');
-//console.log('<%= j @comments %>');
+$('#comments-section').html('<%= j(render "comments/comments_section") %>');
