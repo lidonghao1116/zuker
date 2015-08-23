@@ -58,4 +58,7 @@
 #login_form.hide
   = render 'login_form', id: @user.id
 
-= console
+- @user.houses.each do |house|
+  = house.title
+
+= link_to "new house", new_user_house_path(@user, @house)

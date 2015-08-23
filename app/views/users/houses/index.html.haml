@@ -12,14 +12,18 @@
       %th
 
   %tbody
-    - @houses.each do |house|
+    - @user.houses.each do |house|
       %tr
         %td= house.title
         %td= house.description
         %td= house.address
         %td= house.price
         %td= link_to 'Show', house
+        %td= link_to 'Edit', basic_user_house_path(@user, house)
+        %td= link_to 'Destroy', user_house_path(@user, house), :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 %br
 
 = paginate @houses
+\|
+= link_to 'New House', new_user_house_path

@@ -2,12 +2,12 @@
 %h1.inline= t ".title"
 %span.ajax-text
 %hr
-= simple_form_for @house, html: { multipart: true } do |f|
+= simple_form_for [@user, @house], html: { multipart: true } do |f|
   = f.error_notification
 
   .form-inputs
     = t "images"
-    = render 'houses/partials/house_images'
+    = render 'users/houses/partials/house_images'
     = file_field_tag "image[]", multiple: true
   
   = f.input :photo_help, as: :boolean

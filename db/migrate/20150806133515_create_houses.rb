@@ -29,15 +29,15 @@ class CreateHouses < ActiveRecord::Migration
       t.integer :safety, array: true, default: []
 
       #### input integer
-      t.integer :building_floor, default: 0
-      t.integer :at_floor, default: 0
-      t.integer :area, default: 0 #### only family
-      t.integer :bedroom, default: 0 #### only family
-      t.integer :shared_space, default: 0 #### only family
-      t.integer :bathroom, default: 0 #### only family
-      t.integer :balcony, default: 0 #### only family
+      t.integer :building_floor
+      t.integer :at_floor
+      t.integer :area #### only family
+      t.integer :bedroom #### only family
+      t.integer :shared_space #### only family
+      t.integer :bathroom #### only family
+      t.integer :balcony #### only family
 
-      t.integer :owner_id, null: false, index: true, foreign_key: true
+      t.references :user, null: false, index: true, foreign_key: true
 
       t.date :available_date
       t.date :reservable_date

@@ -8,7 +8,7 @@ RSpec.describe HousesController, type: :routing do
     end
 
     it "routes to #new" do
-      expect(:get => "/houses/new").to route_to("houses#new")
+      expect(:get => "/houses/new").not_to be_routable
     end
 
     it "routes to #show" do
@@ -16,23 +16,23 @@ RSpec.describe HousesController, type: :routing do
     end
 
     it "routes to #edit" do
-      expect(:get => "/houses/1/edit").to route_to("houses#edit", :id => "1")
+      expect(:get => "/houses/1/edit").not_to be_routable
     end
 
     it "routes to #create" do
-      expect(:post => "/houses").to route_to("houses#create")
+      expect(:post => "/houses").not_to be_routable
     end
 
     it "routes to #update via PUT" do
-      expect(:put => "/houses/1").to route_to("houses#update", :id => "1")
+      expect(:put => "/houses/1").not_to be_routable
     end
 
     it "routes to #update via PATCH" do
-      expect(:patch => "/houses/1").to route_to("houses#update", :id => "1")
+      expect(:patch => "/houses/1").not_to be_routable
     end
 
     it "routes to #destroy" do
-      expect(:delete => "/houses/1").to route_to("houses#destroy", :id => "1")
+      expect(:delete => "/houses/1").not_to be_routable
     end
 
   end

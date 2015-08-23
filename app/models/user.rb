@@ -3,7 +3,8 @@ class User < ActiveRecord::Base
   include SmsConfirmable
   include Commentable
   include Facebookable
-  
+
+  has_many :houses, inverse_of: :owner, foreign_key: :user_id
   belongs_to :school, inverse_of: :users
   
   with_options if: :sign_with_zuker? do |z|

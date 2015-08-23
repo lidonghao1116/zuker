@@ -63,21 +63,21 @@ ActiveRecord::Schema.define(version: 20150820072331) do
     t.integer  "public_facility",                              default: [],               array: true
     t.integer  "rule",                                         default: [],               array: true
     t.integer  "safety",                                       default: [],               array: true
-    t.integer  "building_floor",                               default: 0
-    t.integer  "at_floor",                                     default: 0
-    t.integer  "area",                                         default: 0
-    t.integer  "bedroom",                                      default: 0
-    t.integer  "shared_space",                                 default: 0
-    t.integer  "bathroom",                                     default: 0
-    t.integer  "balcony",                                      default: 0
-    t.integer  "owner_id",                                                   null: false
+    t.integer  "building_floor"
+    t.integer  "at_floor"
+    t.integer  "area"
+    t.integer  "bedroom"
+    t.integer  "shared_space"
+    t.integer  "bathroom"
+    t.integer  "balcony"
+    t.integer  "user_id",                                                    null: false
     t.date     "available_date"
     t.date     "reservable_date"
     t.datetime "created_at",                                                 null: false
     t.datetime "updated_at",                                                 null: false
   end
 
-  add_index "houses", ["owner_id"], name: "index_houses_on_owner_id", using: :btree
+  add_index "houses", ["user_id"], name: "index_houses_on_user_id", using: :btree
 
   create_table "pins", force: :cascade do |t|
     t.string   "content"
@@ -118,4 +118,5 @@ ActiveRecord::Schema.define(version: 20150820072331) do
   add_index "users", ["uid"], name: "index_users_on_uid", using: :btree
 
   add_foreign_key "attachments", "houses"
+  add_foreign_key "houses", "users"
 end

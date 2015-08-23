@@ -30,6 +30,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem "haml-rails", "~> 0.9"
 gem 'simple_form'
+gem 'judge-simple_form'
 gem 'betterlorem'
 gem 'settingslogic'
 gem 'omniauth'

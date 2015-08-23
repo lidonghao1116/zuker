@@ -7,11 +7,15 @@ class House < ActiveRecord::Base
   attr_accessor :validate
 
   belongs_to :school, inverse_of: :houses
-  belongs_to :owner, class_name: "User", foreign_key: :owner_id
+  belongs_to :owner, class_name: "User", foreign_key: :user_id
   has_many :attachments
   
+  validates_presence_of :house_type, :special_floor, :foreigner, :school_id, :city, :district, :zipcode, :address, on: :create
+  # validates_with HouseValidator, on: :create
+
   with_options if: "validate == 'basic'" do |z|
     z.validates_presence_of :house_type, :special_floor, :foreigner, :school_id, :city, :district, :zipcode, :address
+    z.validates_presence_of :special_floor, allow_blank: true
     z.validates_with HouseValidator
   end
   with_options if: "validate == 'description'" do |z|

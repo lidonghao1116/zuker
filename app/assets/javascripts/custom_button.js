@@ -5,8 +5,8 @@ $(function(){
     //console.log(selected_btn);
 
     this_hidden.val( $(this).data("value") );
-    //selected_btn.removeClass($(this).data("selected"));
-    //$(this).addClass($(this).data("selected"));
+    selected_btn.removeClass($(this).data("selected"));
+    $(this).addClass($(this).data("selected"));
     $('button.act_as_radio_button').blur();
   });
   

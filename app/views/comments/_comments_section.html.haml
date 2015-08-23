@@ -2,5 +2,6 @@
   = f.label :content, 'Leave a comment'
   = f.input :content, as: :text, label: false
   = f.button 'submit'
-= render @comments
+- @comments.each do |comment|
+  = render 'comments/comment', comment: comment
 = paginate @comments, :remote => true

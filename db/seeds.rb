@@ -11,7 +11,7 @@ for i in 1..9 do
 end
 
 for i in 1..9 do
-  House.create(title: BetterLorem.w(4, true, true), description: BetterLorem.p(2, true, true), address: BetterLorem.w(5, true, true), price: 987, owner_id: i )
+  User.find(i).houses.create(title: BetterLorem.w(4, true, true), description: BetterLorem.p(2, true, true), address: BetterLorem.w(5, true, true), price: 987)
 end
 
 for i in 0..SchoolData.school_categories.size - 1 do

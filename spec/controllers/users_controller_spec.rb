@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe UsersController, type: :controller do
   
-  render_views
+  #render_views
 
   before :each do
     @user_1 = User.create(first_name: "peter1", last_name: "thiel", phone_number: "0920085181", password: "123456")

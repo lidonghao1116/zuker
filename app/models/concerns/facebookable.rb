@@ -14,6 +14,7 @@ module Facebookable
         user.sign_with_zuker = false # default is nil
         user.password = user.password_confirmation = ""
         user.password_digest = "facebook-authorized account"
+
         user.provider = auth['provider']
         user.uid = auth['uid']
         if auth['info']
@@ -23,9 +24,9 @@ module Facebookable
           user.image = auth['info']['image']
           user.fb_url = auth['info']['urls']['Facebook']
           user.location = auth['info']['location']
-          auth['extra']['raw_info']['education'].try(:each) do |school|
-            user.school_name << school['school']['name']
-          end
+        end
+        auth['extra']['raw_info']['education'].try(:each) do |school|
+          user.school_name << school['school']['name']
         end
       end
     end
@@ -34,6 +35,7 @@ module Facebookable
   def update_with_omniauth(auth)
     self.tap do |user|
       user.sign_with_zuker = true
+      
       user.provider = auth['provider'] || ""
       user.uid = auth['uid']
       if auth['info']
@@ -43,6 +45,9 @@ module Facebookable
         user.image = auth['info']['image']
         user.fb_url = auth['info']['urls']['Facebook']
         user.location = auth['info']['location']
+      end
+      auth['extra']['raw_info']['education'].try(:each) do |school|
+        user.school_name << school['school']['name']
       end
     end
     self.save
@@ -59,7 +64,7 @@ module Facebookable
       fb_url: user.fb_url,
       location: user.location
     })
-    
+
     # self.houses.try(:each) do |house|
     #   house.owner_id = self.id
     # end

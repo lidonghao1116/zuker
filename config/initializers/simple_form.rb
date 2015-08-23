@@ -66,7 +66,7 @@ SimpleForm.setup do |config|
   # Method used to tidy up errors. Specify any Rails Array method.
   # :first lists the first message for each field.
   # Use :to_sentence to list all errors for each field.
-  # config.error_method = :first
+  config.error_method = :first
 
   # Default tag used for error notification helper.
   config.error_notification_tag = :div
@@ -118,7 +118,7 @@ SimpleForm.setup do |config|
   # in this configuration, which is recommended due to some quirks from different browsers.
   # To stop SimpleForm from generating the novalidate option, enabling the HTML5 validations,
   # change this configuration to true.
-  # config.browser_validations = true
+  config.browser_validations = false
 
   # Collection of methods to detect if a file type was given.
   # config.file_methods = [ :mounted_as, :file?, :public_filename ]

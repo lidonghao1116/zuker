@@ -27,4 +27,6 @@
   #comments-section
     = render "comments/comments_section"
     
-  = link_to 'Back', houses_path
+  = link_to 'Edit', basic_user_house_path(@house, current_user)
+  \|
+  = link_to 'Back', user_houses_path

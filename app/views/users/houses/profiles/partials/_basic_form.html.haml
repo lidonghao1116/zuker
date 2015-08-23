@@ -5,13 +5,13 @@
     .col-sm-7
       - [:house_type, :special_floor].each do |x|
         = f.label x
-        = f.input x, as: :hidden
+        = f.input x#, as: :hidden
         .form-group
           = render 'partials/act_as_radio_button', attribute_name: x, obj: @house, mark: 'btn-info', type: btn_type, f: f
     .col-sm-5
       - [:foreigner].each do |x|
         = f.label x
-        = f.input x, as: :hidden
+        = f.input x#, as: :hidden
         .form-group
           = render 'partials/act_as_radio_button', attribute_name: x, obj: @house, mark: 'btn-info', type: btn_type, f: f
       = f.input :english_help, as: :boolean
@@ -19,18 +19,18 @@
   %hr
   = f.association :school, collection: School.categories, prompt: true
 
-  = render 'houses/partials/address_form', f: f
+  = render 'users/houses/profiles/partials/address_form', f: f
 
   .row
     %hr
-    = f.input :bedroom, collection: 0..12, wrapper_html: { class: 'col-sm-3'}
-    = f.input :shared_space, collection: 0..12, wrapper_html: { class: 'col-sm-3'}
-    = f.input :bathroom, collection: 0..12, wrapper_html: { class: 'col-sm-3'}
-    = f.input :balcony, collection: 0..12, wrapper_html: { class: 'col-sm-3'}
+    = f.input :bedroom, collection: 0..12, wrapper_html: { class: 'col-sm-3'}, prompt: :translate
+    = f.input :shared_space, collection: 0..12, wrapper_html: { class: 'col-sm-3'}, prompt: :translate
+    = f.input :bathroom, collection: 0..12, wrapper_html: { class: 'col-sm-3'}, prompt: :translate
+    = f.input :balcony, collection: 0..12, wrapper_html: { class: 'col-sm-3'}, prompt: :translate
   .row
     %hr
     = f.input :price, wrapper_html: { class: 'col-sm-4'}
-    = f.input :min_lease, collection: 1..12, prompt: true, wrapper_html: { class: 'col-sm-4'}
+    = f.input :min_lease, collection: 1..12, prompt: :translate, wrapper_html: { class: 'col-sm-4'}
     = f.input :security_fee, wrapper_html: { class: 'col-sm-4'}
   .row
     %hr

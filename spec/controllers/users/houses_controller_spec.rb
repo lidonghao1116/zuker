@@ -18,14 +18,18 @@ require 'rails_helper'
 # Message expectations are only used when there is no simpler way to specify
 # that an instance is receiving a specific message.
 
-RSpec.describe HousesController, type: :controller do
+RSpec.describe Users::HousesController, type: :controller do
+
+  before :each do
+    @user_1 = User.create(first_name: "peter1", last_name: "thiel", phone_number: "0920085181", password: "123456")
+  end
 
   # This should return the minimal set of attributes required to create a valid
   # House. As you add validations to House, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
-  }
+  let(:valid_attributes) { { house_type: '2', user_id: @user_1.id } }
+    #skip("Add a hash of attributes valid for your model")
+    
 
   let(:invalid_attributes) {
     skip("Add a hash of attributes invalid for your model")
@@ -54,7 +58,7 @@ RSpec.describe HousesController, type: :controller do
 
   describe "GET #new" do
     it "assigns a new house as @house" do
-      get :new, {}, valid_session
+      get :new, {user_id: @user_1.id}, valid_session
       expect(assigns(:house)).to be_a_new(House)
     end
   end

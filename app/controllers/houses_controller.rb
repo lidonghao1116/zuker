@@ -1,10 +1,6 @@
 class HousesController < ApplicationController
-  layout "house_panel", only: [:basic, :amenity, :description, :photo, :date_status]
 
   before_action :set_house, except: [:index, :new, :create]
-  before_action :no_validate, only: [:basic, :amenity, :description, :photo, :date_status]
-  before_action :action_based_validation, only: [:basic, :amenity, :description, :photo, :date_status]
-  before_action :render_folded_views, only: [:basic, :amenity, :description, :photo, :date_status]
 
   include CommentableActions
 
@@ -26,88 +22,12 @@ class HousesController < ApplicationController
     session[:validate] = "basic"
   end
 
-  # GET /houses/1/edit
-  def edit
-  end
 
-  # POST /houses
-  # POST /houses.json
-  def create
-    @house = House.new(house_params)
+private
 
-    respond_to do |format|
-      if @house.save
-        format.html {
-          redirect_to basic_house_path(@house)
-          flash[:success] = t('flash.messages.success')
-        }
-        format.json { render :json => @house }
-      else
-        format.html { render :new }
-        format.json { render json: @house.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PATCH/PUT /houses/1
-  # PATCH/PUT /houses/1.json
-  def update
-    @house.validate = session[:validate]
-      if @house.update(house_params)
-        if params[:image]
-          params[:image].each do |picture|
-            @house.attachments.create(:image => picture)
-          end
-          flash[:success] = t('flash.messages.upload_success')
-        end
-        redirect_to :back
-      else
-        render :json => { :error => @house.errors.full_messages }, :status => 422
-      end
-  end
-
-  def basic
-  end
-
-  def amenity
-  end
-
-  def description
-  end
-
-  def photo
-  end
-
-  def date_status
-  end
-
-  # DELETE /houses/1
-  # DELETE /houses/1.json
-  def destroy
-    @house.destroy
-    respond_to do |format|
-      format.html { redirect_to houses_url, notice: 'House was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
-
-  private
-
-    def no_validate
-      session[:validate] = nil
-    end
-
-    def action_based_validation
-      session[:validate] = action_name
-    end
     # Use callbacks to share common setup or constraints between actions.
     def set_house
       @house = House.find(params[:id])
-    end
-
-    def render_folded_views
-      @prefix = "houses/profiles"
-      render "#{@prefix}/#{action_name}"
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
