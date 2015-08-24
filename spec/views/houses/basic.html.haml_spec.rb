@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe "users/houses/profiles/basic", type: :view do
+RSpec.describe "houses/profiles/basic", type: :view do
   before(:each) do
     @user = User.create(first_name: "peter1", last_name: "thiel", phone_number: "0920085181", password: "123456")
     
@@ -17,7 +17,7 @@ RSpec.describe "users/houses/profiles/basic", type: :view do
   it "renders the basic house form" do
     render
 
-    assert_select "form[action=?][method=?]", user_house_path(@user, @house), "post" do
+    assert_select "form[action=?][method=?]", house_path(@house), "post" do
 
       # assert_select "input#house_title[name=?]", "house[title]"
 

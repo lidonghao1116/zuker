@@ -9,9 +9,9 @@
   %body
     #fb-root
     = render 'common/nav'
-    .col-sm-3.col-md-2.sidebar
-      = render 'users/houses/profiles/partials/profile_options'
-    #house-profile.col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2
-      /= notice_message
-      .container
+    .container
+      .col-sm-3.col-md-2.sidebar
+        = render 'houses/profiles/partials/profile_options'
+      #house-profile.col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2
+        /= notice_message
         = yield

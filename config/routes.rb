@@ -8,7 +8,15 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :houses, concerns: :commentable, only: [:index, :show]
+  resources :houses, concerns: :commentable do
+    member do
+      get "basic" => "houses#basic"
+      get "amenity" => "houses#amenity"
+      get "description" => "houses#description"
+      get "photo" => "houses#photo"
+      get "date_status" => "houses#date_status"
+    end
+  end
 
   concern :sms_confirmable do
     member do
@@ -25,17 +33,6 @@ Rails.application.routes.draw do
     end
     collection do
       get 'signup' => "users#new"
-    end
-    scope module: 'users' do
-      resources :houses do
-        member do
-          get "basic" => "houses#basic"
-          get "amenity" => "houses#amenity"
-          get "description" => "houses#description"
-          get "photo" => "houses#photo"
-          get "date_status" => "houses#date_status"
-        end
-      end
     end
   end
 

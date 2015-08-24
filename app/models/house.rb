@@ -10,17 +10,12 @@ class House < ActiveRecord::Base
   belongs_to :owner, class_name: "User", foreign_key: :user_id
   has_many :attachments
   
-  validates_presence_of :house_type, :special_floor, :foreigner, :school_id, :city, :district, :zipcode, :address, on: :create
-  # validates_with HouseValidator, on: :create
+  validates_presence_of :house_type, :foreigner, :school_id, :city, :district, :zipcode, :address
+  validates_with HouseValidator
 
-  with_options if: "validate == 'basic'" do |z|
-    z.validates_presence_of :house_type, :special_floor, :foreigner, :school_id, :city, :district, :zipcode, :address
-    z.validates_presence_of :special_floor, allow_blank: true
-    z.validates_with HouseValidator
-  end
   with_options if: "validate == 'description'" do |z|
     z.validates :title, presence: true, length: { in: 2..20 }
-    z.validates :description, length: { in: 20..200 }, allow_blank: true
+    z.validates :description, length: { in: 5..2000 }, allow_blank: true
   end
 
   before_save :no_empty_array

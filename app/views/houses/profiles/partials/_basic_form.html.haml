@@ -5,21 +5,24 @@
     .col-sm-7
       - [:house_type, :special_floor].each do |x|
         = f.label x
-        = f.input x#, as: :hidden
+        = f.input x, error: false, label: false, as: :hidden
         .form-group
           = render 'partials/act_as_radio_button', attribute_name: x, obj: @house, mark: 'btn-info', type: btn_type, f: f
+          = f.error x
+
     .col-sm-5
       - [:foreigner].each do |x|
         = f.label x
-        = f.input x#, as: :hidden
+        = f.input x, error: false, label: false, as: :hidden
         .form-group
           = render 'partials/act_as_radio_button', attribute_name: x, obj: @house, mark: 'btn-info', type: btn_type, f: f
+          = f.error x
       = f.input :english_help, as: :boolean
   
   %hr
   = f.association :school, collection: School.categories, prompt: true
 
-  = render 'users/houses/profiles/partials/address_form', f: f
+  = render 'houses/profiles/partials/address_form', f: f
 
   .row
     %hr

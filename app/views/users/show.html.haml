@@ -59,6 +59,6 @@
   = render 'login_form', id: @user.id
 
 - @user.houses.each do |house|
-  = house.title
+  %p= link_to house.id, basic_house_path(house)
 
-= link_to "new house", new_user_house_path(@user, @house)
+= link_to "new house", new_house_path

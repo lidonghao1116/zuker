@@ -1,4 +1,4 @@
-= simple_form_for [@user, @house], remote: true do |f|
+= simple_form_for @house, remote: true do |f|
   = f.error_notification
   .form-inputs
     - [:amenity, :furniture, :extra_fee, :public_facility, :safety].each do |x|

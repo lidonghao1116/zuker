@@ -2,7 +2,7 @@
 %span.ajax-text
 %hr
 
-= simple_form_for [@user, @house], remote: true do |f|
+= simple_form_for @house, remote: true do |f|
   = f.error_notification
 
   .form-inputs.ajax-input

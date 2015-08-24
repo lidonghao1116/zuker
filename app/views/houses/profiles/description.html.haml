@@ -2,12 +2,13 @@
 %span.ajax-text
 %hr
 
-= simple_form_for [@user, @house], remote: true do |f|
+= simple_form_for @house, remote: true do |f|
   = f.error_notification
   
   .form-inputs.ajax-input
     = f.input :title
     = f.input :description, :input_html => {:rows => 10}
+    /= render_description(1000)
 
     - [:rule].each do |x|
       = f.label x

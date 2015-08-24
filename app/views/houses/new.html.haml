@@ -1,0 +1,4 @@
+%h1.text-center= t ".title"
+= simple_form_for @house, html: { multipart: true } do |f|
+  = render 'houses/profiles/partials/basic_form', f: f, btn_type: 'button'
+= console

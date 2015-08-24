@@ -18,7 +18,7 @@
       /%p= "Last updated at: #{ @house.updated_at.strftime('%Y-%m-%d') }"
   
   - ["amenity", "furniture", "extra_fee"].each do |x|
-    = render 'users/houses/partials/checked_options', x: x
+    = render 'houses/partials/checked_options', x: x
 
   .well
     %h4 Description
