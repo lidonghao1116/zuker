@@ -26,21 +26,22 @@
 
   .row
     %hr
-    = f.input :bedroom, collection: 0..12, wrapper_html: { class: 'col-sm-3'}, prompt: :translate
-    = f.input :shared_space, collection: 0..12, wrapper_html: { class: 'col-sm-3'}, prompt: :translate
-    = f.input :bathroom, collection: 0..12, wrapper_html: { class: 'col-sm-3'}, prompt: :translate
-    = f.input :balcony, collection: 0..12, wrapper_html: { class: 'col-sm-3'}, prompt: :translate
-  .row
-    %hr
     = f.input :price, wrapper_html: { class: 'col-sm-4'}
     = f.input :min_lease, collection: 1..12, prompt: :translate, wrapper_html: { class: 'col-sm-4'}
     = f.input :security_fee, wrapper_html: { class: 'col-sm-4'}
-  .row
-    %hr
-    #conditional_inputs{ class: ('hide' if @house.house_type == 2)}
+    
+  #conditional_inputs{ class: ('hide' unless action_name == "basic" && @house.house_type == 1)}    
+    .row
+      %hr
+      = f.input :bedroom, collection: 0..12, wrapper_html: { class: 'col-sm-3'}, prompt: :translate
+      = f.input :shared_space, collection: 0..12, wrapper_html: { class: 'col-sm-3'}, prompt: :translate
+      = f.input :bathroom, collection: 0..12, wrapper_html: { class: 'col-sm-3'}, prompt: :translate
+      = f.input :balcony, collection: 0..12, wrapper_html: { class: 'col-sm-3'}, prompt: :translate
+    .row
+      %hr
+      = f.input :area, wrapper_html: { class: 'col-sm-4'}
       = f.input :building_floor, wrapper_html: { class: 'col-sm-4'}
       = f.input :at_floor, wrapper_html: { class: 'col-sm-4'}
-      = f.input :area, wrapper_html: { class: 'col-sm-4'}
 
 .form-actions.text-center{ class: ('hidden' if action_name == "basic") }
   = f.button :submit
