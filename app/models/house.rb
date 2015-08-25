@@ -14,7 +14,7 @@ class House < ActiveRecord::Base
   validates_with HouseValidator
 
   with_options if: "validate == 'description'" do |z|
-    z.validates :title, presence: true, length: { in: 2..20 }
+    z.validates :title, presence: true, length: { in: 2..25 }, allow_blank: true
     z.validates :description, length: { in: 5..2000 }, allow_blank: true
   end
 

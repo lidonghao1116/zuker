@@ -1,3 +1,5 @@
 %ul.nav.nav-sidebar
   - ['basic', 'amenity', 'description', 'photo', 'date_status'].each do |s|
     %li{ class: ('active' if action_name == s) }= link_to s, send("#{s}_house_path", @house)
+
+= link_to "View", @house, class:'btn btn-success'

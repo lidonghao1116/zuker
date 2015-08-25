@@ -3,15 +3,17 @@
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %title Zuker
-    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
-  %body
+  %body.large_padding_top
     #fb-root
     = render 'common/nav'
-    .container
-      .col-sm-3.col-md-2.sidebar
+    .container-fluid
+      .col-sm-2.col-md-1.sidebar
         = render 'houses/profiles/partials/profile_options'
-      #house-profile.col-sm-9.col-sm-offset-3.col-md-10.col-md-offset-2
-        /= notice_message
+      #house-profile.col-sm-10.col-sm-offset-2.col-md-7.col-md-offset-1
+        %h1.inline= @house.title || "Title"
+        %span.ajax-text
+        %hr
         = yield

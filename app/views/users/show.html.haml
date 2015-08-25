@@ -58,7 +58,19 @@
 #login_form.hide
   = render 'login_form', id: @user.id
 
-- @user.houses.each do |house|
-  %p= link_to house.id, basic_house_path(house)
+.row
+  - @user.houses.each do |house|
+    .col-sm-4
+      %h4
+        = link_to house.id, basic_house_path(house)
+        = house.title
+    .col-sm-8
+      %h4 comments
+      %ul
+        - house.comments.try(:each) do |comment|
+          %li
+            = comment.id
+            = comment.author.last_name
+            = comment.content
 
 = link_to "new house", new_house_path

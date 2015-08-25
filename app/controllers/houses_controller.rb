@@ -21,6 +21,7 @@ class HousesController < ApplicationController
   # GET /houses/1.json
   def show
     @comments = @house.comments.page params[:page]
+    render layout: "house_show"
   end
 
   # GET /houses/new
