@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 20150820072331) do
     t.boolean  "hide_address"
     t.text     "description"
     t.decimal  "price",                precision: 8, scale: 2
-    t.decimal  "security_fee",         precision: 8, scale: 2, default: 0.0
+    t.decimal  "security_fee",         precision: 8, scale: 2
     t.integer  "school_id"
     t.integer  "house_type"
     t.integer  "gender"
@@ -56,13 +56,13 @@ ActiveRecord::Schema.define(version: 20150820072331) do
     t.integer  "min_lease"
     t.boolean  "english_help"
     t.boolean  "photo_help"
-    t.integer  "direction",                                    default: [],               array: true
-    t.integer  "amenity",                                      default: [],               array: true
-    t.integer  "furniture",                                    default: [],               array: true
-    t.integer  "extra_fee",                                    default: [],               array: true
-    t.integer  "public_facility",                              default: [],               array: true
-    t.integer  "rule",                                         default: [],               array: true
-    t.integer  "safety",                                       default: [],               array: true
+    t.integer  "direction",                                    default: [],              array: true
+    t.integer  "amenity",                                      default: [],              array: true
+    t.integer  "furniture",                                    default: [],              array: true
+    t.integer  "extra_fee",                                    default: [],              array: true
+    t.integer  "public_facility",                              default: [],              array: true
+    t.integer  "rule",                                         default: [],              array: true
+    t.integer  "safety",                                       default: [],              array: true
     t.integer  "building_floor"
     t.integer  "at_floor"
     t.integer  "area"
@@ -70,11 +70,11 @@ ActiveRecord::Schema.define(version: 20150820072331) do
     t.integer  "shared_space"
     t.integer  "bathroom"
     t.integer  "balcony"
-    t.integer  "user_id",                                                    null: false
+    t.integer  "user_id",                                                   null: false
     t.date     "available_date"
     t.date     "reservable_date"
-    t.datetime "created_at",                                                 null: false
-    t.datetime "updated_at",                                                 null: false
+    t.datetime "created_at",                                                null: false
+    t.datetime "updated_at",                                                null: false
   end
 
   add_index "houses", ["user_id"], name: "index_houses_on_user_id", using: :btree

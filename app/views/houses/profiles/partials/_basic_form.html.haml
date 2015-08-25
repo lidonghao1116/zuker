@@ -3,17 +3,20 @@
 .form-inputs{ class: ('ajax-input' if action_name == "basic") }
   .row
     .col-sm-7
-      - [:house_type, :special_floor].each do |x|
-        = f.label x
-        = f.input x, error: false, label: false, as: :hidden
-        .form-group
-          = render 'partials/act_as_radio_button', attribute_name: x, obj: @house, mark: 'btn-info', type: btn_type, f: f
-          = f.error x
+      = f.collection_radio_buttons :special_floor, HouseData.special_floor_categories, :last, :first do |b|
+        = b.label(class: "btn btn-default btn-lg act_as_check_box #{'btn-info' if b.value == @house.special_floor }") { b.radio_button(class: "hidden") + render_option_category(b.value, :special_floor) }
+      .has-error= f.error :special_floor
+      / - [:house_type, :special_floor].each do |x|
+      /   .form-group
+      /     = f.label x
+      /     = f.input x, label: false#, as: :hidden
+      /     = render 'partials/act_as_radio_button', attribute_name: x, obj: @house, mark: 'btn-info', type: btn_type, f: f
+      /     = f.error x
 
     .col-sm-5
       - [:foreigner].each do |x|
         = f.label x
-        = f.input x, error: false, label: false, as: :hidden
+        = f.input x, error: false, label: false#, as: :hidden
         .form-group
           = render 'partials/act_as_radio_button', attribute_name: x, obj: @house, mark: 'btn-info', type: btn_type, f: f
           = f.error x
@@ -46,3 +49,4 @@
 .form-actions.text-center{ class: ('hidden' if action_name == "basic") }
   = f.button :submit
   = link_to I18n.t(".back"), houses_path
+  /= f.input :house_type, as: :radio_buttons, collection: HouseData.house_type_categories

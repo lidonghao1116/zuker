@@ -1,7 +1,9 @@
-= f.label :address
 #twzipcode.row
-  .col-sm-2.form-group{ data: { role: "county", style:"select optional form-control", value: @house.city, name: "house[city]" } }
-  .col-sm-2.form-group{ data: { role: "district", style:"select optional form-control", value: @house.district, name: "house[district]" } }
-  .col-sm-2.form-group{ data: { role: "zipcode", style:"string optional form-control", name: "house[zipcode]" } }
-  = f.input :address, wrapper_html: { class: 'col-sm-6' }, label: false
+  = f.input :city, as: :select, wrapper_html: { class: 'col-sm-2' }
+  .hidden{ data: { role: "county", name: "house[city]" } }
+  = f.input :district, as: :select, wrapper_html: { class: 'col-sm-2' }
+  .hidden{ data: { role: "district", name: "house[district]" } }
+  = f.input :zipcode, wrapper_html: { class: 'col-sm-2' }
+  .hidden{ data: { role: "zipcode", name: "house[zipcode]" } }
+  = f.input :address, wrapper_html: { class: 'col-sm-6' }
 = f.input :hide_address, as: :boolean

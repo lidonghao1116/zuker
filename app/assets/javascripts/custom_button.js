@@ -1,4 +1,5 @@
 $(function(){
+
   $('button.act_as_radio_button').click(function(){
     var this_hidden = $('#' + this.name);
     var selected_btn = $('button.btn-info[name=' + this.name + ']');

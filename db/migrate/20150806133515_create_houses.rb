@@ -5,7 +5,7 @@ class CreateHouses < ActiveRecord::Migration
       t.boolean :hide_address
       t.text :description
       t.decimal :price, :precision => 8, :scale => 2 #### only family
-      t.decimal :security_fee, :precision => 8, :scale => 2, default: 0
+      t.decimal :security_fee, :precision => 8, :scale => 2
       
       #### select and store as integer
       t.integer :school_id
