@@ -7,15 +7,16 @@
     /= render_description(1000)
 
     - [:rule].each do |x|
+      = f.error x
       = f.label x
       .form-group
-        = render 'partials/act_as_check_box', attribute_name: x, obj: @house, mark: 'btn-danger', f: f, type: "submit"
-        .hidden
-          = f.input x, as: :check_boxes, collection: House.option_categories(x)
+        = f.collection_check_boxes x, HouseData.send("#{x}_categories"), :last, :first do |b|
+          = b.label(class: "btn btn-default btn-lg act_as_check_box #{'btn-info' if @house.send(x).include? b.value }") { b.check_box(class: "hidden") + render_option_category(b.value, x) }
     - [:gender, :direction].each do |x|
+      = f.error x
       = f.label x
-      = f.input x, as: :hidden
       .form-group
-        = render 'partials/act_as_radio_button', attribute_name: x, obj: @house, mark: 'btn-info', f: f, type: "submit"
+        = f.collection_radio_buttons x, HouseData.send("#{x}_categories"), :last, :first do |b|
+          = b.label(class: "btn btn-default btn-lg act_as_radio_button #{'btn-warning' if b.value == @house.send(x) }") { b.radio_button(class: "hidden") + render_option_category(b.value, x) }
   .hidden
     = f.submit

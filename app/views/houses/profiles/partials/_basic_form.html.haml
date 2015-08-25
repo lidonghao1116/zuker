@@ -2,25 +2,14 @@
 
 .form-inputs{ class: ('ajax-input' if action_name == "basic") }
   .row
-    .col-sm-7
-      = f.collection_radio_buttons :special_floor, HouseData.special_floor_categories, :last, :first do |b|
-        = b.label(class: "btn btn-default btn-lg act_as_check_box #{'btn-info' if b.value == @house.special_floor }") { b.radio_button(class: "hidden") + render_option_category(b.value, :special_floor) }
-      .has-error= f.error :special_floor
-      / - [:house_type, :special_floor].each do |x|
-      /   .form-group
-      /     = f.label x
-      /     = f.input x, label: false#, as: :hidden
-      /     = render 'partials/act_as_radio_button', attribute_name: x, obj: @house, mark: 'btn-info', type: btn_type, f: f
-      /     = f.error x
-
-    .col-sm-5
-      - [:foreigner].each do |x|
+    - [:house_type, :foreigner].each do |x|
+      %div.col-sm-6
+        = f.error x
         = f.label x
-        = f.input x, error: false, label: false#, as: :hidden
-        .form-group
-          = render 'partials/act_as_radio_button', attribute_name: x, obj: @house, mark: 'btn-info', type: btn_type, f: f
-          = f.error x
-      = f.input :english_help, as: :boolean
+        = f.collection_radio_buttons x, HouseData.send("#{x}_categories"), :last, :first do |b|
+          = b.label(class: "btn btn-default btn-lg act_as_radio_button #{'btn-warning' if b.value == @house.send(x) }") { b.radio_button(class: "hidden") + render_option_category(b.value, x) }
+
+        = f.input :english_help, as: :boolean if x == :foreigner
   
   %hr
   = f.association :school, collection: School.categories, prompt: true

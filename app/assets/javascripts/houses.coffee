@@ -14,7 +14,14 @@ $(document).ready ->
   $('#datetimepicker1').data('value', $('#datetimepicker1').val())
   $('#datetimepicker2').data('value', $('#datetimepicker2').val())
 
+  $(".ajax-input input[type='radio']").parent("label.btn.act_as_radio_button").click ->
+    $('form.edit_house input[type="submit"]').click()
+
+  $(".ajax-input input[type='checkbox']").parent("label.btn.act_as_check_box").click ->
+    $('form.edit_house input[type="submit"]').click()
+
   $(".ajax-input input, .ajax-input textarea").blur ->
+    console.log $(this)
     if $(this).data('value') isnt $(this).val()
       $(this).data('value', $(this).val())
       $('form.edit_house input[type="submit"]').click()

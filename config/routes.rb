@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :houses, concerns: :commentable do
     member do
       get "basic" => "houses#basic"
+      get "space" => "houses#space"
       get "amenity" => "houses#amenity"
       get "description" => "houses#description"
       get "photo" => "houses#photo"

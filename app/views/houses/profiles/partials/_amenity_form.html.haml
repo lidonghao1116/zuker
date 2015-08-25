@@ -2,13 +2,16 @@
   = f.error_notification
   .form-inputs
     - [:amenity, :furniture, :extra_fee, :public_facility, :safety].each do |x|
+      = f.error x
       = f.label x
       .form-group
-        = render 'partials/act_as_check_box', attribute_name: x, obj: @house, mark: 'btn-danger', f: f, type: "submit"
-        .hidden
-          = f.input x, as: :check_boxes, collection: House.option_categories(x)
-    - [:personal_parking_lot].each do |x|
+        = f.collection_check_boxes x, HouseData.send("#{x}_categories"), :last, :first do |b|
+          = b.label(class: "btn btn-default btn-lg act_as_check_box #{'btn-info' if @house.send(x).include? b.value }") { b.check_box(class: "hidden") + render_option_category(b.value, x) }
+    - [:personal_parking_lot, :special_floor].each do |x|
+      = f.error x
       = f.label x
-      = f.input x, as: :hidden
       .form-group
-        = render 'partials/act_as_radio_button', attribute_name: x, obj: @house, mark: 'btn-danger', f: f, type: "submit"
+        = f.collection_radio_buttons x, HouseData.send("#{x}_categories"), :last, :first do |b|
+          = b.label(class: "btn btn-default btn-lg act_as_radio_button #{'btn-warning' if b.value == @house.send(x) }") { b.radio_button(class: "hidden") + render_option_category(b.value, x) }
+
+    .hidden= f.submit

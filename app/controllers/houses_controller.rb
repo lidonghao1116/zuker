@@ -1,5 +1,5 @@
 class HousesController < ApplicationController
-  layout "house_panel", only: [:update, :basic, :amenity, :description, :photo, :date_status]
+  layout "house_panel", only: [:update, :basic, :amenity, :description, :photo, :date_status, :space]
   
   before_action :set_house, except: [:index, :new, :create]
   before_action :set_user
@@ -74,6 +74,14 @@ class HousesController < ApplicationController
   end
 
   def basic
+  end
+
+  def space
+    if @house.house_type == 1      
+      render 'houses/profiles/family_space'
+    else
+      render 'houses/profiles/multi_rooms_space'
+    end
   end
 
   def amenity
