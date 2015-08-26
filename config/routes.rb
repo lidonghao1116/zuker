@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'rooms/new'
+
   resources :attachments
 
   concern :commentable do
@@ -15,8 +17,9 @@ Rails.application.routes.draw do
       get "amenity" => "houses#amenity"
       get "description" => "houses#description"
       get "photo" => "houses#photo"
-      get "date_status" => "houses#date_status"
+      get "date_status" => "houses#date_status"      
     end
+    resources :rooms, only: [:new, :create]
   end
 
   concern :sms_confirmable do

@@ -11,7 +11,7 @@ for i in 1..9 do
 end
 
 for i in 1..9 do
-  User.find(i).houses.create(title: BetterLorem.w(4, true, true), description: BetterLorem.p(2, true, true), address: BetterLorem.w(5, true, true), price: 987)
+  User.find(i).houses.create(house_type: 1, foreigner: 1, school_id: 2, title: BetterLorem.w(4, true, true), description: BetterLorem.p(2, true, true), city: '台北市', district: '中正區', zipcode: '100', address: BetterLorem.w(5, true, true), price: 987)
 end
 
 for i in 0..SchoolData.school_categories.size - 1 do

@@ -1,23 +1,26 @@
+= notice_message
 = simple_form_for @house, remote: true do |f|
   = f.error_notification
   .ajax-input
+    %h2 Rooms
+
     .row
       = f.input :building_floor, wrapper_html: { class: 'col-sm-4'}
-    %h2 Room 1
-    .row
-      = f.input :bedroom, collection: 0..12, wrapper_html: { class: 'col-sm-4'}, prompt: :translate
-      = f.input :bathroom, collection: 0..12, wrapper_html: { class: 'col-sm-4'}, prompt: :translate
-      = f.input :balcony, collection: 0..12, wrapper_html: { class: 'col-sm-4'}, prompt: :translate
-      %hr
-      = f.input :price, wrapper_html: { class: 'col-sm-4'}
-      = f.input :min_lease, collection: 1..12, prompt: :translate, wrapper_html: { class: 'col-sm-4'}
-      = f.input :security_fee, wrapper_html: { class: 'col-sm-4'}
-      %hr
-      = f.input :area, wrapper_html: { class: 'col-sm-4'}
-      = f.input :at_floor, wrapper_html: { class: 'col-sm-4'}
 
-    - [:special_floor].each do |x|
-      = render 'partials/act_as_radio_button', x: x, f: f
-  
+    %table.table
+      %thead
+        %tr
+          %th ID
+          %th At
+          %th Price
+          %th Area
+      %tbody
+        - @house.rooms.each do |room|
+          %tr
+            %td= room.id
+            %td= room.at_floor
+            %td= room.price
+            %td= room.area
+    = link_to 'Add new', new_house_room_path(@house), class:'btn btn-primary btn-lg'
 
   .hidden= f.submit

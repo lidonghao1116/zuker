@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150820072331) do
+ActiveRecord::Schema.define(version: 20150826022708) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -89,6 +89,27 @@ ActiveRecord::Schema.define(version: 20150820072331) do
 
   add_index "pins", ["sms_confirmable_type", "sms_confirmable_id"], name: "index_pins_on_sms_confirmable_type_and_sms_confirmable_id", using: :btree
 
+  create_table "rooms", force: :cascade do |t|
+    t.string   "title"
+    t.integer  "at_floor"
+    t.integer  "special_floor"
+    t.integer  "area"
+    t.integer  "bedroom"
+    t.integer  "bathroom"
+    t.integer  "balcony"
+    t.integer  "amenity",                               default: [],              array: true
+    t.integer  "furniture",                             default: [],              array: true
+    t.integer  "safety",                                default: [],              array: true
+    t.integer  "min_lease"
+    t.decimal  "price",         precision: 8, scale: 2
+    t.decimal  "security_fee",  precision: 8, scale: 2
+    t.integer  "house_id"
+    t.datetime "created_at",                                         null: false
+    t.datetime "updated_at",                                         null: false
+  end
+
+  add_index "rooms", ["house_id"], name: "index_rooms_on_house_id", using: :btree
+
   create_table "schools", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
@@ -119,4 +140,5 @@ ActiveRecord::Schema.define(version: 20150820072331) do
 
   add_foreign_key "attachments", "houses"
   add_foreign_key "houses", "users"
+  add_foreign_key "rooms", "houses"
 end

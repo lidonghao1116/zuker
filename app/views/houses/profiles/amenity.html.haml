@@ -1,9 +1,14 @@
 #house-amenity-section.ajax-input
   = simple_form_for @house, remote: true do |f|
     = f.error_notification
-    - [:amenity, :furniture, :extra_fee, :public_facility, :safety].each do |x|      
+    - [:extra_fee, :public_facility].each do |x|
       = render 'partials/act_as_check_box', x: x, f: f
-    - [:personal_parking_lot].each do |x|      
+
+    - if @house.house_type == 1
+      - [:amenity, :furniture, :safety].each do |x|
+        = render 'partials/act_as_check_box', x: x, f: f
+        
+    - [:personal_parking_lot].each do |x|
       = render 'partials/act_as_radio_button', x: x, f: f
 
     .hidden= f.submit
