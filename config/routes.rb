@@ -17,7 +17,8 @@ Rails.application.routes.draw do
       get "amenity" => "houses#amenity"
       get "description" => "houses#description"
       get "photo" => "houses#photo"
-      get "date_status" => "houses#date_status"      
+      get "date_status" => "houses#date_status"
+      get "rooms" => "houses#rooms"
     end
     resources :rooms, except: [:index, :show]
   end
@@ -30,7 +31,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :users, concerns: :sms_confirmable do
+  resources :users, except: [:index], concerns: :sms_confirmable do
     member do
       get 'profile' => "users#show"
       post '/connect_with_zuker' => "facebook/users#connect_with_zuker", :as => :connect_with_zuker

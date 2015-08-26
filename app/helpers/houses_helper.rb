@@ -13,4 +13,8 @@ module HousesHelper
 
     content_tag(:textarea, ddd.join(""))
   end
+
+  def render_space(property)
+    "#{property.bedroom}房#{property.bathroom}廳#{property.bathroom}衛#{property.balcony}陽台"
+  end
 end

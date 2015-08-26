@@ -1,27 +1,3 @@
 %h1.inline= "New room of #{@house.title}" || "New room"
 %hr
-= simple_form_for [@house, @room], html: { multipart: true } do |f|
-  .row
-    = f.input :bedroom, collection: 0..12, wrapper_html: { class: 'col-sm-4'}, prompt: :translate
-    = f.input :bathroom, collection: 0..12, wrapper_html: { class: 'col-sm-4'}, prompt: :translate
-    = f.input :balcony, collection: 0..12, wrapper_html: { class: 'col-sm-4'}, prompt: :translate
-    %hr
-    = f.input :price, wrapper_html: { class: 'col-sm-4'}
-    = f.input :min_lease, collection: 1..12, prompt: :translate, wrapper_html: { class: 'col-sm-4'}
-    = f.input :security_fee, wrapper_html: { class: 'col-sm-4'}
-    %hr
-    = f.input :area, wrapper_html: { class: 'col-sm-4'}
-    = f.input :at_floor, wrapper_html: { class: 'col-sm-4'}
-  %hr
-  - [:special_floor].each do |x|
-    = render 'partials/act_as_radio_button', x: x, f: f
-  - [:amenity, :furniture, :safety].each do |x|
-    = render 'partials/act_as_check_box', x: x, f: f
-
-  %h2= t "images"
-  - @room.attachments.each do |a|  
-    = image_tag a.image_url(:thumb), id: "image#{a.id}"
-    = link_to 'X', attachment_path(id: a.id), method: :delete, id:"image#{a.id}_remove_btn", class:'btn btn-large'
-  = file_field_tag "image[]", multiple: true
-    
-  = f.button 'submit'
+= render 'form'

@@ -1,11 +1,12 @@
 class HousesController < ApplicationController
-  layout "house_panel", only: [:update, :basic, :amenity, :description, :photo, :date_status, :space]
+  layout "house_panel", only: [:update, :basic, :amenity, :description, :photo, :date_status, :space, :rooms]
   
   before_action :set_house, except: [:index, :new, :create]
   before_action :set_user
   before_action :no_validate, only: [:basic, :amenity, :description, :photo, :date_status]
   before_action :action_based_validation, only: [:basic, :amenity, :description, :photo, :date_status]
-  before_action :render_folded_views, only: [:basic, :amenity, :description, :photo, :date_status]
+  before_action :render_folded_views, only: [:basic, :amenity, :description, :rooms]
+  before_action :is_famliy?, only: [:photo, :date_status, :space]
 
   include CommentableActions
 
@@ -14,7 +15,7 @@ class HousesController < ApplicationController
   # GET /houses
   # GET /houses.json
   def index
-    @houses = House.all.page params[:page]
+    @houses = @user.houses.all.page params[:page]
   end
 
   # GET /houses/1
@@ -77,11 +78,6 @@ class HousesController < ApplicationController
   end
 
   def space
-    if @house.house_type == 1      
-      render 'houses/profiles/family_space'
-    else
-      render 'houses/profiles/multi_rooms_space'
-    end
   end
 
   def amenity
@@ -94,6 +90,10 @@ class HousesController < ApplicationController
   end
 
   def date_status
+  end
+
+  def rooms
+    @rooms = @house.rooms.all
   end
 
   # DELETE /houses/1
@@ -120,8 +120,17 @@ class HousesController < ApplicationController
       @house = House.find(params[:id])
     end
 
+    def is_famliy?
+      if @house.family?
+        @prefix = "houses/profiles"
+        render "#{@prefix}/#{action_name}"
+      else        
+        redirect_to rooms_house_path
+      end
+    end
+
     def set_user
-      @user = current_user
+      redirect_to root_path, notice: "you can't do this" unless current_user
     end
 
     def render_folded_views

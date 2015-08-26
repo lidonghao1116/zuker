@@ -16,7 +16,7 @@
       = f.input :at_floor, wrapper_html: { class: 'col-sm-4'}
 
     - [:special_floor].each do |x|
-      = render 'partials/act_as_radio_button', x: x, f: f
+      = render 'partials/act_as_radio_button', x: x, f: f, obj: @house
   
 
   .hidden= f.submit

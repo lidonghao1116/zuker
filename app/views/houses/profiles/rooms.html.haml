@@ -2,7 +2,7 @@
 = simple_form_for @house, remote: true do |f|
   = f.error_notification
   .ajax-input
-    %h2 Rooms
+    %h3 Rooms
 
     .row
       = f.input :building_floor, wrapper_html: { class: 'col-sm-4'}
@@ -11,17 +11,22 @@
       %thead
         %tr
           %th Room
-          %th At
+          %th Floor
           %th Price
           %th Area
+          %th Space
+          %th
+          %th
+          %th
           %th
       %tbody
         - @house.rooms.each do |room|
           %tr
             %td= image_tag room.attachments.first.image_url(:thumb) if room.attachments.present?
             %td= room.at_floor
-            %td= room.price
+            %td= "#{ number_to_currency(room.price, precision: 0) } / month"
             %td= room.area
+            %td=  render_space(room)
             %td= link_to 'Edit', edit_house_room_path(@house, room)
     = link_to 'Add new', new_house_room_path(@house), class:'btn btn-primary btn-lg'
 

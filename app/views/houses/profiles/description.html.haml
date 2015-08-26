@@ -7,8 +7,8 @@
     /= render_description(1000)
 
     - [:rule].each do |x|      
-      = render 'partials/act_as_check_box', x: x, f: f
+      = render 'partials/act_as_check_box', x: x, f: f, obj: @house
     - [:gender, :direction].each do |x|      
-      = render 'partials/act_as_radio_button', x: x, f: f
+      = render 'partials/act_as_radio_button', x: x, f: f, obj: @house
   
   .hidden= f.submit

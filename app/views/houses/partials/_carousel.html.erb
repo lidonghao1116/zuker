@@ -6,9 +6,9 @@
         <li data-target="#myCarousel" data-slide-to="2"></li>
       </ol>
       <div class="carousel-inner" role="listbox">
-        <% for i in 0..@house.attachments.size-1 do %>
-          <div class="item<%= ' active' if i == 1 %>">
-            <%= image_tag @house.attachments[i].image_url(:large) %>
+        <% @house.attachments.each_with_index do |attachment, i| %>
+          <div class="item<%= ' active' if i == 0 %>">
+            <%= image_tag attachment.image_url(:large) %>
             <div class="container">
               <div class="carousel-caption">
   <!--               <h1>Example headline.</h1>

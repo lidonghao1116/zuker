@@ -1,5 +1,10 @@
 %ul.nav.nav-sidebar
-  - ['basic', 'space', 'amenity', 'description', 'photo', 'date_status'].each do |s|
+  - ['basic', 'amenity', 'description'].each do |s|
     %li{ class: ('active' if action_name == s) }= link_to s, send("#{s}_house_path", @house)
+  - if @house.family?  
+    - ['space', 'photo', 'date_status'].each do |s|
+      %li{ class: ('active' if action_name == s) }= link_to s, send("#{s}_house_path", @house)
+  - else
+    %li{ class: ('active' if action_name == 'rooms') }= link_to 'rooms', rooms_house_path(@house)
 
 = link_to "View", @house, class:'btn btn-success'

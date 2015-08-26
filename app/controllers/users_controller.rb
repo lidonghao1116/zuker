@@ -1,14 +1,8 @@
 class UsersController < ApplicationController
-  before_action :correct_user_sign_in?, except: [:index, :new, :create]
+  before_action :correct_user_sign_in?, except: [:new, :create]
   before_action :has_sign_with_zuker?, only: [:edit, :update]
 
   include SmsConfirmableActions
-
-  # GET /users
-  # GET /users.json
-  def index
-    @users = User.all
-  end
 
   # GET /users/new
   def new

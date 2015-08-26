@@ -26,10 +26,17 @@ class House < ActiveRecord::Base
     amenity.reject! { |r| r.blank? }
     furniture.reject! { |r| r.blank? }
     extra_fee.reject! { |r| r.blank? }
+    safety.reject! { |r| r.blank? }
+    public_facility.reject! { |r| r.blank? }
+    rule.reject! { |r| r.blank? }
   end
 
   def self.option_categories(option)
     HouseData.public_send("#{option}_categories").map{ |k,v| [I18n.t("#{option}_categories.#{k}"),v] }
+  end
+
+  def family?
+    house_type == 1
   end
 
 end

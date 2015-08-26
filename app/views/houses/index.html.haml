@@ -1,24 +1,26 @@
 %h1 Listing houses
 
-%table
+%table.table
   %thead
     %tr
       %th Title
-      %th Description
-      %th Location
       %th Price
-      %th
-      %th
+      %th Views
+      %th Status
+      %th Comments
       %th
 
   %tbody
     - @houses.each do |house|
       %tr
-        %td= house.title
-        %td= house.description
-        %td= house.address
+        %td= link_to house.title, basic_house_path(house)
         %td= house.price
-        %td= link_to 'Show', house
+        %td
+        %td
+        %td
+          - house.comments.try(:each) do |comment|
+            = "#{comment.content} by #{comment.author.last_name}"
+        %td= link_to 'View', house
 
 %br
 
