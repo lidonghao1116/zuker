@@ -1,4 +1,4 @@
 #images
-  - @house.attachments.each_with_index do |a, i|  
-    = image_tag @house.attachments[i].image_url(:thumb), id: "image#{a.id}"
+  - @house.attachments.each do |a|  
+    = image_tag a.image_url(:thumb), id: "image#{a.id}"
     = link_to 'X', attachment_path(id: a.id), method: :delete, id:"image#{a.id}_remove_btn", class:'btn btn-large'

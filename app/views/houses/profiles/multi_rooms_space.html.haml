@@ -10,17 +10,19 @@
     %table.table
       %thead
         %tr
-          %th ID
+          %th Room
           %th At
           %th Price
           %th Area
+          %th
       %tbody
         - @house.rooms.each do |room|
           %tr
-            %td= room.id
+            %td= image_tag room.attachments.first.image_url(:thumb) if room.attachments.present?
             %td= room.at_floor
             %td= room.price
             %td= room.area
+            %td= link_to 'Edit', edit_house_room_path(@house, room)
     = link_to 'Add new', new_house_room_path(@house), class:'btn btn-primary btn-lg'
 
   .hidden= f.submit

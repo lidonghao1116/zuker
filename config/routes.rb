@@ -19,7 +19,7 @@ Rails.application.routes.draw do
       get "photo" => "houses#photo"
       get "date_status" => "houses#date_status"      
     end
-    resources :rooms, only: [:new, :create]
+    resources :rooms, except: [:index, :show]
   end
 
   concern :sms_confirmable do

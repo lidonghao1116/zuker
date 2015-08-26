@@ -17,13 +17,14 @@ ActiveRecord::Schema.define(version: 20150826022708) do
   enable_extension "plpgsql"
 
   create_table "attachments", force: :cascade do |t|
-    t.integer  "house_id"
+    t.integer  "imageable_id"
+    t.string   "imageable_type"
     t.string   "image"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
-  add_index "attachments", ["house_id"], name: "index_attachments_on_house_id", using: :btree
+  add_index "attachments", ["imageable_type", "imageable_id"], name: "index_attachments_on_imageable_type_and_imageable_id", using: :btree
 
   create_table "comments", force: :cascade do |t|
     t.text     "content"
@@ -138,7 +139,6 @@ ActiveRecord::Schema.define(version: 20150826022708) do
   add_index "users", ["phone_number"], name: "index_users_on_phone_number", using: :btree
   add_index "users", ["uid"], name: "index_users_on_uid", using: :btree
 
-  add_foreign_key "attachments", "houses"
   add_foreign_key "houses", "users"
   add_foreign_key "rooms", "houses"
 end

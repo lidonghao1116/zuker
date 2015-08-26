@@ -3,12 +3,13 @@ class House < ActiveRecord::Base
   paginates_per 3
 
   include Commentable
+  include Imageable
   
   attr_accessor :validate
 
   belongs_to :school, inverse_of: :houses
   belongs_to :owner, class_name: "User", foreign_key: :user_id
-  has_many :attachments
+  #has_many :attachments
   has_many :rooms
   
   validates_presence_of :house_type, :foreigner, :school_id, :city, :district, :zipcode, :address

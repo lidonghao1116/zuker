@@ -1,4 +1,5 @@
 class Room < ActiveRecord::Base
-  has_many :attachments
+  include Imageable
+  
   belongs_to :house
 end

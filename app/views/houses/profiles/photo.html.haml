@@ -2,7 +2,7 @@
 = simple_form_for @house, html: { multipart: true } do |f|
   = f.error_notification
   
-  = t "images"
+  %h2= t "images"
   = render 'houses/partials/house_images'
   = file_field_tag "image[]", multiple: true
   
