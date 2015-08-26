@@ -1,7 +1,17 @@
-= simple_form_for :comment, { url: new_comment_house_path(@house), remote: true } do |f|
-  = f.label :content, 'Leave a comment'
-  = f.input :content, as: :text, label: false
-  = f.button 'submit'
-- @comments.each do |comment|
+- if current_user
+  = simple_form_for :comment, { url: send("new_comment_#{obj.model_name.to_s.downcase}_path", obj) } do |f|
+    = f.label :content, 'Leave a comment'
+    = f.input :content, as: :text, label: false
+    = f.button 'submit'
+- else
+  %p
+    Want to comment?
+    = render 'common/fb_login_button'
+    or
+    = link_to 'Sign in', signin_path, class:'btn btn-success'
+    Now!
+
+- @comments.try(:each) do |comment|
   = render 'comments/comment', comment: comment
+
 = paginate @comments, :remote => true

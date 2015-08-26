@@ -38,20 +38,24 @@ module SmsConfirmable
   end
 
   def verify(entered_pin)
-    if Time.current - self.pin.created_at > VERIFY_TIME_LIMIT
-      resend_pin
-    elsif self.pin.content == entered_pin# && self.pin.error_times < 5
+    if self.pin.content == entered_pin
       return update_attribute(:verified, true)
     else
       return false
     end
   end
 
+  def pin_invalid?
+    resend_pin if Time.current - self.pin.created_at > VERIFY_TIME_LIMIT
+      
+    
+  end
+
   def resend_pin
     self.pin.try(:destroy)
     self.create_pin content: random_4_digits
     self.send_pin
-    #return 'resend'
+    return 'resend'
   end
 
 end

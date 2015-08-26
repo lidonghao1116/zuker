@@ -11,18 +11,18 @@ module SmsConfirmableActions
 
   def phone_verify
     Not_verified_yet?
+    if @user.pin_invalid?
+      flash[:info] = "Hey, we have send you a new pin. Please check your phone."
+      redirect_to phone_verify_user_path(@user)
+    end
   end
 
   def verify_pin
-    case @user.verify(params[:verify][:pin])
-    when false
-      flash[:warning] = "Sorry, that wasn't the right pin."
-      redirect_to phone_verify_user_path(@user)
-    when true
+    if @user.verify(params[:verify][:pin])
       flash[:success] = "Success!"
       redirect_to user_path
-    when 'resend'
-      flash[:info] = "Hey, we have send you a new pin. Please check your phone."
+    else
+      flash[:warning] = "Sorry, that wasn't the right pin."
       redirect_to phone_verify_user_path(@user)
     end
   end

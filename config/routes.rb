@@ -31,7 +31,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :users, except: [:index], concerns: :sms_confirmable do
+  resources :users, except: [:index], concerns: [:sms_confirmable, :commentable] do
     member do
       get 'profile' => "users#show"
       post '/connect_with_zuker' => "facebook/users#connect_with_zuker", :as => :connect_with_zuker

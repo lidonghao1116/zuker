@@ -14,7 +14,7 @@
 
     .col-sm-5
       %h2= "#{ number_to_currency(@house.price, precision: 0) } / month"
-      = link_to 'Book Now', root_path, class: 'btn btn-success btn-lg'
+      = link_to 'Book Now', root_path, class: 'btn btn-danger btn-lg'
       /%p= "Last updated at: #{ @house.updated_at.strftime('%Y-%m-%d') }"
   
   - ["amenity", "furniture", "extra_fee", "public_facility", "safety"].each do |x|
@@ -25,5 +25,4 @@
     %p= sanitize @house.description
   
   #comments-section
-    = render "comments/comments_section"
-= console
+    = render "comments/comments_section", obj: @house

@@ -1,8 +1,9 @@
 class UsersController < ApplicationController
-  before_action :correct_user_sign_in?, except: [:new, :create]
+  before_action :correct_user_sign_in?, except: [:new, :create, :show, :new_comment]
   before_action :has_sign_with_zuker?, only: [:edit, :update]
 
   include SmsConfirmableActions
+  include CommentableActions
 
   # GET /users/new
   def new
@@ -32,6 +33,9 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    @user = User.find(params[:id])
+    session[:commentable] = @user
+    @comments = @user.comments.page params[:page]
   end
 
   # GET /users/1/edit
@@ -66,6 +70,9 @@ class UsersController < ApplicationController
   end
 
   private
+
+    def set_user
+    end
 
     def reverify_if_phone_changed
       if @old_phone_number != @user.phone_number

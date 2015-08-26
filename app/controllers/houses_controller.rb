@@ -2,7 +2,7 @@ class HousesController < ApplicationController
   layout "house_panel", only: [:update, :basic, :amenity, :description, :photo, :date_status, :space, :rooms]
   
   before_action :set_house, except: [:index, :new, :create]
-  before_action :set_user
+  before_action :set_user, except: [:show]
   before_action :no_validate, only: [:basic, :amenity, :description, :photo, :date_status]
   before_action :action_based_validation, only: [:basic, :amenity, :description, :photo, :date_status]
   before_action :render_folded_views, only: [:basic, :amenity, :description, :rooms]
@@ -130,7 +130,7 @@ class HousesController < ApplicationController
     end
 
     def set_user
-      redirect_to root_path, notice: "you can't do this" unless current_user
+      redirect_to root_path, notice: "Please sign in or register first." unless current_user
     end
 
     def render_folded_views

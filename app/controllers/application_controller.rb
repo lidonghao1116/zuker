@@ -23,6 +23,13 @@ class ApplicationController < ActionController::Base
       end
     end
 
+    def has_verify_phone?
+      unless current_user.verified
+        flash[:danger] = "Sorry, you need to verify phone number first."
+        redirect_to phone_verify_user_path(current_user) and return
+      end
+    end
+
     def has_sign_with_zuker? # 從EDIT更新過資料成為ZUKER會員
       unless current_user.sign_with_zuker
         flash[:info] = "Finish your profile to become a real Zuker."

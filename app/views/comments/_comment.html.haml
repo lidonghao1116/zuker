@@ -3,4 +3,6 @@
 .col-sm-10
   %blockquote
     = comment.content
-    %footer= comment.author.last_name
+    %footer
+      %span= comment.author.last_name
+      %span= link_to 'reply', user_path(comment.author)
