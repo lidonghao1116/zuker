@@ -1,11 +1,10 @@
 = notice_message
 = simple_form_for @house, html: { multipart: true } do |f|
   = f.error_notification
-
-  .form-inputs
-    = t "images"
-    = render 'houses/partials/house_images'
-    = file_field_tag "image[]", multiple: true
+  
+  = t "images"
+  = render 'houses/partials/house_images'
+  = file_field_tag "image[]", multiple: true
   
   = f.input :photo_help, as: :boolean
     

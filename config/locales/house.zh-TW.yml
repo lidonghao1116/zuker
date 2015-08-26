@@ -31,7 +31,7 @@
     female_only: 女性優先
     male_only: 男性優先
     both: 不限
-  public_facility_categories:    
+  public_facility_categories:
     parking_lot: 停車場
     security: 管理員
     elevator: 電梯
@@ -59,6 +59,7 @@
     normal: 簡單對話
     bad: 無法溝通
   special_floor_categories:
+    none: 無
     basement: 地下室
     rooftop: 頂樓加蓋
     whole_building: 整棟

@@ -1,8 +1,8 @@
 = f.label :address
 #twzipcode.row
-  .col-sm-2.form-group{ data: { role: "county", style:"form-control", value: @house.city, name: "house[city]" } }
-  .col-sm-2.form-group{ data: { role: "district", style:"form-control", value: @house.district, name: "house[district]" } }
-  .col-sm-2.form-group{ data: { role: "zipcode", style:"form-control", name: "house[zipcode]" } }
+  .col-sm-2{ data: { role: "county", style:"form-control", value: @house.city, name: "house[city]" } }
+  .col-sm-2{ data: { role: "district", style:"form-control", value: @house.district, name: "house[district]" } }
+  .col-sm-2{ data: { role: "zipcode", style:"form-control", name: "house[zipcode]" } }
   = f.input :address, wrapper_html: { class: 'col-sm-6' }, label: false
 = f.input :hide_address, as: :boolean
 

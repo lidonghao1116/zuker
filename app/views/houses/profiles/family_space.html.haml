@@ -1,1 +1,17 @@
-1f9w4f99f19w
+= simple_form_for @house, remote: true do |f|
+  = f.error_notification  
+  .ajax-input
+    .row
+      = f.input :bedroom, collection: 0..12, wrapper_html: { class: 'col-sm-3'}, prompt: :translate
+      = f.input :shared_space, collection: 0..12, wrapper_html: { class: 'col-sm-3'}, prompt: :translate
+      = f.input :bathroom, collection: 0..12, wrapper_html: { class: 'col-sm-3'}, prompt: :translate
+      = f.input :balcony, collection: 0..12, wrapper_html: { class: 'col-sm-3'}, prompt: :translate    
+      %hr
+      = f.input :area, wrapper_html: { class: 'col-sm-4'}
+      = f.input :building_floor, wrapper_html: { class: 'col-sm-4'}
+      = f.input :at_floor, wrapper_html: { class: 'col-sm-4'}
+
+    - [:special_floor].each do |x|
+      = render 'partials/act_as_radio_button', x: x, f: f
+
+  .hidden= f.submit

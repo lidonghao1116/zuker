@@ -41,10 +41,10 @@ defaults: &defaults
     pet: 2
     cooking: 3
   personal_parking_lot_categories:
-    zero: 1
-    one: 2
-    two: 3
-    two_plus: 4
+    zero: 0
+    one: 1
+    two: 2
+    two_plus: 3
   safety_categories:
     fog: 1
     extinguisher: 2
@@ -58,6 +58,7 @@ defaults: &defaults
     normal: 2
     bad: 3
   special_floor_categories:
+    none: 0
     basement: 1
     rooftop: 2
     whole_building: 3

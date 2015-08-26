@@ -17,7 +17,7 @@
       = link_to 'Book Now', root_path, class: 'btn btn-success btn-lg'
       /%p= "Last updated at: #{ @house.updated_at.strftime('%Y-%m-%d') }"
   
-  - ["amenity", "furniture", "extra_fee"].each do |x|
+  - ["amenity", "furniture", "extra_fee", "public_facility", "safety"].each do |x|
     = render 'houses/partials/checked_options', x: x
 
   .well
