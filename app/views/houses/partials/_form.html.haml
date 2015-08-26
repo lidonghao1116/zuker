@@ -13,5 +13,6 @@
 
   = render 'houses/profiles/partials/address_form', f: f
 
-.text-center.hidden
+.text-center
   = f.button :submit
+  = link_to I18n.t(".back"), current_user

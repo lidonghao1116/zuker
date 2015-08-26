@@ -1,0 +1,23 @@
+= simple_form_for @house, remote: true do |f|
+  = f.error_notification
+  .ajax-input
+    .row
+      = f.input :building_floor, wrapper_html: { class: 'col-sm-4'}
+    %h2 Room 1
+    .row
+      = f.input :bedroom, collection: 0..12, wrapper_html: { class: 'col-sm-4'}, prompt: :translate
+      = f.input :bathroom, collection: 0..12, wrapper_html: { class: 'col-sm-4'}, prompt: :translate
+      = f.input :balcony, collection: 0..12, wrapper_html: { class: 'col-sm-4'}, prompt: :translate
+      %hr
+      = f.input :price, wrapper_html: { class: 'col-sm-4'}
+      = f.input :min_lease, collection: 1..12, prompt: :translate, wrapper_html: { class: 'col-sm-4'}
+      = f.input :security_fee, wrapper_html: { class: 'col-sm-4'}
+      %hr
+      = f.input :area, wrapper_html: { class: 'col-sm-4'}
+      = f.input :at_floor, wrapper_html: { class: 'col-sm-4'}
+
+    - [:special_floor].each do |x|
+      = render 'partials/act_as_radio_button', x: x, f: f
+  
+
+  .hidden= f.submit

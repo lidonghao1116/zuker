@@ -10,7 +10,7 @@ class House < ActiveRecord::Base
   belongs_to :owner, class_name: "User", foreign_key: :user_id
   has_many :attachments
   
-  validates_presence_of :house_type, :foreigner, :school_id, :city, :district, :zipcode, :address, :price, :min_lease
+  validates_presence_of :house_type, :foreigner, :school_id, :city, :district, :zipcode, :address
   validates_with HouseValidator
 
   with_options if: "validate == 'description'" do |z|
