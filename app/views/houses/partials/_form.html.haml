@@ -4,7 +4,7 @@
   .row
     - [:house_type, :foreigner].each do |x|
       .col-sm-6
-        = render 'partials/act_as_radio_button', x: x, f: f
+        = render 'partials/act_as_radio_button', x: x, f: f, obj: @house
 
         = f.input :english_help, as: :boolean if x == :foreigner
   

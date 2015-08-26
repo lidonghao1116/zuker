@@ -12,9 +12,9 @@
     = f.input :at_floor, wrapper_html: { class: 'col-sm-4'}
   %hr
   - [:special_floor].each do |x|
-    = render 'partials/act_as_radio_button', x: x, f: f, obj: @room
+    = render 'partials/act_as_radio_button', x: x, f: f, obj: @room, specific_model: 'House'
   - [:amenity, :furniture, :safety].each do |x|
-    = render 'partials/act_as_check_box', x: x, f: f, obj: @room
+    = render 'partials/act_as_check_box', x: x, f: f, obj: @room, specific_model: 'House'
 
   %h2= t "images"
   - @room.attachments.each do |a|  
