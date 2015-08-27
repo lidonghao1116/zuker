@@ -28,9 +28,5 @@ class User < ActiveRecord::Base
   def full_name
     "#{first_name} #{last_name}"
   end
-
-  def my_comments
-    Comment.where(author_id: id)
-  end
   
 end

@@ -1,1 +1,1 @@
-$('#comments-section').html('<%= j(render "comments/comments_section") %>');
+$('#comments-section').html('<%= j(render "comments/comments_section", obj: @house) %>');

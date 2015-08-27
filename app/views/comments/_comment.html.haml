@@ -12,7 +12,4 @@
         %footer
           %span= reply.author.last_name
 
-    = simple_form_for :comment, { url: send("#{controller_name.singularize.downcase}_reply_path", @house, comment) } do |c|
-      = c.label :content, 'Leave a reply'
-      = c.input :content, as: :text, label: false
-      = c.button 'submit'
+    = render 'comments/form', obj: comment

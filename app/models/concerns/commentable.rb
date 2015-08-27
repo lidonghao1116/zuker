@@ -5,9 +5,9 @@ module Commentable
     has_many :comments, as: :commentable 
   end
 
-  # for the given article/event returns the first comment
-  def find_first_comment
-    comments.first(created_at DESC)
+  def my_comments
+    raise "#{self} is not an User" unless self.model_name.name == 'User'
+    return Comment.where(author_id: id)
   end
 
   module ClassMethods     

@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'comments/new_subcommetn'
-
   get 'rooms/new'
 
   resources :attachments
@@ -10,8 +8,9 @@ Rails.application.routes.draw do
     member do
       post 'new_comment'
     end
-    post 'comments/:comment_id/reply' => :reply, as: :reply
   end
+
+  post 'comments/:id/new_comment' => 'comments#new_comment', as: :new_comment_comment
 
   resources :houses, concerns: :commentable do
     member do
