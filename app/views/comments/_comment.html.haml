@@ -1,8 +1,18 @@
-.col-sm-2
+.col-sm-1
   = image_tag("#{comment.author.email}")
-.col-sm-10
+.col-sm-11
   %blockquote
     = comment.content
     %footer
       %span= comment.author.last_name
-      %span= link_to 'reply', user_path(comment.author)
+  .col-sm-offset-1
+    - comment.comments.try(:each) do |reply|      
+      %blockquote
+        = reply.content
+        %footer
+          %span= reply.author.last_name
+
+    = simple_form_for :comment, { url: send("#{controller_name.singularize.downcase}_reply_path", @house, comment) } do |c|
+      = c.label :content, 'Leave a reply'
+      = c.input :content, as: :text, label: false
+      = c.button 'submit'

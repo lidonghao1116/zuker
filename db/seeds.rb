@@ -6,18 +6,21 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-for i in 1..9 do
-  User.create(first_name: "peter#{i}", last_name: "thiel#{i}", phone_number: "092008518#{i}", password: "123456", sign_with_zuker: true).generate_pin
+for i in 1..1000 do
+  #User.create(first_name: "peter#{i}", last_name: "thiel#{i}", phone_number: "092008518#{i}", password: "123456", sign_with_zuker: true).generate_pin
+  User.create(first_name: "peter#{i}", last_name: "thiel#{i}", phone_number: "092008#{rand(0000..9999).to_s.rjust(4, "0")}", password: "123456", sign_with_zuker: true).generate_pin
 end
 
-for i in 1..9 do
-  User.find(i).houses.create(house_type: 1, foreigner: 1, school_id: 2, title: BetterLorem.w(4, true, true), description: BetterLorem.p(2, true, true), city: '台北市', district: '中正區', zipcode: '100', address: BetterLorem.w(5, true, true), price: 987)
+for i in 1..1000 do
+  10.times do
+    User.find(i).houses.create(house_type: rand(1..2), foreigner: rand(1..2), school_id: rand(1..4), title: BetterLorem.w(4, true, true), description: BetterLorem.p(2, true, true), city: '台北市', district: '中正區', zipcode: '100', address: BetterLorem.w(5, true, true), price: rand(1000..9999))
+  end
 end
 
 for i in 0..SchoolData.school_categories.size - 1 do
   School.create(name: SchoolData.school_categories.key(i))
 end
 
-House.all.each_with_index do |h, i|
-  h.comments.create(author_id: i+1, content: BetterLorem.p(2, true, true))
+House.all.each do |h|
+  h.comments.create(author_id: rand(1..1000), content: BetterLorem.p(2, true, true))
 end
