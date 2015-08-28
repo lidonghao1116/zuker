@@ -17,7 +17,7 @@ for i in 1..100 do
   end
 end
 
-for i in 0..SchoolData.school_categories.size - 1 do
+for i in 1..SchoolData.school_categories.size - 1 do
   School.create(name: SchoolData.school_categories.key(i))
 end
 

@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  root 'pages#home'
+
+  get 'home' => 'pages#home', as: :home
+
   get 'rooms/new'
 
   resources :attachments
@@ -42,8 +46,6 @@ Rails.application.routes.draw do
       get 'signup' => "users#new"
     end
   end
-
-  root 'users#new'
 
   scope :controller => 'sessions' do
     post 'signin' => :create
