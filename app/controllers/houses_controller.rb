@@ -15,7 +15,8 @@ class HousesController < ApplicationController
   # GET /houses
   # GET /houses.json
   def index
-    @houses = @user.houses.all.page params[:page]
+    @houses = current_user.houses.all.page params[:page]
+    authorize @houses
   end
 
   # GET /houses/1
@@ -27,7 +28,7 @@ class HousesController < ApplicationController
 
   # GET /houses/new
   def new
-    @house = @user.houses.new
+    @house = current_user.houses.new
     session[:validate] = "basic"
   end
 
@@ -38,7 +39,7 @@ class HousesController < ApplicationController
   # POST /houses
   # POST /houses.json
   def create
-    @house = @user.houses.new(house_params)
+    @house = current_user.houses.new(house_params)
 
     respond_to do |format|
       if @house.save

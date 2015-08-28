@@ -1,6 +1,6 @@
 #verify-pin
   %h3 Enter your PIN
-  = simple_form_for :verify, { url: verify_pin_user_path(@user.id) } do |f|
+  = simple_form_for :verify, { url: verify_pin_user_path(current_user.id) } do |f|
     
     = f.input :pin, autofocus: true
     = submit_tag "Verify PIN", class: "btn btn-primary"

@@ -20,14 +20,6 @@ class Facebook::SessionsController < ApplicationController
       signin(fb_user)
     end
 
-    # auth = request.env["omniauth.auth"]
-    # if current_user#.try(:sign_with_zuker) && current_user.provider != 'facebook' # PURE zuker w/o FB
-    #   redirect_to connect_with_fb_user_path(current_user)
-    # else # !!!!!!!!!!!!!!!!!!!!
-    #   @user = User.where(:provider => auth['provider'],
-    #                   :uid => auth['uid'].to_s).first || User.create_with_omniauth(auth)
-    #   signin(@user)
-    # end
   end
 
   def destroy
@@ -43,7 +35,7 @@ class Facebook::SessionsController < ApplicationController
       else
         flash[:success] = "Your facebook has been connected before!"
       end
-      session[:user_id] = user.id
+      log_in(user)
       redirect_to user_path(user)      
     end
 

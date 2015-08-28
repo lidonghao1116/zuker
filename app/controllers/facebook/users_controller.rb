@@ -1,7 +1,7 @@
 class Facebook::UsersController < ApplicationController
 
   def connect_with_zuker
-    if password_is_right
+    if @user = password_is_right
       if @user.merge_existing_fb_user_to(User.find_by_id(session[:user_id]))
         User.find_by_id(session[:user_id]).destroy
         session[:user_id] = @user.id

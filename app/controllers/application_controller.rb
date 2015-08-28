@@ -17,11 +17,19 @@ class ApplicationController < ActionController::Base
     end
 
     def current_user
-      @user = User.find_by_id(session[:user_id])
+      @current_user ||= User.find_by_id(session[:user_id])
     end
 
     def password_is_right
-      @user = User.find_by_phone_number(params[:user][:phone_number]).try(:authenticate, params[:user][:password])
+      User.find_by_phone_number(params[:user][:phone_number]).try(:authenticate, params[:user][:password])
+    end
+
+    def log_in(user)
+      session[:user_id] = user.id
+    end
+
+    def log_out
+      session[:user_id] = nil
     end
 
     def correct_user_sign_in?
@@ -39,12 +47,12 @@ class ApplicationController < ActionController::Base
       end
     end
 
-    def has_sign_with_zuker? # 從EDIT更新過資料成為ZUKER會員
-      unless current_user.sign_with_zuker
-        flash[:info] = "Finish your profile to become a real Zuker."
-        #redirect_to edit_user_path(current_user) and return
-      end
-    end
+    # def has_sign_with_zuker? # 從EDIT更新過資料成為ZUKER會員
+    #   unless current_user.sign_with_zuker
+    #     flash[:info] = "Finish your profile to become a real Zuker."
+    #     #redirect_to edit_user_path(current_user) and return
+    #   end
+    # end
    
     def set_locale
       I18n.locale = params[:locale] || I18n.default_locale

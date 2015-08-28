@@ -30,35 +30,48 @@
 %p
   %b= t User.human_attribute_name(:start_school_year)
   = @user.start_school_year
-%p
-  %b= t User.human_attribute_name(:pin)
-  = @user.pin.content if @user.pin
-%p
-  %b= t User.human_attribute_name(:verified)
-  - if @user.verified
-    您已完成手機驗證
-  - else
-    您尚未完成手機驗證
-    = link_to phone_verify_user_path(@user) do
-      = t ".verify"
-    = link_to resend_pin_user_path(@user) do
-      = t ".resend_pin"
 
-= render 'common/fb_login_button' unless @user.provider == 'facebook'
-/= link_to 'Connect with facebook', facebook_signin_path unless @user.provider == 'facebook'
-- unless @user.sign_with_zuker
-  %span.btn.btn-info#connect-fb
-    Connect with Zuker
-/= link_to 'Connect with Zuker', edit_user_path(@user), id:'connect-fb' unless @user.sign_with_zuker
-= link_to edit_user_path(@user) do
-  = t '.edit'
-= link_to user_path(@user), method: :delete, data: {confirm: "Are you sure?"} do
-  = t '.delete'
 
-#login_form.hide
-  = render 'login_form', id: @user.id
 
-= link_to "My houses", houses_path
+
+- if current_user == @user
+  %p
+    %b= t User.human_attribute_name(:pin)
+    = current_user.pin.content if current_user.pin
+  %p
+    %b= t User.human_attribute_name(:verified)
+    - if current_user.verified
+      您已完成手機驗證
+    - else
+      您尚未完成手機驗證
+      = link_to phone_verify_user_path(current_user) do
+        = t ".verify"
+      = link_to resend_pin_user_path(current_user) do
+        = t ".resend_pin"
+
+  = render 'common/fb_login_button' unless current_user.provider == 'facebook'
+  /= link_to 'Connect with facebook', facebook_signin_path unless current_user.provider == 'facebook'
+  - unless current_user.sign_with_zuker
+    %span.btn.btn-info#connect-fb
+      Connect with Zuker
+  /= link_to 'Connect with Zuker', edit_user_path(current_user), id:'connect-fb' unless current_user.sign_with_zuker
+  = link_to edit_user_path(current_user) do
+    = t '.edit'
+  = link_to current_user, method: :delete, data: {confirm: "Are you sure?"} do
+    = t '.delete'
+
+  #login_form.hide
+    = render 'login_form', id: current_user.id
+
+  = link_to "My houses", houses_path
+
+
+
+
+
 
 #comments-section
   = render "comments/comments_section", obj: @user
+
+
+= console
