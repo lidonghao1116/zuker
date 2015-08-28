@@ -4,6 +4,7 @@ module CommentableActions
 
   included do    
     #before_action :has_verify_phone?, only:[:new_comment]
+    after_action :verify_authorized, only: [:new_comment]
   end
 
   class_methods do
