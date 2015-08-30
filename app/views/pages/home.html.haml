@@ -1,4 +1,7 @@
-- @schools.each_slice(3) do |slice|
-  - slice.each do |school|
-    .col-sm-4
-      = school.name
+.row
+  - @schools.each do |school|
+    .col-lg-4.col-sm-6.school-grid
+      .school-card{ style: "background-image: url(#{school.attachments.first.try(:image_url, :large)});" }
+        %div
+          %div
+            %h2= render_school_category(school.id)

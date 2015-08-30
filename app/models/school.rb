@@ -1,4 +1,7 @@
 class School < ActiveRecord::Base
+
+  include Imageable
+  
   has_many :users, inverse_of: :school
   has_many :houses, inverse_of: :school
 

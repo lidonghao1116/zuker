@@ -1,3 +1,29 @@
 // Place all the styles related to the pages controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.school-grid {
+  margin-bottom: 30px;
+}
+
+.school-card {
+  height: 344px;
+  background-size: cover;
+  background-position: center;
+  color: #f5f5f5;
+  //display: table;
+  //padding: 0px;
+  & > div {
+    background-color: rgba(0,0,0,0.3);
+    display: table;
+    position: relative;
+    height: 100%;
+    width: 100%;
+    & > div {
+      display: table-cell;
+      vertical-align: middle;
+      text-align: center;
+      h2 { font-size: 32px; }
+    }    
+  }  
+}

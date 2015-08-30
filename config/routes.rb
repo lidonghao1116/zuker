@@ -14,6 +14,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :schools
+
   post 'comments/:id/new_comment' => 'comments#new_comment', as: :new_comment_comment
 
   resources :houses, concerns: :commentable do

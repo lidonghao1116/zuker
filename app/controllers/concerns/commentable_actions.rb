@@ -4,16 +4,14 @@ module CommentableActions
 
   included do    
     #before_action :has_verify_phone?, only:[:new_comment]
-    after_action :verify_authorized, only: [:new_comment]
+    #after_action :verify_authorized, only: [:new_comment]
   end
 
   class_methods do
   end
 
   def new_comment
-    #redirect_to root_path unless current_user
     @obj = controller_name.singularize.camelize.constantize.find(params[:id])
-    # before_action :set_user
     @comment = @obj.comments.new(comment_params)
     authorize @comment
     @comment.author_id = current_user.id

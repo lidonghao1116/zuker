@@ -1,0 +1,6 @@
+= simple_form_for @school, html: { multipart: true } do |f|
+  = f.error_notification  
+  = f.input :name
+  = file_field_tag "image[]", multiple: true
+  
+  = f.button :submit

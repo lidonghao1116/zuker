@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%h2= @school.name
+
+%h4= t "images"
+- @school.attachments.each do |a|  
+  = image_tag a.image_url(:thumb), id: "image#{a.id}"
+  = link_to 'X', attachment_path(id: a.id), method: :delete, id:"image#{a.id}_remove_btn", class:'btn btn-large'
+
+= link_to 'Edit', edit_school_path(@school)
+\|
+= link_to 'Back', schools_path
