@@ -1,21 +1,27 @@
 %div{ :id => (action_name == 'edit' || action_name == 'update' ? "user-form-edit" : "user-form-new" ) }
   = simple_form_for @user, wrapper: :clean_vertical_form do |f|
     = f.error_notification
-    
-    = f.input :first_name, required: true
-    = f.input :last_name, required: true
-    = f.input :phone_number, required: true
-    - if action_name == 'create' || action_name == 'new'
-      = f.input :password, required: true
-      = f.input :password_confirmation, required: true
+    .well
+      %h4 大家好，我的名字是
+      .row
+        = f.input :last_name, required: true, wrapper_html: { class: 'col-sm-6' }
+        = f.input :first_name, required: true, wrapper_html: { class: 'col-sm-6' }
+      %h4 我目前就讀
+      = f.association :school, collection: School.categories, prompt: true
+      %h4 這是我的手機號碼
+      = f.input :phone_number, required: true
+      - if action_name == 'create' || action_name == 'new'
+        = f.input :password, required: true
+        = f.input :password_confirmation, required: true
+
     %h4 填寫以下資料，讓我們提供您更棒的服務
-    = f.input :email
-    /= f.label :school
-    /= f.association :school, collection: School.categories, prompt: true
-    = f.label :start_school_year
-    = f.input :start_school_year, as: :date, start_year: Date.today.year, end_year: Date.today.year - 15, discard_day: true, discard_month: true, prompt: :translate
-    = f.input :sign_with_zuker, :as => :hidden, :input_html => { :value => true }
+    .well
+      = f.input :email
+      /= f.label :school
+      /= f.association :school, collection: School.categories, prompt: true
+      = f.label :start_school_year
+      = f.input :start_school_year, as: :date, start_year: Date.today.year, end_year: Date.today.year - 15, discard_day: true, discard_month: true, prompt: :translate
+      = f.input :sign_with_zuker, :as => :hidden, :input_html => { :value => true }
     
-    = f.button :submit, class:'btn btn-success'
+    = f.button :submit, class:'btn btn-primary'
     = link_to 'Back', user_path, class:'btn btn-default' if action_name == 'edit' || action_name == 'update'
-    = render 'common/fb_login_button' if action_name == 'new' || action_name == 'create'

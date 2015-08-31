@@ -13,7 +13,9 @@
  *= require_self
  */
   @import "bootstrap-sprockets";
+  @import "bootswatch/paper/variables";
   @import "bootstrap";
+  @import "bootswatch/paper/bootswatch";
   @import 'bootstrap-datetimepicker';
   @import "font-awesome-sprockets";
   @import "font-awesome";
@@ -33,7 +35,7 @@ body {
     padding-top: 100px;
   }
   &.medium_padding_top {
-    padding-top: 50px;
+    padding-top: 64px;
   }
 }
 
@@ -50,4 +52,12 @@ h1, h2, h3, h4, h5 {
   &.inline {
     display: inline;
   }
+}
+
+h1.panel-title {
+  font-size: 36px;
+}
+
+.panel-heading {
+  padding: 60px 15px;
 }

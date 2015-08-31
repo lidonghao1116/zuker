@@ -1,7 +1,10 @@
 zh-TW:
   # Global
   Register : "加入租客"
+  Self-intro: "自我介紹"
   signout : "登出"
+  signin : "登入"
+  welcome_back : "很高興見到您"
   hello_nav : "嗨，%{name} 您好！"
   back: 返回
   price: 租金

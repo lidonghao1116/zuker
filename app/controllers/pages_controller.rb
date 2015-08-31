@@ -4,4 +4,6 @@ class PagesController < ApplicationController
   def home
     @schools = School.all
   end
+  def signin    
+  end
 end

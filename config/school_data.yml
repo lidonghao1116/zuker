@@ -1,9 +1,12 @@
 defaults: &defaults
   school_categories:
-    National_Taiwan_University : 1
-    National_TsingHua_University : 2
-    National_ChiaoTung_University : 3
-    National_Chengchi_University : 4
+    Taiwan_University : 1
+    Chengchi_University : 2
+    Shih_Hsin_University : 3
+    Taipei_Education_University : 4
+    Taiwan_University_of_Science_and_Technology : 5
+    Teacher_University : 6
+    Taipei_Medical_University : 7
 
 development:
   <<: *defaults

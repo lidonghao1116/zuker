@@ -17,9 +17,9 @@ for i in 1..100 do
   end
 end
 
-# for i in 1..SchoolData.school_categories.size - 1 do
-#   School.create(name: SchoolData.school_categories.key(i))
-# end
+for i in 1..SchoolData.school_categories.size do
+  School.create(name: SchoolData.school_categories.key(i))
+end
 
 House.all.each do |h|
   h.comments.create(author_id: rand(1..100), content: BetterLorem.p(2, true, true))

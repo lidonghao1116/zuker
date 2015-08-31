@@ -1,8 +1,10 @@
-.row
-  - @schools.each do |school|
-    .col-lg-4.col-sm-6.school-grid
-      = link_to school do
-        .school-card{ style: "background-image: url(#{image_url('台灣大學.jpg')});" }
-          %div
+.container
+  .row
+    - @schools.each do |school|
+      - bg = image_url("#{ render_school_category(school.id) }.jpg")
+      .col-lg-4.col-sm-6.school-grid
+        = link_to school do
+          .school-card{ style: "background-image: url(#{ bg });" }
             %div
-              %h2= render_school_category(school.id)
+              %div
+                %h2.white-text= render_school_category(school.id)

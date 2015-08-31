@@ -1,4 +1,4 @@
-%nav.navbar.navbar-inverse.navbar-fixed-top
+%nav.navbar.navbar-default.navbar-fixed-top
   .container
     .navbar-header
       %button.navbar-toggle.collapsed{"aria-controls" => "navbar", "aria-expanded" => "false", "data-target" => "#navbar", "data-toggle" => "collapse", :type => "button"}
@@ -6,19 +6,20 @@
         %span.icon-bar
         %span.icon-bar
         %span.icon-bar
-      = link_to 'Zuker', root_path, class:'navbar-brand'
-    #navbar.navbar-collapse.collapse
-      .navbar-form.navbar-right
-        - if current_user
-          %span.white-text
-            = link_to I18n.t("hello_nav", name: current_user.first_name || current_user.uid), user_path(current_user)
-          %span
-            = link_to I18n.t('signout'), signout_path, class:'btn btn-success'          
+      = link_to root_path, class: 'navbar-brand' do
+        = image_tag 'logo.png', width: '20', height: '20'
+      = link_to 'Zuker', root_path, class: 'navbar-brand'
+    #navbar.navbar-collapse.collapse      
+      %ul.nav.navbar-nav.navbar-right
+        - if current_user         
+          %li= link_to I18n.t("hello_nav", name: current_user.first_name || current_user.uid), user_path(current_user)
+          
+          %li= link_to I18n.t('signout'), signout_path
         - else
+          / .navbar-form.navbar-right
           / = simple_form_for :user, url: signin_path, wrapper: :inline_form do |f|
           /   = f.input :phone_number, hint: false
           /   = f.input :password, hint: false
           /   = f.button :submit, "Sign in", class: "btn btn-success"
-          %strong#join-nav-link.white-text= link_to I18n.t 'Register', signup_path
-          = link_to "Sign in", signin_path, class: "btn btn-success"
-          = render 'common/fb_login_button'
+          %li= link_to I18n.t('signin'), signin_path, class: 'white-text'
+          %li= link_to I18n.t('Register'), signup_path, class: 'white-text'

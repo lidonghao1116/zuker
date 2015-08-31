@@ -5,11 +5,11 @@ class SessionsController < ApplicationController
     if @user = password_is_right
       session[:user_id] = @user.id
       flash[:success] = "Welcome back. #{@user.first_name}"
+      redirect_to(request.referrer || root_path)
     else
       flash[:danger] = "Wrong phone number or password."
-    end
-
-    redirect_to :back
+      redirect_to signin_path
+    end    
   end
   
   def destroy

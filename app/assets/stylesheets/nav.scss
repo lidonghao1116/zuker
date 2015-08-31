@@ -1,20 +1,9 @@
-@mixin vertical-align($position: relative) {
-  position: $position;
-  top: 50%;
-  -webkit-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
-}
-
 #navbar {
-  display: table;
-  span {color: white; }
-  .navbar-form.navbar-right {
-    display: table-cell;
-    #join-nav-link {
-      font-size: 20px;
-      vertical-align: middle;
-    }
+  //display: table;
+  li a {
+    color: #222;
+    font-weight: bold;
+    font-size: 16px;
   }
 }
 
@@ -23,4 +12,7 @@
   border-bottom-color: #263a63;
   background-color: #3B5998;
   color: #fff;
+  span.icon-container, span.text-container {
+    color: #fff;
+  }
 }

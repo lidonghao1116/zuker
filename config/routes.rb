@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   root 'pages#home'
+  get 'signin' => 'pages#signin'
 
   get 'home' => 'pages#home', as: :home
 

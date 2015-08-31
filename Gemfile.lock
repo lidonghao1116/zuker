@@ -68,6 +68,8 @@ GEM
       sass (>= 3.3.0)
     bootstrap3-datetimepicker-rails (4.15.35)
       momentjs-rails (>= 2.8.1)
+    bootswatch-rails (3.3.5)
+      railties (>= 3.1)
     builder (3.2.2)
     byebug (5.0.0)
       columnize (= 0.9.0)
@@ -256,6 +258,7 @@ DEPENDENCIES
   betterlorem
   bootstrap-sass (~> 3.3.4)
   bootstrap3-datetimepicker-rails (~> 4.15.35)
+  bootswatch-rails
   byebug
   carrierwave!
   cocoon

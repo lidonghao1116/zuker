@@ -125,6 +125,7 @@ ActiveRecord::Schema.define(version: 20150826022708) do
     t.boolean  "verified",          default: false
     t.date     "start_school_year"
     t.boolean  "sign_with_zuker"
+    t.integer  "school_id"
     t.string   "provider"
     t.string   "email"
     t.string   "uid"
@@ -137,8 +138,10 @@ ActiveRecord::Schema.define(version: 20150826022708) do
   end
 
   add_index "users", ["phone_number"], name: "index_users_on_phone_number", using: :btree
+  add_index "users", ["school_id"], name: "index_users_on_school_id", using: :btree
   add_index "users", ["uid"], name: "index_users_on_uid", using: :btree
 
   add_foreign_key "houses", "users"
   add_foreign_key "rooms", "houses"
+  add_foreign_key "users", "schools"
 end
