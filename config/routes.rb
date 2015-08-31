@@ -44,10 +44,9 @@ Rails.application.routes.draw do
       get 'profile' => "users#show"
       post '/connect_with_zuker' => "facebook/users#connect_with_zuker", :as => :connect_with_zuker
     end
-    collection do
-      get 'signup' => "users#new"
-    end
   end
+
+  get 'signup' => "users#new", as: :signup
 
   scope :controller => 'sessions' do
     post 'signin' => :create

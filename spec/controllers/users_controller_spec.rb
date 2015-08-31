@@ -31,7 +31,7 @@ RSpec.describe UsersController, type: :controller do
       it "不能edit，會被轉到註冊頁面" do
         get :edit, id: @user_1[:id]
         expect(response).to have_http_status(302)
-        expect(response).to redirect_to signup_users_path
+        expect(response).to redirect_to signup_path
         #expect(response).to render_template(:new)
       end
     end
@@ -40,7 +40,7 @@ RSpec.describe UsersController, type: :controller do
       it "不能show，會被轉到註冊頁面" do
         get :show, id: @user_1[:id]
         expect(response).to have_http_status(302)
-        expect(response).to redirect_to signup_users_path
+        expect(response).to redirect_to signup_path
         #expect(response).to render_template(:new)
       end
     end
@@ -49,7 +49,7 @@ RSpec.describe UsersController, type: :controller do
       it "不能destroy，會被轉到註冊頁面" do
         delete :destroy, id: @user_1[:id]
         expect(response).to have_http_status(302)
-        expect(response).to redirect_to signup_users_path
+        expect(response).to redirect_to signup_path
         #expect(response).to render_template(:new)
       end
     end

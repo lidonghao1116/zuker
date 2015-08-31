@@ -36,7 +36,7 @@ class ApplicationController < ActionController::Base
       # 登入紀錄與訪問頁面id相同 && 目前登入者有效
       unless session[:user_id].to_s == params[:id] && current_user
         flash[:danger] = "Sorry, you need to sign in or register."
-        redirect_to signup_users_path and return
+        redirect_to signup_path and return
       end
     end
 

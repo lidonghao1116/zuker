@@ -15,9 +15,10 @@
           %span
             = link_to I18n.t('signout'), signout_path, class:'btn btn-success'          
         - else
-          = simple_form_for :user, url: signin_path, wrapper: :inline_form do |f|
-            = f.input :phone_number, hint: false
-            = f.input :password, hint: false
-            = f.button :submit, "Sign in", class: "btn btn-success"
-            = render 'common/fb_login_button'
-            /= link_to 'FB', facebook_signin_path, class:'btn btn-info'
+          / = simple_form_for :user, url: signin_path, wrapper: :inline_form do |f|
+          /   = f.input :phone_number, hint: false
+          /   = f.input :password, hint: false
+          /   = f.button :submit, "Sign in", class: "btn btn-success"
+          %strong#join-nav-link.white-text= link_to I18n.t 'Register', signup_path
+          = link_to "Sign in", signin_path, class: "btn btn-success"
+          = render 'common/fb_login_button'

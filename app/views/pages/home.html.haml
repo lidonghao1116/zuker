@@ -1,7 +1,8 @@
 .row
   - @schools.each do |school|
     .col-lg-4.col-sm-6.school-grid
-      .school-card{ style: "background-image: url(#{school.attachments.first.try(:image_url, :large)});" }
-        %div
+      = link_to school do
+        .school-card{ style: "background-image: url(#{image_url('台灣大學.jpg')});" }
           %div
-            %h2= render_school_category(school.id)
+            %div
+              %h2= render_school_category(school.id)

@@ -29,4 +29,13 @@ module CommentableActions
       params.require(:comment).permit(:author_id, :content)
     end
 
+    def user_not_authorized
+      unless current_user.verified
+        flash[:danger] = "Sorry, you need to verify phone number first."
+        redirect_to phone_verify_user_path(current_user) and return
+      end
+      flash[:alert] = "You can't comment here."
+      redirect_to(request.referrer || root_path)
+    end
+
 end

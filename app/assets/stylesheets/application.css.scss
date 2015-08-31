@@ -24,6 +24,7 @@
   @import "houses";
   @import "users";
   @import "pages";
+  @import "nav";
   
 body {  
   padding-bottom: 20px;
@@ -36,20 +37,9 @@ body {
   }
 }
 
-#navbar {
-  span {color: white; }
-}
-
 .white-text {
   color: white;
   a { color: white; }
-}
-
-.btn-facebook {
-  border-color: #3B5998;
-  border-bottom-color: #263a63;
-  background-color: #3B5998;
-  color: #fff;
 }
 
 .ajax-text {
