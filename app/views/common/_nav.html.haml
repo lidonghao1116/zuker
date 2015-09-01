@@ -17,7 +17,7 @@
     #navbar.navbar-collapse.collapse
       %ul.nav.navbar-nav.navbar-right
         - if current_user         
-          %li= link_to I18n.t("hello_nav", name: current_user.first_name || current_user.uid), user_path(current_user)
+          %li= link_to I18n.t("hello_nav", name: current_user.first_name || current_user.uid), profile_path
           
           %li= link_to I18n.t('signout'), signout_path
         - else

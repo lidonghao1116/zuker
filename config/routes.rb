@@ -47,12 +47,14 @@ Rails.application.routes.draw do
 
   resources :users, except: [:index], concerns: [:sms_confirmable, :commentable] do
     member do
-      get 'profile' => "users#show"
       post '/connect_with_zuker' => "facebook/users#connect_with_zuker", :as => :connect_with_zuker
-    end
+    end    
   end
 
-  get 'signup' => "users#new", as: :signup
+  scope controller: 'users' do
+    get 'profile'
+    get 'signup' => "users#new", as: :signup
+  end
 
   scope :controller => 'sessions' do
     post 'signin' => :create

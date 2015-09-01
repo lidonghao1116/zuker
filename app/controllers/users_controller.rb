@@ -40,6 +40,11 @@ class UsersController < ApplicationController
     @comments = @user.comments.page params[:page]
   end
 
+  def profile
+    current_user.reload
+    @comments = current_user.comments.page params[:page]
+  end
+
   # GET /users/1/edit
   def edit
     @user = User.find(params[:id])
@@ -48,14 +53,14 @@ class UsersController < ApplicationController
 
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
-  def update
-    @user = User.find(params[:id])
+  def update    
+    @user = current_user# unless current_user.admin?
     authorize @user
     @old_phone_number = @user.phone_number
     respond_to do |format|
       if @user.update(user_params)
         reverify_if_phone_changed and return
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
+        format.html { redirect_to profile_path, notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit }

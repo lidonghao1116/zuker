@@ -31,10 +31,10 @@ module CommentableActions
 
     def user_not_authorized
       unless current_user.verified
-        flash[:danger] = "Sorry, you need to verify phone number first."
+        flash[:danger] = "Hey, please verify your phone number first."
         redirect_to phone_verify_user_path(current_user) and return
       end
-      flash[:alert] = "You can't comment here."
+      flash[:alert] = "You can't comment on yourself."
       redirect_to(request.referrer || root_path)
     end
 

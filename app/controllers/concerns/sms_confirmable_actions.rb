@@ -20,7 +20,7 @@ module SmsConfirmableActions
   def verify_pin
     if current_user.verify(params[:verify][:pin])
       flash[:success] = "Success!"
-      redirect_to user_path
+      redirect_to profile_path
     else
       flash[:warning] = "Sorry, that wasn't the right pin."
       redirect_to phone_verify_user_path(current_user)
@@ -43,7 +43,7 @@ module SmsConfirmableActions
     def Not_verified_yet?
       if current_user.verified  
         flash[:success] = "You already have finished verification."
-        redirect_to user_path(current_user)
+        redirect_to profile_path
       end
     end
 
