@@ -1,3 +1,10 @@
+- bg = image_url("篩選頁面背景.png")
+#home-jumbotron.jumbotron{ style: "background-image: url(#{ bg });" }
+  .container.vertically-center
+    %div
+      %h2 Which school do you go to? 
+      %p
+        %a.btn.btn-primary.btn-lg Search
 .container
   .row
     - @schools.each do |school|
@@ -5,6 +12,6 @@
       .col-lg-4.col-sm-6.school-grid
         = link_to school do
           .school-card{ style: "background-image: url(#{ bg });" }
-            %div
+            %div.vertically-center
               %div
                 %h2.white-text= render_school_category(school.id)

@@ -61,3 +61,12 @@ h1.panel-title {
 .panel-heading {
   padding: 60px 15px;
 }
+
+div.vertically-center {
+  display: table;
+  & > div {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+  }
+}
