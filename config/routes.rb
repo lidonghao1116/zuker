@@ -1,12 +1,15 @@
 Rails.application.routes.draw do
 
   root 'pages#home'
-  get 'signin' => 'pages#signin'
 
-  get 'home' => 'pages#home', as: :home
+  scope controller: :pages do
+    get 'signin' => :signin
+    get 'search' => :search
+  end
 
   get 'rooms/new'
 
+  resources :schools
   resources :attachments
 
   concern :commentable do
@@ -15,9 +18,11 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :schools
-
-  post 'comments/:id/new_comment' => 'comments#new_comment', as: :new_comment_comment
+  scope path: :comments, controller: :comments do
+    scope path: ':id' do # == member do
+      post 'new_comment' => :new_comment, as: :new_comment_comment
+    end
+  end
 
   resources :houses, concerns: :commentable do
     member do

@@ -1,10 +1,11 @@
-- bg = image_url("篩選頁面背景.png")
+- bg = image_url("noletter-01.png")
 #home-jumbotron.jumbotron{ style: "background-image: url(#{ bg });" }
   .container.vertically-center
     %div
-      %h2 Which school do you go to? 
-      %p
-        %a.btn.btn-primary.btn-lg Search
+      %h2 Which school do you go to?
+      = search_form_for @q, url: search_path do |f|
+        = f.search_field @criteria
+        = f.button 'Search', class: 'btn btn-primary btn-lg'
 .container
   .row
     - @schools.each do |school|

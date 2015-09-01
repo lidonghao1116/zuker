@@ -2,7 +2,7 @@ class HousesController < ApplicationController
   layout "house_panel", only: [:update, :basic, :amenity, :description, :photo, :date_status, :space, :rooms]
   
   before_action :set_house, except: [:index, :new, :create]
-  before_action :set_user, except: [:show]
+  before_action :set_user, except: [:show, :index]
   before_action :no_validate, only: [:basic, :amenity, :description, :photo, :date_status]
   before_action :action_based_validation, only: [:basic, :amenity, :description, :photo, :date_status]
   before_action :render_folded_views, only: [:basic, :amenity, :description, :rooms]

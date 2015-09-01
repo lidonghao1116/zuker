@@ -1,4 +1,4 @@
-%h1 Listing houses
+%h1 Search results
 
 %table.table
   %thead
@@ -17,11 +17,10 @@
         %td= house.price
         %td
         %td
-        %td
-          - house.comments.try(:each) do |comment|
-            = "#{comment.content} by #{comment.author.last_name}"
+        %td= house.description
         %td= link_to 'View', house
 
 %br
 
 = paginate @houses
+= console
