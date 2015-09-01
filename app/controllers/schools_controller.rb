@@ -10,6 +10,7 @@ class SchoolsController < ApplicationController
   # GET /schools/1
   # GET /schools/1.json
   def show
+    @houses = @school.houses.page params[:page]
   end
 
   # GET /schools/new

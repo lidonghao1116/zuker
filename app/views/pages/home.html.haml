@@ -3,9 +3,13 @@
   .container.vertically-center
     %div
       %h2 Which school do you go to?
-      = search_form_for @q, url: search_path do |f|
-        = f.search_field @criteria
-        = f.button 'Search', class: 'btn btn-primary btn-lg'
+      = search_form_for @q, url: search_path, class: "form-inline" do |f|
+        %div.form-group
+          = f.search_field @criteria, class: 'form-control input-lg', placeholder: 'Search'
+          = f.search_field :title_cont
+
+          /= f.collection_select :school_id, School.all, :id, :name, { class: 'form-control' }
+          = f.button 'Go', class: 'btn btn-primary btn-lg'
 .container
   .row
     - @schools.each do |school|

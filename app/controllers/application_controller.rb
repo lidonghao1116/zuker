@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   helper_method :current_user
   before_action :set_locale
+  before_action :set_search
   
   include Pundit
 
@@ -57,4 +58,10 @@ class ApplicationController < ActionController::Base
     def set_locale
       I18n.locale = params[:locale] || I18n.default_locale
     end
+
+    def set_search
+      @q = House.ransack(params[:q])
+      @criteria = :title_or_description_cont
+    end
+
 end

@@ -1,0 +1,21 @@
+%table.table
+  %thead
+    %tr
+      %th= sort_link(@q, :title)
+      %th= sort_link(@q, :price)
+      %th Views
+      %th Status
+      %th Comments
+      %th
+
+  %tbody
+    - @houses.each do |house|
+      %tr
+        %td= link_to house.title, house
+        %td= house.price
+        %td
+        %td
+        %td= house.description
+        %td= link_to 'View', house
+
+= paginate @houses

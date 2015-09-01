@@ -1,6 +1,10 @@
 = simple_form_for @school, html: { multipart: true } do |f|
   = f.error_notification  
   = f.input :name
-  = file_field_tag "image[]", multiple: true
-  
+  = file_field_tag "image[]", multiple: true  
   = f.button :submit
+
+%h4= t "images"
+- @school.attachments.each do |a|  
+  = image_tag a.image_url(:thumb), id: "image#{a.id}"
+  = link_to 'X', attachment_path(id: a.id), method: :delete, id:"image#{a.id}_remove_btn", class:'btn btn-large'

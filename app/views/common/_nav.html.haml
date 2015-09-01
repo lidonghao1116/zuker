@@ -9,7 +9,12 @@
       = link_to root_path, class: 'navbar-brand' do
         = image_tag 'logo.png', width: '20', height: '20'
       = link_to 'Zuker', root_path, class: 'navbar-brand'
-    #navbar.navbar-collapse.collapse      
+
+    = search_form_for @q, url: search_path, class: "navbar-form navbar-left", role: "search" do |f|
+      %div.form-group
+        = f.search_field @criteria, class: "form-control", placeholder: 'Search'
+      = f.button 'Go', class: 'btn btn-default hidden'
+    #navbar.navbar-collapse.collapse
       %ul.nav.navbar-nav.navbar-right
         - if current_user         
           %li= link_to I18n.t("hello_nav", name: current_user.first_name || current_user.uid), user_path(current_user)
