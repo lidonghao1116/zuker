@@ -17,14 +17,22 @@
     #navbar.navbar-collapse.collapse
       %ul.nav.navbar-nav.navbar-right
         - if current_user         
-          %li= link_to I18n.t("hello_nav", name: current_user.first_name || current_user.uid), profile_path
+          %li
+            = link_to profile_path do
+              = t ".hello", name: current_user.first_name || current_user.uid
           
-          %li= link_to I18n.t('signout'), signout_path
+          %li
+            = link_to signout_path do
+              = t '.signout'
         - else
           / .navbar-form.navbar-right
           / = simple_form_for :user, url: signin_path, wrapper: :inline_form do |f|
           /   = f.input :phone_number, hint: false
           /   = f.input :password, hint: false
           /   = f.button :submit, "Sign in", class: "btn btn-success"
-          %li= link_to I18n.t('signin'), signin_path, class: 'white-text'
-          %li= link_to I18n.t('Register'), signup_path, class: 'white-text'
+          %li
+            = link_to signin_path, class: 'white-text' do
+              = t '.signin'
+          %li
+            = link_to signup_path, class: 'white-text' do
+              = t '.Register'

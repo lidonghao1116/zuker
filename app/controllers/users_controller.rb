@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   #before_action :correct_user_sign_in?, except: [:new, :create, :show, :new_comment]
   #before_action :has_sign_with_zuker?, only: [:edit, :update]
-  layout 'homepage', only: [ :new ]
+  layout 'panel', only: [ :new, :create, :edit, :update ]
 
   include SmsConfirmableActions
   include CommentableActions

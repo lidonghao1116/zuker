@@ -30,6 +30,7 @@ class HousesController < ApplicationController
   def new
     @house = current_user.houses.new
     session[:validate] = "basic"
+    render layout: 'panel'
   end
 
   # GET /houses/1/edit
@@ -44,12 +45,12 @@ class HousesController < ApplicationController
     respond_to do |format|
       if @house.save
         format.html {
-          redirect_to basic_house_path(@house)
+          redirect_to basic_house_path(@house), layout: 'panel'
           #flash[:success] = t('flash.messages.success')
         }
         format.json { render :json => @house }
       else
-        format.html { render :new }
+        format.html { render :new, layout: 'panel' }
         format.json { render json: @house.errors, status: :unprocessable_entity }
       end
     end

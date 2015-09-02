@@ -1,16 +1,16 @@
 zh-TW:
   simple_form:
-    'Editing': '999'
-    "yes": '是'
-    "no": '否'
+    Editing: '999'
+    yes: 是
+    no: 否
     required:
-      text: '必填'
+      text: 必填
       mark: '*'
       # You can uncomment the line below if you need to overwrite the whole required html.
       # When using html, text and mark won't be used.
-      # html: '<abbr title="required">*</abbr>'
+      # html: '<abbr title=required>*</abbr>'
     error_notification:
-      default_message: "哎呀！您輸入的資料似乎有些錯誤"
+      default_message: 哎呀！您輸入的資料似乎有些錯誤
     labels:
       user:
         full_name: 姓名
@@ -65,28 +65,29 @@ zh-TW:
 
     hints:
       defaults:    
-        phone_number: '請輸入真實的手機號碼，未來將作為登入帳號'
+        phone_number: 請輸入真實的手機號碼，未來將作為登入帳號
         password: '密碼不可少於6個字元'
       user:
         edit:
-          password: '若不變更密碼則留白'
+          password: 若不變更密碼則留白
     placeholders:
       user:
-        full_name: '姓名'
+        full_name: 姓名
         first_name: 名
         last_name: 姓
         phone_number: '0912345678'
-        password: '密碼'
-        password_confirmation: '確認密碼'
-        email: '電子郵件'
+        password: 密碼
+        password_confirmation: 確認密碼
+        email: 電子郵件
+        location: 所在地
       house:
         title: 房屋名稱
-        location: 地址
+        address: 地址
         price: 租金
         description: 描述
     prompts:
       house:
-        min_lease: '最短租期（月）'
+        min_lease: 最短租期（月）
 
     # Examples
     # labels:

@@ -20,7 +20,7 @@
   - ["amenity", "furniture", "extra_fee", "public_facility", "safety"].each do |x|
     = render 'houses/partials/checked_options', x: x
 
-  .well
+  .well{ class: ('hidden' if @house.description.blank?) }
     %h4 Description
     %p= sanitize @house.description
   

@@ -1,4 +1,7 @@
 = image_tag("#{current_user.image}")
+
+= render "personal_btns"
+
 %p
   %b ID
   = current_user.id
@@ -46,24 +49,6 @@
       = t ".resend_pin"
 
 = render 'common/fb_login_button' unless current_user.provider == 'facebook'
-/= link_to 'Connect with facebook', facebook_signin_path unless current_user.provider == 'facebook'
-- unless current_user.sign_with_zuker
-  %span.btn.btn-info#connect-fb
-    Connect with Zuker
-/= link_to 'Connect with Zuker', edit_user_path(current_user), id:'connect-fb' unless current_user.sign_with_zuker
-= link_to edit_user_path(current_user) do
-  = t '.edit'
-= link_to current_user, method: :delete, data: {confirm: "Are you sure?"} do
-  = t '.delete'
-
-#login_form.hide
-  = render 'login_form', id: current_user.id
-
-= link_to "My houses", houses_path
-
-
-
-
 
 
 #comments-section

@@ -2,7 +2,7 @@ class PagesController < ApplicationController
   before_action :set_criteria, except: [:signin]
   before_action :validate_search_key
 
-  layout 'homepage'
+  layout 'panel'
   
   def home
     @schools = School.all

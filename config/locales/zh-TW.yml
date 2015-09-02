@@ -1,37 +1,46 @@
 zh-TW:
   # Global
-  Register : "加入租客"
-  Self-intro: "自我介紹"
-  signout : "登出"
-  signin : "登入"
-  welcome_back : "很高興見到您"
-  hello_nav : "嗨，%{name} 您好！"
   back: 返回
   price: 租金
 
   # View
+  common:
+    nav:
+      Register : 加入租客
+      signout : 登出
+      signin : 登入
+      hello : "嗨，%{name} 您好！"
+  pages:
+    signin:
+      title: 很高興見到您
   users:
-    edit:
-      title: "編輯個人資料"
-    show:
-      verify: "立刻驗證"
-      resend_pin: "重發驗證碼"
-      delete: "刪除帳號"
-      edit: "編輯個人資料"
-  houses:
     new:
-      title: "準備發佈您的房屋"
+      title: 自我介紹
+    edit:
+      title: 編輯個人資料
+    profile:
+      verify: 立刻驗證
+      resend_pin: 重發驗證碼
+    personal_btns:
+      delete: 刪除帳號
+      edit: 編輯個人資料
+      my_houses: 我的房屋
+  houses:
+    index:
+      title: 我的房屋
+    new:
+      title: 準備發佈您的房屋
     basic:
-      title: "基本資訊"
+      title: 基本資訊
     amenity:
-      title: "便利設施"
+      title: 便利設施
     description:
-      title: "將房屋的特點告訴所有房客"
+      title: 將房屋的特點告訴所有房客
     photo:
-      title: "拍攝您房屋的每個角落"
-      upload_photo: "開始上傳圖片"
+      title: 拍攝您房屋的每個角落
+      upload_photo: 開始上傳圖片
     date_status:
-      title: "讓您的房屋隨時都有人住"
+      title: 讓您的房屋隨時都有人住
     form:      
       house_type: 房源類型
       amenity: 設施
@@ -43,7 +52,7 @@ zh-TW:
   # Model
   activerecord:
     models:
-      user: "租客"
+      user: 租客
     attributes:
       user:
         full_name: 姓名
@@ -66,14 +75,17 @@ zh-TW:
   # Form
   flash:
     messages:
-      upload_success: "上傳圖片完成！"
-      success: "更新成功！"
-      fail: "更新失敗！"
+      upload_success: 上傳圖片完成！
+      success: 更新成功！
+      fail: 更新失敗！
   helpers:
     submit:
       user:
-        create: "成為租客"
-        update: "確認更新"
+        create: 成為租客
+        update: 確認更新
       house:
-        create: "繼續"
-        update: "繼續"
+        create: 繼續
+        update: 繼續
+      comment:
+        create: 送出
+        update: 送出

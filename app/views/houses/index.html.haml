@@ -1,4 +1,4 @@
-%h1 Listing houses
+%h1= t ".title"
 
 %table.table
   %thead
@@ -25,3 +25,4 @@
 %br
 
 = paginate @houses
+= link_to "new_house", new_house_path, class: 'btn btn-success'
