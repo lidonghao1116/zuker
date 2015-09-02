@@ -3,6 +3,10 @@ zh-TW:
   back: 返回
   price: 租金
 
+  views:
+    pagination:
+      truncate: '...'
+
   # View
   common:
     nav:
