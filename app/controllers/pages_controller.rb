@@ -4,6 +4,10 @@ class PagesController < ApplicationController
 
   layout 'panel'
   
+  def menu
+    
+  end
+
   def home
     @schools = School.all
     @q = House.ransack(params[:q])

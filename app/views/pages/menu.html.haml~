@@ -1,0 +1,11 @@
+- bg = image_url("CA.jpg")
+.school-grid  
+  .school-card{ style: "background-image: url(#{ bg }); height: 600px;" }
+    %div.vertically-center
+      %div
+        %h2.white-text
+          台中市瑞豐街82號
+          04-22862293
+          04-22857412
+          0922866859
+          歡迎試聽

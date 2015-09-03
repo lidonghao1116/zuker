@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   root 'pages#home'
 
+  #get 'menu' => 'pages#menu'
+
   scope controller: :pages do
     get 'signin' => :signin
     get 'search' => :search
