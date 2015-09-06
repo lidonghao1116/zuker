@@ -1,7 +1,7 @@
 class CreateHouses < ActiveRecord::Migration
   def change
     create_table :houses do |t|      
-      t.string :title, :city, :district, :address, :zipcode
+      t.string :title, :city, :district, :address, :zipcode, :aasm_state
       t.boolean :hide_address
       t.text :description
       t.decimal :price, :precision => 8, :scale => 2 #### only family

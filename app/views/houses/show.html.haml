@@ -14,7 +14,8 @@
 
     .col-sm-5
       %h2= "#{ number_to_currency(@house.price, precision: 0) } / month"
-      = link_to 'Book Now', root_path, class: 'btn btn-danger btn-lg'
+      = link_to 'Book Now', root_path, class: "btn btn-danger btn-lg #{'hidden' if @house.not_available?}"
+      = @house.aasm_state
       /%p= "Last updated at: #{ @house.updated_at.strftime('%Y-%m-%d') }"
   
   - ["amenity", "furniture", "extra_fee", "public_facility", "safety"].each do |x|

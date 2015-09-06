@@ -36,8 +36,10 @@ gem 'betterlorem'
 gem 'settingslogic'
 gem 'omniauth'
 gem 'omniauth-facebook'
-gem 'momentjs-rails', '>= 2.9.0'
-gem 'bootstrap3-datetimepicker-rails', '~> 4.15.35'
+#gem 'momentjs-rails', '>= 2.9.0'
+#gem 'bootstrap3-datetimepicker-rails', '~> 4.15.35'
+gem 'momentjs-rails', '~> 2.9',  :github => 'derekprior/momentjs-rails'
+gem 'datetimepicker-rails', github: 'zpaulovics/datetimepicker-rails', branch: 'master', submodules: true
 
 #gem 'puma'
 gem 'twilio-ruby', '~> 4.0'
@@ -52,6 +54,7 @@ gem 'cocoon'
 gem 'kaminari'
 gem "pundit"
 gem 'ransack'
+gem 'aasm'
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'

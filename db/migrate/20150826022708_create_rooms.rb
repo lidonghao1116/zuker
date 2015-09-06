@@ -1,7 +1,7 @@
 class CreateRooms < ActiveRecord::Migration
   def change
     create_table :rooms do |t|
-      t.string :title
+      t.string :title, :aasm_state
 
       t.integer :at_floor
       t.integer :special_floor

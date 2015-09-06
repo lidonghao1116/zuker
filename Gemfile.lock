@@ -9,6 +9,13 @@ GIT
       mime-types (>= 1.16)
 
 GIT
+  remote: git://github.com/derekprior/momentjs-rails.git
+  revision: 6db559c85d900e3236a3ec1027bb904de596257e
+  specs:
+    momentjs-rails (2.10.3)
+      railties (>= 3.1)
+
+GIT
   remote: git://github.com/svenfuchs/rails-i18n.git
   revision: 7fd8b1cd15d478574673f5cbcfe1bfea67841348
   branch: master
@@ -17,9 +24,19 @@ GIT
       i18n (~> 0.6)
       railties (~> 4.0)
 
+GIT
+  remote: git://github.com/zpaulovics/datetimepicker-rails.git
+  revision: 36d21cec5da7f5b214925804f60e63c61c747023
+  branch: master
+  submodules: true
+  specs:
+    datetimepicker-rails (4.7.16)
+      momentjs-rails (>= 2.9.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
+    aasm (4.2.0)
     actionmailer (4.2.3)
       actionpack (= 4.2.3)
       actionview (= 4.2.3)
@@ -66,8 +83,6 @@ GEM
     bootstrap-sass (3.3.5.1)
       autoprefixer-rails (>= 5.0.0.1)
       sass (>= 3.3.0)
-    bootstrap3-datetimepicker-rails (4.15.35)
-      momentjs-rails (>= 2.8.1)
     bootswatch-rails (3.3.5)
       railties (>= 3.1)
     builder (3.2.2)
@@ -127,8 +142,6 @@ GEM
     mime-types (2.6.1)
     mini_portile (0.6.2)
     minitest (5.8.0)
-    momentjs-rails (2.10.3)
-      railties (>= 3.1)
     multi_json (1.11.2)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
@@ -260,22 +273,23 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  aasm
   bcrypt (~> 3.1.7)
   betterlorem
   bootstrap-sass (~> 3.3.4)
-  bootstrap3-datetimepicker-rails (~> 4.15.35)
   bootswatch-rails
   byebug
   carrierwave!
   cocoon
   coffee-rails (~> 4.1.0)
+  datetimepicker-rails!
   font-awesome-sass (~> 4.3.0)
   haml-rails (~> 0.9)
   jbuilder (~> 2.0)
   jquery-rails
   jquery-turbolinks
   kaminari
-  momentjs-rails (>= 2.9.0)
+  momentjs-rails (~> 2.9)!
   nprogress-rails
   omniauth
   omniauth-facebook

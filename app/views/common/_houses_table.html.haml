@@ -14,7 +14,7 @@
         %td= render_option_category(house.school_id, 'school', 'SchoolData')
         %td= link_to house.title, house
         %td= house.price
-        %td
+        %td= house.aasm_state
         %td= house.description
 
 = paginate @houses

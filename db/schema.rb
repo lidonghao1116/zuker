@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(version: 20150826022708) do
     t.string   "district"
     t.string   "address"
     t.string   "zipcode"
+    t.string   "aasm_state"
     t.boolean  "hide_address"
     t.text     "description"
     t.decimal  "price",                precision: 8, scale: 2
@@ -92,6 +93,7 @@ ActiveRecord::Schema.define(version: 20150826022708) do
 
   create_table "rooms", force: :cascade do |t|
     t.string   "title"
+    t.string   "aasm_state"
     t.integer  "at_floor"
     t.integer  "special_floor"
     t.integer  "area"

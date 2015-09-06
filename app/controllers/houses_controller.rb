@@ -125,7 +125,10 @@ class HousesController < ApplicationController
     def is_famliy?
       if @house.family?
         @prefix = "houses/profiles"
-        render "#{@prefix}/#{action_name}"
+        respond_to do |format|        
+          format.html { render "#{@prefix}/#{action_name}" }
+          format.js { render "#{@prefix}/#{action_name}"}
+        end
       else        
         redirect_to rooms_house_path
       end

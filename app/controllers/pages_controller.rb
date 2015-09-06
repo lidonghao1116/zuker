@@ -4,7 +4,7 @@ class PagesController < ApplicationController
 
   layout 'panel'
   
-  def menu
+  def dial
     
   end
 

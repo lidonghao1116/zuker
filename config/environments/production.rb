@@ -80,4 +80,6 @@ Rails.application.configure do
   # enable secure webhook in production mode
   config.middleware.use Rack::TwilioWebhookAuthentication, Rails.application.secrets.twilio_auth_token, '/voice'
 
+  config.action_view.embed_authenticity_token_in_remote_forms = true
+
 end

@@ -4,6 +4,7 @@ class House < ActiveRecord::Base
 
   include Commentable
   include Imageable
+  include AASM
   
   attr_accessor :validate
 
@@ -18,6 +19,59 @@ class House < ActiveRecord::Base
   with_options if: "validate == 'description'" do |z|
     z.validates :title, presence: true, length: { in: 2..25 }, allow_blank: true
     z.validates :description, length: { in: 5..2000 }, allow_blank: true
+  end
+
+  with_options if: "validate == 'date_status'" do |z|
+    z.validate :reservable_before_available
+  end
+
+  def reservable_before_available
+    if reservable_date && available_date
+      if reservable_date > available_date
+        errors.add(:reservable_date, "can't be later than available_date")
+        errors.add(:available_date, "can't be earlier than reservable_date")
+      end
+    end
+  end
+
+  before_save :update_status
+
+  aasm :whiny_transitions => false do
+    state :not_available, :initial => true
+    state :coming
+    state :available
+
+    event :is_ready do
+      transitions :from => [:not_available, :coming], :to => :available do
+        guard do 
+          available_date <= Time.now if available_date
+        end
+      end
+    end
+
+    event :come do
+      transitions :from => [:available, :not_available], :to => :coming do
+        guard do
+          reservable_date <= Time.now if reservable_date
+        end
+      end
+    end
+
+    event :hide do
+      transitions :from => [:coming, :available], :to => :not_available do
+        guard do 
+          reservable_date >= Time.now if reservable_date # || self.rent
+        end
+      end
+    end
+
+    event :rent do
+      transitions :from => :available, :to => :not_available
+    end
+  end
+
+  def update_status
+    self.come unless self.is_ready unless self.hide
   end
 
   before_save :no_empty_array
