@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
   before_action :set_locale
   before_action :set_search
+  before_action :clean_invalid_signin_session
   
   include Pundit
 
@@ -62,6 +63,10 @@ class ApplicationController < ActionController::Base
     def set_search
       @q = House.ransack(params[:q])
       @criteria = :title_or_description_cont
+    end
+
+    def clean_invalid_signin_session
+      session[:user_id] = nil unless current_user
     end
 
 end

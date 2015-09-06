@@ -5,12 +5,13 @@
       %h2 Which school do you go to?
       = search_form_for @q, url: search_path, class: "form-inline" do |f|
         %div.form-group
-          = f.search_field @criteria, class: 'form-control input-lg', placeholder: 'Search'
+          = f.collection_select(:house_type_eq, HouseData.house_type_categories, :last, :first)
+          = f.collection_select(:school_id_eq, School.all, :id, :name)
           = f.button 'Go', class: 'btn btn-primary btn-lg'
 .container
   .row
     - @schools.each do |school|
-      - bg = image_url("#{ render_school_category(school.id) }.jpg")
+      /- bg = image_url("#{ render_school_category(school.id) }.jpg")
       .col-lg-4.col-sm-6.school-grid
         = link_to school do
           .school-card{ style: "background-image: url(#{ bg });" }

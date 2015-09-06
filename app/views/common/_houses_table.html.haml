@@ -1,21 +1,20 @@
 %table.table
   %thead
     %tr
+      %th School
       %th= sort_link(@q, :title)
       %th= sort_link(@q, :price)
-      %th Views
       %th Status
-      %th Comments
-      %th
+      %th Description
+      %th 
 
   %tbody
     - @houses.each do |house|
       %tr
+        %td= render_option_category(house.school_id, 'school', 'SchoolData')
         %td= link_to house.title, house
         %td= house.price
         %td
-        %td
         %td= house.description
-        %td= link_to 'View', house
 
 = paginate @houses

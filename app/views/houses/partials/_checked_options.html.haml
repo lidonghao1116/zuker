@@ -3,6 +3,6 @@
   %b= "#{x.capitalize}:"
   - if @house.public_send("#{x}?")
     - @house.public_send(x).each do |a|
-      = render_option_category(a, x)
+      = render_house_category(a, x)
   - else
     = t 'empty'

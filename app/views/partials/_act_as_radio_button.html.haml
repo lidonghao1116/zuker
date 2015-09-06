@@ -8,4 +8,4 @@
 = f.label x
 .form-group
   = f.collection_radio_buttons x, model_data.send("#{x}_categories"), :last, :first do |b|
-    = b.label(class: "btn btn-default btn-lg act_as_radio_button #{'btn-warning' if b.value == obj.send(x) }") { b.radio_button(class: "hidden") + render_option_category(b.value, x) }
+    = b.label(class: "btn btn-default btn-lg act_as_radio_button #{'btn-warning' if b.value == obj.send(x) }") { b.radio_button(class: "hidden") + render_house_category(b.value, x) }

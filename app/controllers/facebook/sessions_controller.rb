@@ -36,7 +36,7 @@ class Facebook::SessionsController < ApplicationController
         flash[:success] = "Your facebook has been connected before!"
       end
       log_in(user)
-      redirect_to user_path(user)      
+      redirect_to profile_path
     end
 
 

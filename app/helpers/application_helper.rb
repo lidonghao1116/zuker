@@ -1,9 +1,6 @@
 module ApplicationHelper
-  def comment    
-  end
-  def glyph(name)
-    content_tag :span, '', class:"glyphicon glyphicon-#{name}", aria:{ hidden:"true" }
-  end
+  def comment ; end
+
   def notice_message
     alert_types = { notice: :success, alert: :danger }
  
@@ -21,4 +18,13 @@ module ApplicationHelper
 
     alerts.join("\n").html_safe
   end
+
+  def render_option_category(value, option, model_data)
+    key = model_data.constantize.public_send("#{option}_categories").key(value)
+    I18n.t("#{option}_categories.#{key}") if key
+  end
+  
+  # def glyph(name)
+  #   content_tag :span, '', class:"glyphicon glyphicon-#{name}", aria:{ hidden:"true" }
+  # end
 end

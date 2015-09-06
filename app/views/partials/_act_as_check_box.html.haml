@@ -8,4 +8,4 @@
 = f.label x
 .form-group
   = f.collection_check_boxes x, model_data.send("#{x}_categories"), :last, :first do |b|
-    = b.label(class: "btn btn-default btn-lg act_as_check_box #{'btn-info' if obj.send(x).include? b.value }") { b.check_box(class: "hidden") + render_option_category(b.value, x) }
+    = b.label(class: "btn btn-default btn-lg act_as_check_box #{'btn-info' if obj.send(x).include? b.value }") { b.check_box(class: "hidden") + render_house_category(b.value, x) }
