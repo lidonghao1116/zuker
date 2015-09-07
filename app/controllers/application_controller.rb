@@ -69,4 +69,15 @@ class ApplicationController < ActionController::Base
       session[:user_id] = nil unless current_user
     end
 
+    def user_not_authorized(exception)
+      policy_name = exception.policy.class.to_s.underscore
+
+      flash[:warning] = t "#{policy_name}.#{exception.query}", scope: "pundit", default: :default
+      if policy_name == 'room_policy' && exception.query == 'new?'
+        redirect_to(basic_house_path(params[:house_id]) || root_path)
+      else
+        redirect_to(request.referrer || root_path)
+      end
+    end
+
 end

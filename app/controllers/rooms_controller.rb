@@ -4,6 +4,7 @@ class RoomsController < ApplicationController
 
   def new
     @room = @house.rooms.new
+    authorize @room
   end
 
   def create

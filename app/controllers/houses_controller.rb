@@ -12,8 +12,6 @@ class HousesController < ApplicationController
 
   include CommentableActions
 
-  #include CommentableActions
-
   # GET /houses
   # GET /houses.json
   def index
@@ -25,7 +23,7 @@ class HousesController < ApplicationController
   # GET /houses/1.json
   def show
     @comments = @house.comments.page params[:page]
-    render layout: "house_show"
+    render layout: "panel"
   end
 
   # GET /houses/new
@@ -38,6 +36,7 @@ class HousesController < ApplicationController
 
   # GET /houses/1/edit
   def edit
+    authorize @house
   end
 
   # POST /houses
@@ -63,13 +62,12 @@ class HousesController < ApplicationController
   # PATCH/PUT /houses/1
   # PATCH/PUT /houses/1.json
   def update
+    authorize @house
     @house.validate = session[:validate]
     respond_to do |format|
       if @house.update(house_params)
         if params[:image]
-          params[:image].each do |picture|
-            @house.attachments.create(:image => picture)
-          end
+          params[:image].each { |picture| @house.attachments.create(:image => picture) }
           flash[:success] = t('flash.messages.upload_success')
         end
         format.html { redirect_to :back }
@@ -148,6 +146,7 @@ class HousesController < ApplicationController
     end
 
     def render_profile_views
+      authorize @house
       respond_to do |format|
         @prefix = "houses/profiles"
         format.html { render "#{@prefix}/#{action_name}" }
@@ -159,4 +158,13 @@ class HousesController < ApplicationController
     def house_params
       params.require(:house).permit(:title, :description, :price, :image, :house_type, :gender, :foreigner, :english_help, :photo_help, :city, :district, :address, :zipcode, :hide_address, :personal_parking_lot, :available_date, :reservable_date, :area, :building_floor, :at_floor, :special_floor, :direction, :bedroom, :shared_space, :bathroom, :balcony, :school_id, :min_lease, :security_fee, safety: [], amenity: [], furniture: [], extra_fee: [], public_facility: [], rule: [])
     end
+
+    # def user_not_authorized
+    #   unless current_user.verified
+    #     flash[:danger] = "xxxxx"
+    #     redirect_to phone_verify_user_path(current_user) and return
+    #   end
+    #   flash[:alert] = "You can't comment on yourself."
+    #   redirect_to(request.referrer || root_path)
+    # end
 end

@@ -13,6 +13,7 @@
       .col-sm-2.col-md-1.sidebar
         = render 'houses/profiles/partials/profile_options'
       #house-profile.col-sm-10.col-sm-offset-2.col-md-7.col-md-offset-1
+        = notice_message
         %h1.inline= @house.title || "Title"
         %span.ajax-text
         %hr
