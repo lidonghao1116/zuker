@@ -7,7 +7,7 @@
 .jumbotron {
   @include bg-center;
   & > .container {
-    background-color: rgba(220,220,220,0.4);
+    background-color: rgba(240,240,240,0.4);
     height: 300px;
   }
 }

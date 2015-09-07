@@ -3,14 +3,13 @@
     Connect with Zuker
 /= link_to 'Connect with Zuker', edit_user_path(current_user), id:'connect-fb' unless current_user.sign_with_zuker
 
-= link_to edit_user_path(current_user), class: 'btn btn-success' do
+= link_to edit_user_path(current_user), class: 'btn btn-info' do
   = t '.edit'
+= link_to houses_path, class: 'btn btn-success' do
+  = t ".my_houses"
 
-= link_to current_user, method: :delete, data: {confirm: "Are you sure?"}, class: 'btn btn-danger' do
+= link_to current_user, method: :delete, data: {confirm: "Are you sure?"} do
   = t '.delete'
 
 #login_form.hide
   = render 'login_form', id: current_user.id
-
-= link_to houses_path, class: 'btn btn-info' do
-  = t ".my_houses"

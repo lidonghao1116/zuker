@@ -8,8 +8,8 @@
     = csrf_meta_tags
   %body.large_padding_top
     #fb-root
-    = render 'common/nav'    
-    = notice_message
-    .container
+    = render 'common/nav'
+    .container    
+      = notice_message
       = yield
       = debug(params) if Rails.env.development?

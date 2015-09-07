@@ -3,10 +3,12 @@ class HousesController < ApplicationController
   
   before_action :set_house, except: [:index, :new, :create]
   before_action :set_user, except: [:show, :index]
-  before_action :no_validate, only: [:basic, :amenity, :description, :photo, :date_status]
-  before_action :action_based_validation, only: [:basic, :amenity, :description, :photo, :date_status]
-  before_action :render_folded_views, only: [:basic, :amenity, :description, :rooms]
-  before_action :is_famliy?, only: [:photo, :date_status, :space]
+
+  before_action :render_profile_views, only: [:basic, :amenity, :description]
+  before_action :render_famliy_or_rooms, only: [:photo, :date_status, :space]
+
+  after_action :no_validate, only: [:basic, :amenity, :description, :photo, :date_status]
+  after_action :action_based_validation, only: [:basic, :amenity, :description, :photo, :date_status]
 
   include CommentableActions
 
@@ -29,6 +31,7 @@ class HousesController < ApplicationController
   # GET /houses/new
   def new
     @house = current_user.houses.new
+    authorize @house
     session[:validate] = "basic"
     render layout: 'panel'
   end
@@ -41,6 +44,7 @@ class HousesController < ApplicationController
   # POST /houses.json
   def create
     @house = current_user.houses.new(house_params)
+    authorize @house
 
     respond_to do |format|
       if @house.save
@@ -95,7 +99,16 @@ class HousesController < ApplicationController
   end
 
   def rooms
-    @rooms = @house.rooms.all
+    respond_to do |format|
+      @prefix = "houses/profiles"
+      if @house.family?
+        format.html { redirect_to basic_house_path }
+      else
+        @rooms = @house.rooms.all
+        format.js { render "#{@prefix}/basic"}
+        format.html { render "#{@prefix}/rooms" }
+      end      
+    end
   end
 
   # DELETE /houses/1
@@ -122,25 +135,24 @@ class HousesController < ApplicationController
       @house = House.find(params[:id])
     end
 
-    def is_famliy?
+    def set_user
+      redirect_to root_path, notice: "Please sign in or register first." unless current_user
+    end
+
+    def render_famliy_or_rooms
       if @house.family?
-        @prefix = "houses/profiles"
-        respond_to do |format|        
-          format.html { render "#{@prefix}/#{action_name}" }
-          format.js { render "#{@prefix}/#{action_name}"}
-        end
+        render_profile_views
       else        
         redirect_to rooms_house_path
       end
     end
 
-    def set_user
-      redirect_to root_path, notice: "Please sign in or register first." unless current_user
-    end
-
-    def render_folded_views
-      @prefix = "houses/profiles"
-      render "#{@prefix}/#{action_name}"
+    def render_profile_views
+      respond_to do |format|
+        @prefix = "houses/profiles"
+        format.html { render "#{@prefix}/#{action_name}" }
+        format.js { render "#{@prefix}/#{action_name}"}
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

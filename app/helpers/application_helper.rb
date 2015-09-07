@@ -24,7 +24,7 @@ module ApplicationHelper
     I18n.t("#{option}_categories.#{key}") if key
   end
   
-  # def glyph(name)
-  #   content_tag :span, '', class:"glyphicon glyphicon-#{name}", aria:{ hidden:"true" }
-  # end
+  def glyph(name)
+    content_tag :span, '', class:"glyphicon glyphicon-#{name}", aria:{ hidden:"true" }
+  end
 end

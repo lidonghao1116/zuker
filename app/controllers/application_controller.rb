@@ -34,13 +34,13 @@ class ApplicationController < ActionController::Base
       session[:user_id] = nil
     end
 
-    def correct_user_sign_in?
-      # 登入紀錄與訪問頁面id相同 && 目前登入者有效
-      unless session[:user_id].to_s == params[:id] && current_user
-        flash[:danger] = "Sorry, you need to sign in or register."
-        redirect_to signup_path and return
-      end
-    end
+    # def correct_user_sign_in?
+    #   # 登入紀錄與訪問頁面id相同 && 目前登入者有效
+    #   unless session[:user_id].to_s == params[:id] && current_user
+    #     flash[:danger] = "Sorry, you need to sign in or register."
+    #     redirect_to signup_path and return
+    #   end
+    # end
 
     def has_verify_phone?
       unless current_user.verified

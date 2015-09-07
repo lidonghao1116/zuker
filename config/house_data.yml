@@ -67,6 +67,21 @@ defaults: &defaults
     east: 2
     west: 3
     south: 4
+  aasm_state_categories:
+    available: 1
+    coming: 2
+    not_available: 3
+  person_categories:
+    one: 1
+    two: 2
+    three: 3
+    four: 4
+    five: 5
+    six: 6
+    seven: 7
+    eight: 8
+    nine: 9
+    ten: 10
 
 
 development:

@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(version: 20150826022708) do
     t.integer  "foreigner"
     t.integer  "special_floor"
     t.integer  "min_lease"
+    t.integer  "person",                                       default: 1
     t.boolean  "english_help"
     t.boolean  "photo_help"
     t.integer  "direction",                                    default: [],              array: true

@@ -10,7 +10,6 @@ class House < ActiveRecord::Base
 
   belongs_to :school, inverse_of: :houses
   belongs_to :owner, class_name: "User", foreign_key: :user_id
-  #has_many :attachments
   has_many :rooms
   
   validates_presence_of :house_type, :foreigner, :school_id, :city, :district, :zipcode, :address
@@ -32,9 +31,7 @@ class House < ActiveRecord::Base
         errors.add(:available_date, "can't be earlier than reservable_date")
       end
     end
-  end
-
-  before_save :update_status
+  end  
 
   aasm :whiny_transitions => false do
     state :not_available, :initial => true
@@ -69,8 +66,11 @@ class House < ActiveRecord::Base
       transitions :from => :available, :to => :not_available
     end
   end
+    
+  before_save :update_status, if: "validate == 'date_status'"
 
   def update_status
+    return true unless reservable_date || available_date
     self.come unless self.is_ready unless self.hide
   end
 

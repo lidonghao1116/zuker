@@ -13,7 +13,7 @@ end
 
 for i in 1..100 do
   10.times do
-    User.find(i).houses.create(house_type: rand(1..2), foreigner: rand(1..2), school_id: rand(1..SchoolData.school_categories.size), title: BetterLorem.w(4, true, true), description: BetterLorem.p(2, true, true), city: '台北市', district: '中正區', zipcode: '100', address: BetterLorem.w(5, true, true), price: rand(1000..9999) )
+    User.find(i).houses.create(house_type: rand(1..2), foreigner: rand(1..2), school_id: rand(1..SchoolData.school_categories.size), title: BetterLorem.w(4, true, true), description: BetterLorem.p(2, true, true), city: '台北市', district: '中正區', zipcode: '100', address: BetterLorem.w(5, true, true), price: rand(1000..9999), person: rand(1..8) )
   end
 end
 
@@ -23,6 +23,7 @@ end
 
 House.all.each do |h|
   h.comments.create(author_id: rand(1..100), content: BetterLorem.p(2, true, true))
+  h.rooms.create(title: BetterLorem.w(4, true, true))
 end
 
 User.all.each do |u|

@@ -1,0 +1,4 @@
+- ['basic', 'amenity', 'description'].each do |s|
+  %li{ class: ('active' if action_name == s) }= link_to s, send("#{s}_house_path", @house)
+- ['space', 'photo', 'date_status'].each do |s|
+  %li{ class: ('active' if action_name == s) }= link_to s, send("#{s}_house_path", @house)

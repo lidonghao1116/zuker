@@ -73,13 +73,13 @@
     coming: 可預約
     not_available: 不開放預約
   person_categories:
-    one: 一人
-    two: 二人
-    three: 三人
-    four: 四人
-    five: 五人
-    six: 六人
-    seven: 七人
-    eight: 八人
-    nine: 九人
-    ten: 十人
+    one: 1
+    two: 2
+    three: 3
+    four: 4
+    five: 5
+    six: 6
+    seven: 7
+    eight: 8
+    nine: 9
+    ten: 10

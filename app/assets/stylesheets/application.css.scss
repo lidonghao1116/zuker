@@ -13,9 +13,9 @@
  *= require_self
  */
   @import "bootstrap-sprockets";
-  @import "bootswatch/paper/variables";
+  @import "bootswatch/lumen/variables";
   @import "bootstrap";
-  @import "bootswatch/paper/bootswatch";
+  @import "bootswatch/lumen/bootswatch";
   @import 'bootstrap-datetimepicker';
   @import "font-awesome-sprockets";
   @import "font-awesome";
@@ -69,4 +69,9 @@ div.vertically-center {
     vertical-align: middle;
     text-align: center;
   }
+}
+
+.btn {
+  font-size: 16px;
+  font-weight: normal;
 }

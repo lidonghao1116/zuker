@@ -1,5 +1,5 @@
 <% if @house.house_type == 2 %>
-  $('#conditional_inputs').fadeOut().addClass('hide');
+  $('#conditional_options').html("<%= j(render 'houses/profiles/partials/multi_rooms_options') %>")
 <% else %>
-  $('#conditional_inputs').fadeIn().removeClass('hide');
+  $('#conditional_options').html("<%= j(render 'houses/profiles/partials/family_options') %>")
 <% end %>

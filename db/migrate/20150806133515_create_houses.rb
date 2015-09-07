@@ -15,6 +15,7 @@ class CreateHouses < ActiveRecord::Migration
       t.integer :foreigner
       t.integer :special_floor
       t.integer :min_lease #### only family
+      t.integer :person, default: 1
 
       t.boolean :english_help      
       t.boolean :photo_help

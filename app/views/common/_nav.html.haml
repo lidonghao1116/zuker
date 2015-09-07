@@ -10,10 +10,10 @@
         = image_tag 'logo.png', width: '20', height: '20'
       = link_to 'Zuker', root_path, class: 'navbar-brand'
 
-    = search_form_for @q, url: search_path, class: "navbar-form navbar-left", role: "search" do |f|
-      %div.form-group
-        = f.search_field @criteria, class: "form-control", placeholder: 'Search'
-      = f.button 'Go', class: 'btn btn-default hidden'
+    / = search_form_for @q, url: search_path, class: "navbar-form navbar-left", role: "search" do |f|
+    /   %div.form-group
+    /     = f.search_field @criteria, class: "form-control", placeholder: 'Search'
+    /   = f.button 'Go', class: 'btn btn-default'
     #navbar.navbar-collapse.collapse
       %ul.nav.navbar-nav.navbar-right
         - if current_user         
