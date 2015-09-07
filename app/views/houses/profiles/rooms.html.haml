@@ -5,28 +5,28 @@
 
     .row
       = f.input :building_floor, wrapper_html: { class: 'col-sm-4'}
-    
-    %table.table
-      %thead
-        %tr
-          %th Room
-          %th Floor
-          %th Price
-          %th Area
-          %th Space
-          %th
-          %th
-          %th
-          %th
-      - @house.rooms.each do |room|
-        %tbody
+    - if @house.rooms.exists?
+      %table.table
+        %thead
           %tr
-            %td= image_tag room.attachments.first.image_url(:thumb) if room.attachments.present?
-            %td= room.at_floor
-            %td= "#{ number_to_currency(room.price, precision: 0) } / month"
-            %td= room.area
-            %td=  render_space(room)
-            %td= link_to 'Edit', edit_house_room_path(@house, room)
+            %th Room
+            %th Floor
+            %th Price
+            %th Area
+            %th Space
+            %th
+            %th
+            %th
+            %th
+        - @house.rooms.each do |room|
+          %tbody
+            %tr
+              %td= image_tag room.attachments.first.image_url(:thumb) if room.attachments.present?
+              %td= room.at_floor
+              %td= "#{ number_to_currency(room.price, precision: 0) } / month"
+              %td= room.area
+              %td=  render_space(room)
+              %td= link_to 'Edit', edit_house_room_path(@house, room)
 
     - if @house.rooms.exists?
       = link_to 'Add new', new_house_room_path(@house), class:'btn btn-primary btn-lg'

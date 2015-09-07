@@ -4,7 +4,11 @@ class HousePolicy < ApplicationPolicy
   end
 
   def new?
-    @user.verified?
+    create?
+  end
+
+  def create?
+    @user.verified? && record.owner == @user
   end
 
   def edit?

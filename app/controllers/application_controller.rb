@@ -44,7 +44,7 @@ class ApplicationController < ActionController::Base
 
     def has_verify_phone?
       unless current_user.verified
-        flash[:danger] = "Sorry, you need to verify phone number first."
+        flash[:warning] = "Sorry, you need to verify phone number first."
         redirect_to phone_verify_user_path(current_user) and return
       end
     end
@@ -70,6 +70,8 @@ class ApplicationController < ActionController::Base
     end
 
     def user_not_authorized(exception)
+      return has_verify_phone?
+
       policy_name = exception.policy.class.to_s.underscore
 
       flash[:warning] = t "#{policy_name}.#{exception.query}", scope: "pundit", default: :default

@@ -1,0 +1,22 @@
+#myCarousel.carousel.slide{ data: { ride:"carousel" } }
+  <!-- Indicators -->
+  %ol.carousel-indicators
+    %li.active{ data: { target:"#myCarousel", slide: { to: "0" } } }
+    %li{ data: { target:"#myCarousel", slide: { to: "1" } } }
+    %li{ data: { target:"#myCarousel", slide: { to: "2" } } }
+  .carousel-inner{ role:"listbox" }
+    - @house.attachments.each_with_index do |attachment, i|
+      .item{ class:("active" if i == 0) }
+        = image_tag attachment.image_url(:large)
+        .container
+          .carousel-caption
+      / <h1>Example headline.</h1>
+      / <p>Note: If you're viewing this page via a <code>file://</code> URL, the "next" and "previous" Glyphicon buttons on the left and right might not load/display properly due to web browser security rules.</p>
+      / <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>
+          
+  %a.left.carousel-control{ href:"#myCarousel", role:"button", data: { slide:"prev" } }
+    %span.glyphicon.glyphicon-chevron-left{ aria:{ hidden: "true" } }
+    %span.sr-only Previous
+  %a.right.carousel-control{ href:"#myCarousel", role:"button", data: { slide:"prev" } }
+    %span.glyphicon.glyphicon-chevron-right{ aria:{ hidden: "true" } }
+    %span.sr-only Next

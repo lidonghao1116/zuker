@@ -49,7 +49,7 @@ module SmsConfirmableActions
 
     def has_phone_number?
       unless current_user.phone_number
-        flash[:info] = "Please fill in your phone number"
+        flash[:warning] = "please input phone number."
         redirect_to edit_user_path(current_user)
       end
     end
