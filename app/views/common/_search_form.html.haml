@@ -1,0 +1,8 @@
+= search_form_for @q, url: search_path, class: "form-inline" do |f|
+  %div.form-group
+    = f.collection_select :school_id_eq, School.categories, :last, :first, { prompt: '學校' }, { class: 'form-control' }
+    = f.select :person_eq, House.option_categories('person'), { prompt: '人數' }, { class: 'form-control' }
+    = f.collection_select :house_type_eq, House.option_categories('house_type'), :last, :first, { prompt: '房型', selected: 2 }, { class: 'form-control' }
+    = f.collection_select :aasm_state_eq, I18n.t('aasm_state_categories'), :first, :last, { prompt: true, selected: 'available' }, { class: 'form-control' }
+    = f.button class: 'btn btn-primary btn-lg' do
+      = glyph('search')

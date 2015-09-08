@@ -71,7 +71,7 @@
   aasm_state_categories:
     available: 立即入住
     coming: 可預約
-    not_available: 不開放預約
+    not_available: 尚未開放預約
   person_categories:
     one: 一人
     two: 二人

@@ -10,7 +10,9 @@ class HousesController < ApplicationController
   # GET /houses
   # GET /houses.json
   def index
-    @houses = current_user.houses.all.page params[:page]
+    @q = current_user.houses.ransack(params[:q])
+    @houses = @q.result(distinct: true).page params[:page]
+    #@houses = current_user.houses.all.page params[:page]
     authorize @houses
   end
 

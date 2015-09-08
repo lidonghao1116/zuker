@@ -17,7 +17,6 @@ class PagesController < ApplicationController
 
   def search
     @q = House.ransack(params[:q])
-    @abc = rand(1..10)
     @houses = @q.result(distinct: true).page params[:page]
     flash[:info] = 'Nothing found.' unless @houses
     render layout: 'application'

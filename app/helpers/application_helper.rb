@@ -25,6 +25,14 @@ module ApplicationHelper
   end
   
   def glyph(name)
-    content_tag :span, '', class:"glyphicon glyphicon-#{name}", aria:{ hidden:"true" }
+    content_tag :span, '', class: "glyphicon glyphicon-#{name}", aria:{ hidden:"true" }
+  end
+
+  def warning(text)
+    content_tag :div, class: "alert alert-dismissible alert-warning" do    
+      button_tag 'x', class: 'close', type: 'button', data: { dismiss: 'alert' }
+      content_tag :h4, 'Sorry!'
+      content_tag :p, text
+    end   
   end
 end

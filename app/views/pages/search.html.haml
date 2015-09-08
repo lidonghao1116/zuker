@@ -1,9 +1,6 @@
 %h1 Search results
 %h4
   For:
-  = render_school_category(params[:q][:school_id_eq].to_i)
-  = render_house_category(params[:q][:house_type_eq].to_i, 'house_type')
-  = "#{params[:q][:person_eq]} people" if params[:q][:person_eq].present?
-  = I18n.t("aasm_state_categories.#{params[:q][:aasm_state_eq]}")
+  = render "common/search_form"
 = render "common/houses_table"
 = console
