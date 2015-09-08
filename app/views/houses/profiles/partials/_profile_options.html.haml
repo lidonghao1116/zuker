@@ -1,11 +1,30 @@
-%ul.nav.nav-sidebar#conditional_options
+/ %ul.nav.nav-sidebar#conditional_options
+/   - ['basic', 'amenity', 'description'].each do |s|
+/     %li{ class: ('active' if action_name == s) }= link_to s, send("#{s}_house_path", @house)
+  
+/   - if @house.family?
+/     - ['space', 'photo', 'date_status'].each do |s|
+/       %li{ class: ('active' if action_name == s) }= link_to s, send("#{s}_house_path", @house)
+/   - else
+/     %li{ class: ('active' if action_name == 'rooms') }= link_to 'rooms', rooms_house_path(@house)
+
+/ = link_to "View", @house, class:'btn btn-success'
+%ul.nav.nav-pills.nav-stacked#conditional_options
   - ['basic', 'amenity', 'description'].each do |s|
     %li{ class: ('active' if action_name == s) }= link_to s, send("#{s}_house_path", @house)
-  
   - if @house.family?
     - ['space', 'photo', 'date_status'].each do |s|
       %li{ class: ('active' if action_name == s) }= link_to s, send("#{s}_house_path", @house)
   - else
     %li{ class: ('active' if action_name == 'rooms') }= link_to 'rooms', rooms_house_path(@house)
-
-= link_to "View", @house, class:'btn btn-success'
+  / %li.dropdown
+  /   %a.dropdown-toggle{ data: { toggle: "dropdown" }, aria: { expanded: "false" } }
+  /     Dropdown
+  /     %span.caret
+  /   <ul class="dropdown-menu">
+  /     <li><a href="#">Action</a></li>
+  /     <li><a href="#">Another action</a></li>
+  /     <li><a href="#">Something else here</a></li>
+  /     <li class="divider"></li>
+  /     <li><a href="#">Separated link</a></li>
+  /   </ul>

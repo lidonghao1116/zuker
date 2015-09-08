@@ -1,5 +1,4 @@
 module CommentableActions
-
   extend ActiveSupport::Concern
 
   included do    

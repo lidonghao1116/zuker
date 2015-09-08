@@ -14,7 +14,9 @@
         = render 'houses/profiles/partials/profile_options'
       #house-profile.col-sm-10.col-sm-offset-2.col-md-7.col-md-offset-1
         = notice_message
-        %h1.inline= @house.title || "Title"
-        %span.ajax-text
+        %h1
+          = @house.title || "Title"
+          %span.ajax-text
+          .pull-right= link_to 'View', @house, class: 'btn btn-success'
         %hr
         = yield

@@ -1,17 +1,18 @@
 - if params[:q]
-  - no_school_col = "hidden" if params[:q][:school_id_eq]
-  - no_type_col = "hidden" if params[:q][:house_type_eq]
-  - no_state_col = "hidden" if params[:q][:aasm_state_eq]
+  - no_school_col = "hidden" if params[:q][:school_id_eq].present?
+  - no_type_col = "hidden" if params[:q][:house_type_eq].present?
+  - no_people_col = "hidden" if params[:q][:person_eq].present?
+  - no_state_col = "hidden" if params[:q][:aasm_state_eq].present?
 
 %table.table
   %thead
     %tr
-      %th{ class: no_school_col } School
+      %th{ class: no_school_col }= sort_link(@q, :school_id)
       %th= sort_link(@q, :title)
       %th= sort_link(@q, :price)
-      %th{ class: no_type_col } Type
-      %th Status
-      %th People
+      %th{ class: no_type_col }= sort_link(@q, :house_type)
+      %th{ class: no_state_col }= sort_link(@q, :aasm_state)
+      %th{ class: no_people_col }= sort_link(@q, :person)
 
   %tbody
     - @houses.each do |house|
@@ -21,6 +22,6 @@
         %td= house.price
         %td{ class: no_type_col }= render_house_category(house.house_type, 'house_type')
         %td{ class: no_state_col }= render_house_category(house.aasm_state, 'aasm_state')
-        %td= house.person
+        %td{ class: no_people_col }= house.person
 
 = paginate @houses

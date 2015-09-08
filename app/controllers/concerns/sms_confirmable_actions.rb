@@ -1,5 +1,4 @@
 module SmsConfirmableActions
-
   extend ActiveSupport::Concern
 
   included do    
