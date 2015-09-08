@@ -13,11 +13,6 @@ class ApplicationController < ActionController::Base
 
   private
 
-    def user_not_authorized
-      flash[:alert] = "You are not authorized to perform this action."
-      redirect_to(request.referrer || root_path)
-    end
-
     def current_user
       @current_user ||= User.find_by_id(session[:user_id])
     end
@@ -45,7 +40,7 @@ class ApplicationController < ActionController::Base
     def has_verify_phone?
       unless current_user.verified
         flash[:warning] = "Sorry, you need to verify phone number first."
-        redirect_to phone_verify_user_path(current_user) and return
+        redirect_to phone_verify_user_path(current_user) and return true
       end
     end
 
@@ -70,7 +65,7 @@ class ApplicationController < ActionController::Base
     end
 
     def user_not_authorized(exception)
-      return has_verify_phone?
+      return true if has_verify_phone?
 
       policy_name = exception.policy.class.to_s.underscore
 

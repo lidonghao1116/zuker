@@ -39,6 +39,10 @@ class HousePolicy < ApplicationPolicy
     update?
   end
 
+  def rooms?
+    update?
+  end
+
   def update?
     @user.verified? && record.owner == @user
   end

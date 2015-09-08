@@ -7,8 +7,7 @@ module HouseProfileActions
     before_action :action_based_validation, only: [:basic, :amenity, :description, :photo, :date_status]
   end
 
-  def basic
-    authorize @house
+  def basic    
     respond_to do |format|
       @prefix = "houses/profiles"
       format.html { render "#{@prefix}/#{action_name}" }
@@ -16,25 +15,22 @@ module HouseProfileActions
     end
   end
 
-  def amenity
-    authorize @house
+  def amenity    
     respond_to do |format|
       @prefix = "houses/profiles"
       format.html { render "#{@prefix}/#{action_name}" }
     end
   end
 
-  def description
-    authorize @house
+  def description    
     respond_to do |format|
       @prefix = "houses/profiles"
       format.html { render "#{@prefix}/#{action_name}" }
     end
   end
 
-  def space
+  def space    
     if @house.family?
-      authorize @house
       respond_to do |format|
         @prefix = "houses/profiles"
         format.html { render "#{@prefix}/#{action_name}" }
@@ -44,9 +40,8 @@ module HouseProfileActions
     end
   end
 
-  def photo
+  def photo    
     if @house.family?
-      authorize @house
       respond_to do |format|
         @prefix = "houses/profiles"
         format.html { render "#{@prefix}/#{action_name}" }
@@ -57,9 +52,8 @@ module HouseProfileActions
     end
   end
 
-  def date_status
+  def date_status    
     if @house.family?
-      authorize @house
       respond_to do |format|
         @prefix = "houses/profiles"
         format.html { render "#{@prefix}/#{action_name}" }
@@ -70,7 +64,7 @@ module HouseProfileActions
     end
   end
 
-  def rooms
+  def rooms    
     respond_to do |format|
       @prefix = "houses/profiles"
       if @house.family?

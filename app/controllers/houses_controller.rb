@@ -31,7 +31,6 @@ class HousesController < ApplicationController
 
   # GET /houses/1/edit
   def edit
-    authorize @house
   end
 
   # POST /houses
@@ -57,7 +56,6 @@ class HousesController < ApplicationController
   # PATCH/PUT /houses/1
   # PATCH/PUT /houses/1.json
   def update
-    authorize @house
     @house.validate = session[:validate]
     respond_to do |format|
       if @house.update(house_params)
@@ -87,6 +85,7 @@ class HousesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_house
       @house = House.find(params[:id])
+      authorize @house
     end
 
     def set_user
