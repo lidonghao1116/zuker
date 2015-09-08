@@ -1,14 +1,13 @@
+- a = params[:q][:aasm_state_eq] if params[:q] && params[:q][:aasm_state_eq]
+- b = params[:q][:house_type_eq] if params[:q] && params[:q][:house_type_eq]
 = search_form_for @q, url: search_path, class: "form-inline" do |f|
   %div.form-group
     = f.collection_select :school_id_eq, School.categories, :last, :first, { prompt: '學校' }, { class: 'form-control' }
     = f.select :person_eq, House.option_categories('person'), { prompt: '人數' }, { class: 'form-control' }
 
-    - if action_name == 'home'
-      = f.collection_select :house_type_eq, House.option_categories('house_type'), :last, :first, { selected: 2 }, { class: 'form-control' }
-      = f.collection_select :aasm_state_eq, I18n.t('aasm_state_categories'), :first, :last, { selected: 'available' }, { class: 'form-control' }
-    - elsif action_name == 'search'
-      = f.collection_select :house_type_eq, House.option_categories('house_type'), :last, :first, {}, { class: 'form-control' }
-      = f.collection_select :aasm_state_eq, I18n.t('aasm_state_categories'), :first, :last, {}, { class: 'form-control' }
+    
+    = f.collection_select :house_type_eq, House.option_categories('house_type'), :last, :first, { selected: b || 2 }, { class: 'form-control' }
+    = f.collection_select :aasm_state_eq, I18n.t('aasm_state_categories'), :first, :last, { selected: a || 'available' }, { class: 'form-control' }
 
     = f.button class: 'btn btn-primary btn-lg' do
       = glyph('search')
