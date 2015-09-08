@@ -3,9 +3,8 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $ ->
-  $('#user-form-edit #user_phone_number').change ->
-    if $('div.user_phone_number p.help-block').html().length < 21
-      $('div.user_phone_number p.help-block').append("<br><strong>You need to verify if you change your phone number.</strong>");
+  $('#user-form-edit #user_phone_number').change ->    
+    $('div.user_phone_number p.help-block').html("<strong style='color: red;'>You will get a SMS messege later.</strong>");
 
   $('#connect-fb').click ->
     $('#login_form').removeClass('hide');

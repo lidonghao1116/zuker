@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   scope controller: :pages do
     get 'signin' => :signin
     get 'search' => :search
-    get 'dial' => :dial
+    #get 'dial' => :dial
   end
 
   get 'rooms/new'

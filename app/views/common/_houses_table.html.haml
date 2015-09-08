@@ -19,7 +19,7 @@
       %tr
         %td{ class: no_school_col }= render_option_category(house.school_id, 'school', 'SchoolData')
         %td= link_to house.title, house
-        %td= house.price
+        %td= number_to_currency(house.price, precision: 0)
         %td{ class: no_type_col }= render_house_category(house.house_type, 'house_type')
         %td{ class: no_state_col }= render_house_category(house.aasm_state, 'aasm_state')
         %td{ class: no_people_col }= house.person

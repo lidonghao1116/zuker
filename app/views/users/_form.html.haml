@@ -1,4 +1,4 @@
-%div{ :id => (action_name == 'edit' || action_name == 'update' ? "user-form-edit" : "user-form-new" ) }
+.col-sm-offset-3.col-sm-6{ id: ('user-form-edit' if controller_name == 'users' && action_name == 'edit') }
   = simple_form_for @user, wrapper: :clean_vertical_form do |f|
     = f.error_notification
     .well
