@@ -1,0 +1,11 @@
+// Append new data
+$("<%=j render('common/houses', houses: @houses) %>")
+  .appendTo($(".infinite-table table"));
+
+// Update pagination link
+<% if @houses.last_page? %>
+  $('.pagination').html("<%= j link_to('Back to top', '', id:'go-top-link') %>");
+<% else %>
+  $('.pagination')
+    .html("<%=j link_to_next_page(@houses, 'Next Page', :remote => true, params: params, id:'next_page_link', data: { disable_with: 'Loading...' }) %>");
+<% end %>

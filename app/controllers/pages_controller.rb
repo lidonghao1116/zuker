@@ -17,8 +17,8 @@ class PagesController < ApplicationController
 
   def search
     @q = House.ransack(params[:q])
-    @houses = @q.result(distinct: true).page params[:page]
-    flash[:info] = 'Nothing found.' unless @houses
+    @houses = @q.result.page(params[:page])#.to_a.uniq
+    flash.now[:info] = 'Nothing found.' if @houses.size.zero?
     render layout: 'application'
   end
 

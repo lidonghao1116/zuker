@@ -1,6 +1,6 @@
 class House < ActiveRecord::Base
 
-  paginates_per 10
+  paginates_per 15
 
   include Commentable
   include Imageable

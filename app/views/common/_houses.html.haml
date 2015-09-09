@@ -1,0 +1,8 @@
+- houses.each do |house|
+  %tr
+    %td= render_option_category(house.school_id, 'school', 'SchoolData')
+    %td= link_to house.title, house
+    %td= number_to_currency(house.price, precision: 0)
+    %td= render_house_category(house.house_type, 'house_type')
+    %td= render_house_category(house.aasm_state, 'aasm_state')
+    %td= house.person

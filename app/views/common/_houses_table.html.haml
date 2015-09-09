@@ -3,25 +3,20 @@
   - no_type_col = "hidden" if params[:q][:house_type_eq].present?
   - no_people_col = "hidden" if params[:q][:person_eq].present?
   - no_state_col = "hidden" if params[:q][:aasm_state_eq].present?
-
-%table.table
-  %thead
-    %tr
-      %th{ class: no_school_col }= sort_link(@q, :school_id)
-      %th= sort_link(@q, :title)
-      %th= sort_link(@q, :price)
-      %th{ class: no_type_col }= sort_link(@q, :house_type)
-      %th{ class: no_state_col }= sort_link(@q, :aasm_state)
-      %th{ class: no_people_col }= sort_link(@q, :person)
-
-  %tbody
-    - @houses.each do |house|
+.infinite-table
+  %table.table
+    %thead
       %tr
-        %td{ class: no_school_col }= render_option_category(house.school_id, 'school', 'SchoolData')
-        %td= link_to house.title, house
-        %td= number_to_currency(house.price, precision: 0)
-        %td{ class: no_type_col }= render_house_category(house.house_type, 'house_type')
-        %td{ class: no_state_col }= render_house_category(house.aasm_state, 'aasm_state')
-        %td{ class: no_people_col }= house.person
+        %th{ class: no_school_col }= sort_link(@q, :school_id)
+        %th= sort_link(@q, :title)
+        %th= sort_link(@q, :price)
+        %th{ class: no_type_col }= sort_link(@q, :house_type)
+        %th{ class: no_state_col }= sort_link(@q, :aasm_state)
+        %th{ class: no_people_col }= sort_link(@q, :person)
 
-.text-center= paginate @houses
+    %tbody
+      = render 'common/houses', houses: @houses
+
+  .pagination.text-center= link_to_next_page(@houses, 'Next Page', remote: true, params: params, id:'next_page_link', data: {disable_with: "Loading..." })
+
+= console
