@@ -54,5 +54,9 @@
 #comments-section
   = render "comments/comments_section", obj: current_user
 
+  - current_user.my_comments.try(:each) do |comment|
+    - unless comment.commentable.try(:commentable).class.name == 'Comment'
+      = render 'comments/comment', comment: comment
+
 
 = console

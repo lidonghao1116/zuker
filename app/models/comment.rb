@@ -1,5 +1,7 @@
 class Comment < ActiveRecord::Base
 
+  scope :recent, -> { order(:updated_at) }
+
   paginates_per 5
 
   belongs_to :commentable, polymorphic: true

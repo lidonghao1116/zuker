@@ -8,7 +8,7 @@
     = link_to 'Sign in', signin_path, class:'btn btn-success'
     Now!
 
-- @comments.limit(3).try(:each) do |comment|
+- @comments.try(:each) do |comment|
   = render 'comments/comment', comment: comment
 
 /= paginate @comments, :remote => true

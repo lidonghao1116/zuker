@@ -1,17 +1,39 @@
 .col-sm-1
-  = image_tag("#{comment.author.email}")
+  = image_tag("#{comment.author.image}")
 .col-sm-11
   %blockquote
     = comment.content
     %footer
       %span= comment.author.last_name
-  .col-sm-offset-1
-    - comment.comments.try(:each) do |reply|      
-      %blockquote
-        = reply.content
-        %footer
-          %span= reply.author.last_name
-          - if current_user
-            %span.reply_btn
-              %span.reply_text Click to reply
-              %span= render 'comments/form', obj: comment
+      - if current_user
+        %span.reply_btn
+          %span.reply_text.pull-right= link_to 'Click to reply', '#'
+          %span= render 'comments/form', obj: comment
+
+= render 'comments/reply', comment: comment, level: 1
+
+/ - comment.comments.recent.try(:each) do |reply|
+/   .col-sm-offset-1.col-sm-1
+/     = image_tag("#{reply.author.image}")
+/   .col-sm-10
+/     %blockquote
+/       = reply.content
+/       %footer
+/         %span= reply.author.last_name
+/         - if current_user
+/           %span.reply_btn
+/             %span.reply_text.pull-right= link_to 'Click to reply', '#'
+/             %span= render 'comments/form', obj: reply
+
+/   - reply.comments.recent.try(:each) do |re_reply|
+/     .col-sm-offset-2.col-sm-1
+/       = image_tag("#{re_reply.author.image}")
+/     .col-sm-9
+/       %blockquote
+/         = re_reply.content
+/         %footer
+/           %span= re_reply.author.last_name
+/           - if current_user
+/             %span.reply_btn
+/               %span.reply_text.pull-right= link_to 'Click to re_reply', '#'
+/               %span= render 'comments/form', obj: re_reply

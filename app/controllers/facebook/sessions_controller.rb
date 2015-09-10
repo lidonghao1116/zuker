@@ -23,7 +23,7 @@ class Facebook::SessionsController < ApplicationController
   end
 
   def destroy
-    session[:user_id] = nil
+    log_out
     redirect_to root_path
   end
 
@@ -36,7 +36,7 @@ class Facebook::SessionsController < ApplicationController
         flash[:success] = "Your facebook has been connected before!"
       end
       log_in(user)
-      redirect_to profile_path
+      redirect_to :back
     end
 
 

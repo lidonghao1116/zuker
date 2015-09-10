@@ -20,7 +20,7 @@ class HousesController < ApplicationController
   # GET /houses/1.json
   def show
     @house = House.find(params[:id])
-    @comments = @house.comments.page params[:page]
+    @comments = @house.comments.recent.page params[:page]
     render layout: "panel"
   end
 

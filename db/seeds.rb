@@ -26,12 +26,16 @@ House.all.each do |h|
   h.rooms.create(title: BetterLorem.w(4, true, true))
 end
 
-User.limit(20).each do |u|
-  10.times do
-    u.comments.create(author_id: rand(1..100), content: BetterLorem.p(2, true, true))
-  end
-  u.comments.limit(5).each do |c|
-    c.comments.create(author_id: rand(1..100), content: BetterLorem.p(1, true, true))
-    c.comments.create(author_id: u.id, content: BetterLorem.p(1, true, true))
-  end
-end
+# User.limit(20).each do |u|
+#   10.times do
+#     u.comments.create(author_id: rand(1..100), content: BetterLorem.p(2, true, true))
+#   end
+#   u.comments.limit(5).each do |c|
+#     c.comments.create(author_id: rand(1..100), content: BetterLorem.p(1, true, true))
+#     c.comments.create(author_id: u.id, content: BetterLorem.p(1, true, true))
+#   end
+# end
+
+House.first.comments.create(author_id: rand(1..100), content: BetterLorem.p(2, true, true))
+House.first.comments.first.comments.create(author_id: rand(1..100), content: BetterLorem.p(2, true, true))
+House.first.comments.first.comments.first.comments.create(author_id: rand(1..100), content: BetterLorem.p(2, true, true))
