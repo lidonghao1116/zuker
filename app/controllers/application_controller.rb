@@ -65,6 +65,8 @@ class ApplicationController < ActionController::Base
     end
 
     def user_not_authorized(exception)
+      redirect_to signin_path and return unless current_user
+      
       return true if has_verify_phone?
 
       policy_name = exception.policy.class.to_s.underscore

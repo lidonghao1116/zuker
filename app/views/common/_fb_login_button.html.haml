@@ -1,9 +1,9 @@
 %span
-  = link_to facebook_signin_path, class:'btn btn-facebook btn-lg btn-block' do
+  = link_to facebook_signin_path, class:'btn btn-facebook' do
     %span.icon-container
       = icon('facebook')
     %span.text-container
-      - if action_name == 'show'
+      - if action_name == 'show' && controller_name == 'users'
         連結Facebook
       - else
         FB登入

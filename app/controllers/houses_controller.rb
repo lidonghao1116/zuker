@@ -1,7 +1,7 @@
 class HousesController < ApplicationController
   layout "house_panel", only: [:update]
   
-  before_action :set_house, except: [:index, :new, :create]
+  before_action :set_house, except: [:index, :new, :create, :show]
   before_action :set_user, except: [:show, :index]
 
   include CommentableActions
@@ -19,6 +19,7 @@ class HousesController < ApplicationController
   # GET /houses/1
   # GET /houses/1.json
   def show
+    @house = House.find(params[:id])
     @comments = @house.comments.page params[:page]
     render layout: "panel"
   end

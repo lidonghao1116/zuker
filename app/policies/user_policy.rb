@@ -1,5 +1,10 @@
 class UserPolicy < ApplicationPolicy
 
+  def initialize(user, record)
+    @user = user
+    @record = record
+  end
+
   def new?
     create?
   end
@@ -22,7 +27,7 @@ class UserPolicy < ApplicationPolicy
   private
 
     def correct_user
-      @user == record
+      @user && @user == record
       #@user.admin? || @user == record
     end
 

@@ -17,6 +17,6 @@
     %tbody
       = render 'common/houses', houses: @houses
 
-  .pagination.text-center= link_to_next_page(@houses, 'Next Page', remote: true, params: params, id:'next_page_link', data: {disable_with: "Loading..." })
+  .pagination.text-center= link_to_next_page(@houses, 'Next Page', remote: true, params: params, id:'next_page_link', data: { disable_with: "Loading..." })
 
 = console

@@ -11,5 +11,7 @@
         = reply.content
         %footer
           %span= reply.author.last_name
-
-    = render 'comments/form', obj: comment
+          - if current_user
+            %span.reply_btn
+              %span.reply_text Click to reply
+              %span= render 'comments/form', obj: comment

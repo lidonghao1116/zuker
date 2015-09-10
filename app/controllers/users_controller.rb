@@ -37,7 +37,7 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user = User.find(params[:id])
-    @comments = @user.comments.page params[:page]
+    @comments = @user.comments.order(:updated_at).page params[:page]
   end
 
   def profile
