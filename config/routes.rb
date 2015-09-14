@@ -23,7 +23,7 @@ Rails.application.routes.draw do
 
   scope path: :comments, controller: :comments do
     scope path: ':id' do # == member do
-      post 'new_comment' => :new_comment, as: :new_comment_comment
+      post 'reply' => :reply
     end
   end
 

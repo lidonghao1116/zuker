@@ -22,6 +22,19 @@ module CommentableActions
     redirect_to :back
   end
 
+  def reply
+    @comment = Comment.find(params[:id])
+    @reply = @comment.comments.new(comment_params)
+    authorize @reply
+    @reply.author_id = current_user.id
+    if @reply.save
+      #flash[:success] = t('flash.messages.success')
+    else
+      flash[:danger] = t('flash.messages.failed')
+    end
+    redirect_to :back
+  end
+
   private
 
     def comment_params

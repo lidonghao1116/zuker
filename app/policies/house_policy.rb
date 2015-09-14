@@ -47,7 +47,8 @@ class HousePolicy < ApplicationPolicy
     @user.verified? && record.owner == @user
   end
 
-  def new_comment?
-    @user.verified? && record.owner != @user
-  end
+  # def new_comment?
+  #   true
+  #   # @user.verified? && record.owner != @user
+  # end
 end

@@ -52,11 +52,14 @@
 
 
 #comments-section
+  %h1= "評價"
   = render "comments/comments_section", obj: current_user
 
-  - current_user.my_comments.try(:each) do |comment|
-    - unless comment.commentable.try(:commentable).class.name == 'Comment'
+  - current_user.houses.each do |my_house|    
+    - my_house.comments.try(:each) do |comment|
       = render 'comments/comment', comment: comment
-
-
-= console
+      
+  %h1= "您寫下的評價"
+  - current_user.my_comments.each do |my_comment|
+    - unless my_comment.commentable.class.name == 'Comment'
+      = render 'comments/comment', comment: my_comment

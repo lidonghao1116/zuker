@@ -7,9 +7,9 @@
       %footer
         %span= "From :#{reply.author.last_name}"
         %span= "To :#{reply.commentable.author.last_name}"
-        - if current_user
-          %span.reply_btn{ class:('hidden' if level > 1)}
-            %span.reply_text.pull-right= link_to 'Click to reply', '#'
-            %span= render 'comments/form', obj: reply
+        / - if policy(@comment).reply?
+        /   %span.reply_btn{ class:('hidden' if level > 1)}
+        /     %span.reply_text.pull-right= link_to 'Click to reply', '#'
+        /     %span= render 'comments/reply_form', obj: reply
 
   = render 'comments/reply', comment: reply, level: 2

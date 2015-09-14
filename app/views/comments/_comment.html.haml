@@ -5,12 +5,23 @@
     = comment.content
     %footer
       %span= comment.author.last_name
-      - if current_user
+      %span.pull-right
+        = "#{comment.created_at.strftime('%F %R')}"
+        = link_to "#{comment.commentable.class.name.camelize}#{comment.commentable.id}", comment.commentable
+      - if policy(@new_reply = comment.comments.new).reply? && comment.comments.size <= 1
         %span.reply_btn
           %span.reply_text.pull-right= link_to 'Click to reply', '#'
-          %span= render 'comments/form', obj: comment
+          %span= render 'comments/reply_form', obj: comment
 
-= render 'comments/reply', comment: comment, level: 1
+- comment.comments.recent.try(:each) do |reply|
+  %div{ class: "col-sm-offset-1 col-sm-1"}
+    = image_tag("#{reply.author.image}")
+  %div{ class: "col-sm-10"}
+    %blockquote
+      = reply.content
+      %footer
+        %span= "From :#{reply.author.last_name}"
+        %span= "To :#{reply.commentable.author.last_name}"
 
 / - comment.comments.recent.try(:each) do |reply|
 /   .col-sm-offset-1.col-sm-1

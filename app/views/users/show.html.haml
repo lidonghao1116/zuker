@@ -25,6 +25,7 @@
 
 #comments-section
   = render "comments/comments_section", obj: @user
-
-
-= console
+  
+  - @user.houses.each do |my_house|    
+    - my_house.comments.try(:each) do |comment|
+      = render 'comments/comment', comment: comment

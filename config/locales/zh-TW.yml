@@ -2,7 +2,7 @@ zh-TW:
   pundit:
     default: '很抱歉，您無法進行這個動作。'
     comment_policy:
-      new_comment?: '您無法對自己評論！'
+      new_comment?: '您無法在此評論。'
     room_policy:
       new?: '房屋類型必須為「分租套雅房」'
 
