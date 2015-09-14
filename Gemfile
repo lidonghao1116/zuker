@@ -11,6 +11,7 @@ gem 'sass-rails', '~> 5.0'
 gem 'bootstrap-sass', '~> 3.3.4'
 gem 'bootswatch-rails'
 gem 'font-awesome-sass', '~> 4.3.0'
+gem 'semantic-ui-sass', github: 'doabit/semantic-ui-sass'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
