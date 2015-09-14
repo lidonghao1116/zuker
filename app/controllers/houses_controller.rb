@@ -22,7 +22,6 @@ class HousesController < ApplicationController
     @house = House.find(params[:id])
     @comments = @house.comments.recent#.page params[:page]
     @new_comment = @house.comments.new
-    #@new_reply = @house.comments.first.comments.new if @house.comments.exists?
     render layout: "panel"
   end
 

@@ -39,14 +39,12 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @comments = @user.comments.recent.page params[:page]
     @new_comment = @user.comments.new
-    @new_reply = @user.comments.first.comments.new if @user.comments.exists?
   end
 
   def profile
     current_user.reload
     @comments = current_user.comments.page params[:page]
     @new_comment = current_user.comments.new
-    @new_reply = current_user.comments.first.comments.new if current_user.comments.exists?
   end
 
   # GET /users/1/edit

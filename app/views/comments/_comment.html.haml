@@ -22,29 +22,3 @@
       %footer
         %span= "From :#{reply.author.last_name}"
         %span= "To :#{reply.commentable.author.last_name}"
-
-/ - comment.comments.recent.try(:each) do |reply|
-/   .col-sm-offset-1.col-sm-1
-/     = image_tag("#{reply.author.image}")
-/   .col-sm-10
-/     %blockquote
-/       = reply.content
-/       %footer
-/         %span= reply.author.last_name
-/         - if current_user
-/           %span.reply_btn
-/             %span.reply_text.pull-right= link_to 'Click to reply', '#'
-/             %span= render 'comments/form', obj: reply
-
-/   - reply.comments.recent.try(:each) do |re_reply|
-/     .col-sm-offset-2.col-sm-1
-/       = image_tag("#{re_reply.author.image}")
-/     .col-sm-9
-/       %blockquote
-/         = re_reply.content
-/         %footer
-/           %span= re_reply.author.last_name
-/           - if current_user
-/             %span.reply_btn
-/               %span.reply_text.pull-right= link_to 'Click to re_reply', '#'
-/               %span= render 'comments/form', obj: re_reply
