@@ -3,12 +3,12 @@
   - no_type_col = "hidden" if params[:q][:house_type_eq].present?
   - no_people_col = "hidden" if params[:q][:person_eq].present?
   - no_state_col = "hidden" if params[:q][:aasm_state_eq].present?
-
-%span.no_school_col= sort_link(@q, :school_id, class: "btn btn-primary")
-%span= sort_link(@q, :price)
-%span.no_type_col= sort_link(@q, :house_type)
-%span.no_state_col= sort_link(@q, :aasm_state)
-%span.no_people_col= sort_link(@q, :person)
+.ui.grid
+  .sixteen.wide.column
+    = sort_link(@q, :school_id, {}, class: 'ui button orange no_school_col')
+    = sort_link(@q, :price, {}, class: 'ui button orange')
+    = sort_link(@q, :house_type, {}, class: 'ui button orange no_type_col')
+    = sort_link(@q, :aasm_state, {}, class: 'ui button orange no_state_col')
 .house_table
   = render 'common/houses', houses: @houses
 

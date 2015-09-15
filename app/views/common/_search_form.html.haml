@@ -9,8 +9,8 @@
     = f.collection_select :house_type_eq, House.option_categories('house_type'), :last, :first, { selected: b || 2 }, { class: 'form-control' }
     = f.collection_select :aasm_state_eq, I18n.t('aasm_state_categories'), :first, :last, { selected: a || 'available' }, { class: 'form-control' }
 
-    = f.sort_fields do |s|
-      = s.sort_select
+    / = f.sort_fields do |s|
+    /   = s.sort_select
 
     = f.button class: 'btn btn-primary btn-lg' do
       = glyph('search')
