@@ -33,6 +33,8 @@ zh-TW:
   pages:
     signin:
       title: 很高興見到您
+    search:
+      title: 選一個舒服的家
   users:
     new:
       title: 自我介紹

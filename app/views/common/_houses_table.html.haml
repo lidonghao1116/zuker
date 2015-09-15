@@ -3,20 +3,13 @@
   - no_type_col = "hidden" if params[:q][:house_type_eq].present?
   - no_people_col = "hidden" if params[:q][:person_eq].present?
   - no_state_col = "hidden" if params[:q][:aasm_state_eq].present?
-.infinite-table
-  %table.table
-    %thead
-      %tr
-        %th{ class: no_school_col }= sort_link(@q, :school_id)
-        %th= sort_link(@q, :title)
-        %th= sort_link(@q, :price)
-        %th{ class: no_type_col }= sort_link(@q, :house_type)
-        %th{ class: no_state_col }= sort_link(@q, :aasm_state)
-        %th{ class: no_people_col }= sort_link(@q, :person)
 
-    %tbody
-      = render 'common/houses', houses: @houses
+%span.no_school_col= sort_link(@q, :school_id, class: "btn btn-primary")
+%span= sort_link(@q, :price)
+%span.no_type_col= sort_link(@q, :house_type)
+%span.no_state_col= sort_link(@q, :aasm_state)
+%span.no_people_col= sort_link(@q, :person)
+.house_table
+  = render 'common/houses', houses: @houses
 
-  .pagination.text-center= link_to_next_page(@houses, 'Next Page', remote: true, params: params, id:'next_page_link', data: { disable_with: "Loading..." })
-
-= console
+.pagination.text-center= link_to_next_page(@houses, 'Next Page', remote: true, params: params, id:'next_page_link', data: { disable_with: "Loading..." })

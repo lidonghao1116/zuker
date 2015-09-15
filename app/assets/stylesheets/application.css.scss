@@ -16,7 +16,7 @@
   @import "bootswatch/lumen/variables";
   @import "bootstrap";
   @import "bootswatch/lumen/bootswatch";
-  @import "semantic-ui/views/card";
+  @import "semantic-ui";
   @import 'bootstrap-datetimepicker';
   @import "font-awesome-sprockets";
   @import "font-awesome";
@@ -56,11 +56,14 @@ h1, h2, h3, h4, h5 {
 }
 
 h1.panel-title {
-  font-size: 36px;
+  font-size: 46px;
+  font-family: "ubuntu","Source Sans Pro","华文细黑","STHeiti","微软雅黑","Microsoft YaHei",SimHei,"Helvetica Neue",Helvetica,Arial,sans-serif !important;
+  font-weight: 300 !important;
 }
 
 .panel-heading {
   padding: 60px 15px;
+  //background-color: #FCF7E3;
 }
 
 div.vertically-center {

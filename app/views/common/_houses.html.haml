@@ -1,27 +1,31 @@
-- houses.each do |house|
-  / %tr
-  /   %td= render_option_category(house.school_id, 'school', 'SchoolData')
-  /   %td= link_to house.title, house
-  /   %td= number_to_currency(house.price, precision: 0)
-  /   %td= render_house_category(house.house_type, 'house_type')
-  /   %td= render_house_category(house.aasm_state, 'aasm_state')
-  /   %td= house.person
-  .ui.card
-    .content
-      .right.floated.meta= house.updated_at.strftime('%F')
-      = image_tag 'image.png', class:"ui avatar image"
-    .image
-      - if house.attachments.exists?
-        = image_tag house.attachments.first.image_url(:thumb)
-      - else
-        = image_tag('image.png')
-    .content
-      %span.right.floated
-        %i.heart.outline.like.icon
-        = "#{rand(0..20)} likes"
-      %i.comment.icon
-      = link_to "#{house.comments.size} comments", house
-    .extra.content
-      .ui.large.transparent.left.icon.input
-        %i.heart.outline.icon
-        %input{ type:"text", placeholder:"Add Comment..." }
+.ui.three.cards
+  - houses.each do |house|
+    / %tr
+    /   %td= render_option_category(house.school_id, 'school', 'SchoolData')
+    /   %td= link_to house.title, house
+    /   %td= number_to_currency(house.price, precision: 0)
+    /   %td= render_house_category(house.house_type, 'house_type')
+    /   %td= render_house_category(house.aasm_state, 'aasm_state')
+    /   %td= house.person
+    .ui.card
+      .content
+        = image_tag 'image.png', class: "ui avatar image"
+        = house.owner.last_name
+      = link_to house, class: "image ui move reveal" do
+        - if house.attachments.exists?
+          - house.attachments.each_with_index do |picture, index|
+            = image_tag picture.image_url(:thumb), class: "#{index == 2 ? 'visible' : 'hidden'} content"
+        - else
+          = image_tag('image.png')
+      .content
+        %span.right.floated
+          %i.heart.outline.like.icon
+          = "#{rand(0..20)} likes"
+        .header= number_to_currency(house.price, precision: 0)
+        .meta
+          = house.city
+          = house.district
+        .description
+          %span= render_space(house)
+      .extra.content
+        = house.title

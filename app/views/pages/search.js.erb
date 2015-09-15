@@ -1,6 +1,6 @@
 // Append new data
 $("<%=j render('common/houses', houses: @houses) %>")
-  .appendTo($(".infinite-table table"));
+  .appendTo($(".house_table"));
 
 // Update pagination link
 <% if @houses.last_page? %>

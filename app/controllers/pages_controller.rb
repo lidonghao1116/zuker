@@ -17,9 +17,10 @@ class PagesController < ApplicationController
 
   def search
     @q = House.ransack(params[:q])
+    @q.build_sort if @q.sorts.empty?
     @houses = @q.result.page(params[:page])#.to_a.uniq
     flash.now[:info] = 'Nothing found.' if @houses.size.zero?
-    render layout: 'application'
+    #render layout: 'application'
   end
 
   private
