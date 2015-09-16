@@ -41,7 +41,7 @@ module Facebookable
       if auth['info']
         user.first_name = auth['info']['first_name']
         user.last_name = auth['info']['last_name']
-        user.email = auth #['info']['email']
+        user.email = auth['info']['email']
         user.image = auth['info']['image']
         user.fb_url = auth['info']['urls']['Facebook']
         user.location = auth['info']['location']

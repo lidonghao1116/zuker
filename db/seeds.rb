@@ -13,6 +13,10 @@ end
 
 User.create(first_name: "peter", last_name: "thiel", phone_number: "0920085183", password: "123456", sign_with_zuker: true).generate_pin
 
+5.times do
+  User.last.comments.create(content: "Hi Peter, this is rails seed#{rand(1..100)}.", author_id: rand(1..100))
+end
+
 for i in 1..100 do
   10.times do
     User.find(i).houses.create(house_type: rand(1..2), foreigner: rand(1..2), school_id: rand(1..SchoolData.school_categories.size), title: BetterLorem.w(4, true, true), description: BetterLorem.p(2, true, true), city: '台北市', district: '中正區', zipcode: '100', address: BetterLorem.w(5, true, true), price: rand(1000..9999), person: rand(1..8) )
