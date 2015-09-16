@@ -1,65 +1,57 @@
-= image_tag("#{current_user.image}")
+.col-lg-3.col-sm-4.text-center#profile-left
+  = image_tag("10477565_10152578368088707_3728282605610964447_o.jpg", class: 'ui small circular image', id: 'avatar')
 
-= render "personal_btns"
+  .ui.massive.star.rating.margin-bottom.margin-top{ data: { rating: "3" } }
 
-%p
-  %b ID
-  = current_user.id
-%p
-  %b= t User.human_attribute_name(:provider)
-  = current_user.provider
-%p
-  %b= t User.human_attribute_name(:uid)
-  = current_user.uid
-%p
-  %b= User.human_attribute_name(:full_name)
-  = current_user.full_name
-%p
-  %b= t User.human_attribute_name(:phone_number)
-  = current_user.phone_number
-%p
-  %b= t User.human_attribute_name(:email)
-  = current_user.email
-%p
-  %b= t User.human_attribute_name(:facebook_page)
-  = link_to current_user.fb_url
-%p
-  %b= t User.human_attribute_name(:location)
-  = current_user.location
-%p
-  %b= t User.human_attribute_name(:school)
-  = current_user.school_name
-  /= render_school_category(current_user.school_id)
-%p
-  %b= t User.human_attribute_name(:start_school_year)
-  = current_user.start_school_year
+  = render 'common/fb_login_button' unless current_user.provider == 'facebook'
+  - unless current_user.sign_with_zuker
+    %span.btn.btn-info#connect-fb
+      Connect with Zuker
+    /= link_to 'Connect with Zuker', edit_user_path(current_user), id:'connect-fb' unless current_user.sign_with_zuker
+    #login_form.hide
+      = render 'login_form', id: current_user.id
 
-%p
-  %b= t User.human_attribute_name(:pin)
-  = current_user.pin.content if current_user.pin
-%p
-  %b= t User.human_attribute_name(:verified)
-  - if current_user.verified
-    您已完成手機驗證
-  - else
-    您尚未完成手機驗證
-    = link_to phone_verify_user_path(current_user) do
-      = t ".verify"
-    = link_to resend_pin_user_path(current_user) do
-      = t ".resend_pin"
+  .ui.card.green
+    .content
+      .header= t '.personal_info'
+    .content
+      .col-lg-3.col-sm-3.ui
+        - if current_user.verified?
+          %i.check.circle.icon.big.green
+        - else current_user.verified?
+          = link_to phone_verify_user_path(current_user) do
+            %i.warning.circle.icon.big.orange{ data: { content: I18n.t("users.profile.verify") } }
+      .col-lg-9.col-sm-9.text-left
+        %strong= t User.human_attribute_name(:phone_number)
+        %p= current_user.phone_number
+        %p= current_user.pin.content
+        %strong= t User.human_attribute_name(:school)
+        %p= current_user.school_name
+        %strong= t User.human_attribute_name(:start_school_year)
+        %p= current_user.start_school_year
+        %strong= t User.human_attribute_name(:email)
+        %p= current_user.email
 
-= render 'common/fb_login_button' unless current_user.provider == 'facebook'
+  = render "personal_btns"
 
 
-#comments-section
-  %h1= "評價"
-  = render "comments/comments_section", obj: current_user
 
-  - current_user.houses.each do |my_house|    
-    - my_house.comments.try(:each) do |comment|
-      = render 'comments/comment', comment: comment
-      
-  %h1= "您寫下的評價"
-  - current_user.my_comments.each do |my_comment|
-    - unless my_comment.commentable.class.name == 'Comment'
-      = render 'comments/comment', comment: my_comment
+.col-lg-9.col-sm-8
+  %h1.panel-title= t '.title', name: current_user.first_name.camelize
+  
+  %h1= link_to I18n.t('users.my_houses'), houses_path
+  .house_table.margin-bottom
+    = render 'common/houses', houses: @my_houses
+
+  #comments-section
+    %h1= "評價"
+    = render "comments/comments_section", obj: current_user
+
+    - current_user.houses.each do |my_house|    
+      - my_house.comments.try(:each) do |comment|
+        = render 'comments/comment', comment: comment
+        
+    %h1= "您寫下的評價"
+    - current_user.my_comments.each do |my_comment|
+      - unless my_comment.commentable.class.name == 'Comment'
+        = render 'comments/comment', comment: my_comment

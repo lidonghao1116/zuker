@@ -44,6 +44,7 @@ class UsersController < ApplicationController
   def profile
     current_user.reload
     @comments = current_user.comments.page params[:page]
+    @my_houses = current_user.houses
     @new_comment = current_user.comments.new
   end
 

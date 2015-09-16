@@ -6,14 +6,18 @@
       = render "common/search_form"
 .container
   .row
-    - @schools.each do |school|
+    - @schools.each_with_index do |school, i|
       /- bg = image_url("#{ render_school_category(school.id) }.jpg")
-      .col-lg-4.col-sm-6.school-grid
-        = link_to school do
-          .school-card{ style: "background-image: url(#{ bg });" }
-            %div.vertically-center
-              %div
-                %h2.white-text= render_school_category(school.id)
+      - if i == 0
+        .col-lg-12.col-sm-12.school-grid
+          = render 'school_card', school: school
+      - else
+        .col-lg-4.col-sm-6.school-grid
+          = link_to school do
+            .school-card{ style: "background-image: url(#{ bg });" }
+              %div.vertically-center
+                %div
+                  %h2.white-text= render_school_category(school.id)
 
     = render 'next_card'
 

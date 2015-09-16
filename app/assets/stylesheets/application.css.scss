@@ -53,12 +53,19 @@ h1, h2, h3, h4, h5 {
   &.inline {
     display: inline;
   }
+  &.large {
+    font-size: 46px;
+  }
+  &.bold {
+    font-weight: bold;
+  }
+  font-weight: normal;
 }
 
 h1.panel-title {
   font-size: 46px;
   font-family: "ubuntu","Source Sans Pro","华文细黑","STHeiti","微软雅黑","Microsoft YaHei",SimHei,"Helvetica Neue",Helvetica,Arial,sans-serif !important;
-  font-weight: 300 !important;
+  font-weight: normal !important;
 }
 
 .panel-heading {
@@ -82,4 +89,16 @@ div.vertically-center {
 
 .reply_text {
   margin-right: 10px;
+}
+
+a i {
+  //color: rgb(90, 90, 90);
+}
+
+.margin-bottom {
+  margin-bottom: 0.67em;
+}
+
+.margin-top {
+  margin-top: 0.67em;
 }

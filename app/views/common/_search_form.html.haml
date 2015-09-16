@@ -1,21 +1,10 @@
 - a = params[:q][:aasm_state_eq] if params[:q] && params[:q][:aasm_state_eq]
 - b = params[:q][:house_type_eq] if params[:q] && params[:q][:house_type_eq]
-= search_form_for @q, url: search_path, class: "form-inline" do |f|
+= search_form_for @q, url: search_path, class: "form-inline ui form" do |f|
   %div.form-group
-    = f.collection_select :school_id_eq, School.categories, :last, :first, { prompt: '學校' }, { class: 'form-control' }
-    = f.select :person_eq, House.option_categories('person'), { prompt: '人數' }, { class: 'form-control' }
-
-    
+    = f.collection_select :school_id_eq, School.categories, :last, :first, { prompt: '學校' }, { class: 'form-control ui search dropdown' }
+    = f.select :person_eq, House.option_categories('person'), { prompt: '人數' }, { class: 'form-control' }    
     = f.collection_select :house_type_eq, House.option_categories('house_type'), :last, :first, { selected: b || 2 }, { class: 'form-control' }
     = f.collection_select :aasm_state_eq, I18n.t('aasm_state_categories'), :first, :last, { selected: a || 'available' }, { class: 'form-control' }
-
-    / = f.sort_fields do |s|
-    /   = s.sort_select
-
     = f.button class: 'btn btn-primary btn-lg' do
       = glyph('search')
-    / = sort_link(@q, :school_id, class: "btn btn-primary")
-    / = sort_link(@q, :price)
-    / = sort_link(@q, :house_type)
-    / = sort_link(@q, :aasm_state)
-    / = sort_link(@q, :person)

@@ -1,0 +1,7 @@
+= link_to school do
+  - bg = image_url("noletter-01.png")
+  /- bg = image_url("#{ render_school_category(school.id) }.jpg")
+  .school-card{ style: "background-image: url(#{ bg });" }
+    %div.vertically-center
+      %div
+        %h2.white-text= render_school_category(school.id)

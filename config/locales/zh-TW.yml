@@ -36,17 +36,20 @@ zh-TW:
     search:
       title: 選一個舒服的家
   users:
+    my_houses: 我的房屋
     new:
       title: 自我介紹
     edit:
       title: 編輯個人資料
     profile:
+      title: "您好，我是%{name}！"
+      personal_info: 個人資料
       verify: 立刻驗證
-      resend_pin: 重發驗證碼
     personal_btns:
       delete: 刪除帳號
       edit: 編輯個人資料
-      my_houses: 我的房屋
+    phone_verify:      
+      resend_pin: 重發驗證碼
   houses:
     index:
       title: 我的房屋

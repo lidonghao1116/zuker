@@ -4,6 +4,8 @@
     
     = f.input :pin, autofocus: true
     = submit_tag "Verify PIN", class: "btn btn-primary"
+    = link_to resend_pin_user_path(current_user) do
+      = t ".resend_pin"
   /= current_user.pin.id
   /\|
   /= current_user.pin.content

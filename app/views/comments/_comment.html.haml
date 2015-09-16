@@ -1,6 +1,7 @@
-.col-sm-1
-  = image_tag("#{comment.author.image}")
-.col-sm-11
+.col-lg-2.col-sm-3.text-center
+  /= image_tag("#{comment.author.image}")
+  = image_tag("10477565_10152578368088707_3728282605610964447_o.jpg", class: 'ui tiny circular image')
+.col-lg-10.col-sm-9
   %blockquote
     = comment.content
     %footer

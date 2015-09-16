@@ -19,7 +19,8 @@
           = image_tag('image.png')
       .content
         %span.right.floated
-          %i.heart.outline.like.icon
+          = link_to root_path do
+            %i.floated.like.icon
           = "#{rand(0..20)} likes"
         .header= number_to_currency(house.price, precision: 0)
         .meta

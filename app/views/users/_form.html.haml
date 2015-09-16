@@ -1,22 +1,23 @@
 .col-sm-offset-3.col-sm-6{ id: ('user-form-edit' if controller_name == 'users' && action_name == 'edit') }
-  = simple_form_for @user, wrapper: :clean_vertical_form do |f|
-    = f.error_notification
+  = simple_form_for @user, html: { class: 'ui form'}, wrapper: :clean_vertical_form do |f|
+    /= f.error_notification
+    .ui.error.message
     .well
       %h4 大家好，我的名字是
-      .row
-        = f.input :last_name, required: true, wrapper_html: { class: 'col-sm-6' }
-        = f.input :first_name, required: true, wrapper_html: { class: 'col-sm-6' }
+      .row.fields
+        .col-sm-6= f.input :last_name, required: true, wrapper_html: { class: 'field' }
+        .col-sm-6= f.input :first_name, required: true, wrapper_html: { class: 'field' }
       %h4 我目前就讀
-      = f.association :school, collection: School.categories, prompt: true
+      = f.select(:school, School.categories, {}, { class: 'ui search dropdown' })
       %h4 這是我的手機號碼
-      = f.input :phone_number, required: true
+      = f.input :phone_number, required: true, wrapper_html: { class: 'field' }
       - if action_name == 'create' || action_name == 'new'
-        = f.input :password, required: true
-        = f.input :password_confirmation, required: true
+        = f.input :password, required: true, wrapper_html: { class: 'field' }
+        = f.input :password_confirmation, required: true, wrapper_html: { class: 'field' }
 
     %h4 填寫以下資料，讓我們提供您更棒的服務
     .well
-      = f.input :email
+      = f.input :email, wrapper_html: { class: 'field' }
       /= f.label :school
       /= f.association :school, collection: School.categories, prompt: true
       = f.label :start_school_year
