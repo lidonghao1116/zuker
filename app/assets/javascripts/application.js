@@ -86,16 +86,7 @@ $(function() {
             prompt : 'Should match password'
           }
         ]
-      },
-      email: {
-        identifier: 'user[email]',
-        rules: [
-          {
-            type   : 'email',
-            prompt : 'Please enter a valid e-mail'
-          }
-        ]
-      },
+      }
     }
   })
 });

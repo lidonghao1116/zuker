@@ -15,13 +15,9 @@
         = f.input :password, required: true, wrapper_html: { class: 'field' }
         = f.input :password_confirmation, required: true, wrapper_html: { class: 'field' }
 
-    %h4 填寫以下資料，讓我們提供您更棒的服務
+    %h4 填寫電子郵件，讓我們提供您更棒的服務
     .well
       = f.input :email, wrapper_html: { class: 'field' }
-      /= f.label :school
-      /= f.association :school, collection: School.categories, prompt: true
-      = f.label :start_school_year
-      = f.input :start_school_year, as: :date, start_year: Date.today.year, end_year: Date.today.year - 15, discard_day: true, discard_month: true, prompt: :translate
       = f.input :sign_with_zuker, :as => :hidden, :input_html => { :value => true }
     
     = f.button :submit, class:'btn btn-primary'

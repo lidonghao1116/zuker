@@ -22,7 +22,8 @@ class User < ActiveRecord::Base
     z.validates :first_name, presence: true
     z.validates :last_name, presence: true
     z.validates :phone_number, presence: true, format: { with: /\A[0][9][0-9]{2}[0-9]{6}\z/ }, uniqueness: true
-    #validates :email, uniqueness: true, :allow_blank => true
+    validates :email, uniqueness: true, :allow_blank => true, format: { with: /.+@.+\..+/i }
+    # ex: fasff@4f6w4f6.aa
   end
 
   def full_name
