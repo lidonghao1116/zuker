@@ -3,8 +3,15 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $ ->
-  $('#user-form-edit #user_phone_number').change ->    
-    $('div.user_phone_number p.help-block').html("<strong style='color: red;'>You will get a SMS messege later.</strong>");
+
+  help_block = $('div.user_phone_number p.help-block')
+  original_help_text = help_block.html()
+  warning_text = "<strong style='color: red;'>You will get a SMS messege later.</strong>"
+  $('#user-form-edit #user_phone_number').change ->
+    if $(this).val() isnt $(this).attr('value')
+      help_block.html(warning_text)
+    else
+      help_block.html(original_help_text)
 
   $('#connect-fb').click ->
     $('#login_form').removeClass('hide');

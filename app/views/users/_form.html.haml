@@ -1,24 +1,23 @@
-.col-sm-offset-3.col-sm-6{ id: ('user-form-edit' if controller_name == 'users' && action_name == 'edit') }
-  = simple_form_for @user, html: { class: 'ui form'}, wrapper: :clean_vertical_form do |f|
+.col-sm-offset-3.col-sm-6{ id: ('user-form-edit' if current_page?(action: 'edit') if params[:id]) }
+  = simple_form_for @user, html: { class: 'ui form'}, wrapper: :semantic_form do |f|
     /= f.error_notification
     .ui.error.message
-    .well
-      %h4 大家好，我的名字是
-      .row.fields
-        .col-sm-6= f.input :last_name, required: true, wrapper_html: { class: 'field' }
-        .col-sm-6= f.input :first_name, required: true, wrapper_html: { class: 'field' }
-      %h4 我目前就讀
-      = f.select(:school, School.categories, {}, { class: 'ui search dropdown' })
-      %h4 這是我的手機號碼
-      = f.input :phone_number, required: true, wrapper_html: { class: 'field' }
-      - if action_name == 'create' || action_name == 'new'
-        = f.input :password, required: true, wrapper_html: { class: 'field' }
-        = f.input :password_confirmation, required: true, wrapper_html: { class: 'field' }
+    .well        
+      .field
+        %label 大家好，我的名字是
+        .two.fields
+          = f.input :last_name, required: true, label: false
+          = f.input :first_name, required: true, label: false
+      
+      = f.input :school, as: :select, collection: School.categories, input_html: { class: 'ui search dropdown' }, label: '我目前就讀'      
+      = f.input :phone_number, label: '這是我的手機號碼'
+      
+      = f.input :password unless current_page?(action: 'edit') if params[:id]
+      = f.input :password_confirmation unless current_page?(action: 'edit') if params[:id]
 
-    %h4 填寫電子郵件，讓我們提供您更棒的服務
     .well
-      = f.input :email, wrapper_html: { class: 'field' }
+      = f.input :email, label: '填寫電子郵件，讓我們提供您更棒的服務'
       = f.input :sign_with_zuker, :as => :hidden, :input_html => { :value => true }
     
     = f.button :submit, class:'btn btn-primary'
-    = link_to 'Back', profile_path, class:'btn btn-default' if action_name == 'edit' || action_name == 'update'
+    = link_to 'Back', profile_path, class:'btn btn-default' if (current_page?(action: 'edit') || current_page?(action: 'update')) if params[:id]

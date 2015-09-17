@@ -10,6 +10,12 @@
     #fb-root
     = render 'common/nav'
     / no search bar here
-    = notice_message
-    = yield
+    .panel.panel-primary
+      .panel-heading
+        %h1.panel-title.text-center
+          = yield(:title)
+      .panel-body
+        .container
+          = notice_message
+          = yield
     /= debug(params) if Rails.env.development?

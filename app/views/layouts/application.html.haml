@@ -6,9 +6,10 @@
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
-  %body.large_padding_top
+  %body{ class: (action_name == 'home' || action_name == 'show' ? 'medium_padding_top' : 'large_padding_top') }
     #fb-root
     = render 'common/nav'
+    = yield(:outside)
     .container
       = notice_message
       = yield

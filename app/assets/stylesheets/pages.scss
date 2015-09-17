@@ -39,3 +39,16 @@
 #avatar {  
   height: 150px;
 }
+
+#inline_search_fields {
+  .field {
+    padding: 0px;
+    select {
+      border-radius: 0;
+    }
+    .ui.selection.dropdown {
+      min-width: 1em;
+      border-radius: 0;
+    }
+  }
+}

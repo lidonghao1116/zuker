@@ -1,4 +1,5 @@
-= render 'houses/partials/multi_rooms_carousel'
+- content_for :outside do
+  = render 'houses/partials/multi_rooms_carousel'
 / .container-fluid
 /   #images.row
 /     .col-sm-7
@@ -6,29 +7,29 @@
 /     .col-sm-5
 /       - @house.attachments.each_with_index do |a, i|  
 /         = image_tag @house.attachments[i].image_url(:thumb), id: "image#{a.id}"
-.container
-  .row
-    .col-sm-7
-      %h1= @house.title
-      %address= "#{@house.address}, #{@house.city}, #{@house.district}"
 
-    .col-sm-5
-      %h2= "#{ number_to_currency(@house.price, precision: 0) } / month"
-      - if @house.not_available?
-        = warning("This house is not available now.")
-      - else
-        = link_to 'Book Now', root_path, class: "btn btn-danger btn-lg"
-      /= @house.aasm_state
-      /%p= "Last updated at: #{ @house.updated_at.strftime('%Y-%m-%d') }"
+.row
+  .col-sm-7
+    %h1= @house.title
+    %address= "#{@house.address}, #{@house.city}, #{@house.district}"
 
-  = link_to @house.owner.last_name, user_path(@house.owner)
-  
-  - ["amenity", "furniture", "extra_fee", "public_facility", "safety"].each do |x|
-    = render 'houses/partials/checked_options', x: x
+  .col-sm-5
+    %h2= "#{ number_to_currency(@house.price, precision: 0) } / month"
+    - if @house.not_available?
+      = warning("This house is not available now.")
+    - else
+      = link_to 'Book Now', root_path, class: "btn btn-danger btn-lg"
+    /= @house.aasm_state
+    /%p= "Last updated at: #{ @house.updated_at.strftime('%Y-%m-%d') }"
 
-  .well{ class: ('hidden' if @house.description.blank?) }
-    %h4 Description
-    %p= sanitize @house.description
-  
-  #comments-section
-    = render "comments/comments_section", obj: @house
+= link_to @house.owner.last_name, user_path(@house.owner)
+
+- ["amenity", "furniture", "extra_fee", "public_facility", "safety"].each do |x|
+  = render 'houses/partials/checked_options', x: x
+
+.well{ class: ('hidden' if @house.description.blank?) }
+  %h4 Description
+  %p= sanitize @house.description
+
+#comments-section
+  = render "comments/comments_section", obj: @house

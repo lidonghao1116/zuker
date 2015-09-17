@@ -1,9 +1,11 @@
 - bg = image_url("noletter-01.png")
-#home-jumbotron.jumbotron{ style: "background-image: url(#{ bg });" }
-  .container.vertically-center
-    %div
-      %h2 Which school do you go to?
-      = render "common/search_form"
+
+- content_for :outside do
+  #home-jumbotron.jumbotron{ style: "background-image: url(#{ bg });" }
+    .container.vertically-center
+      %div
+        %h2 Which school do you go to?
+        = render "common/search_form"
 .container
   .row
     - @schools.each_with_index do |school, i|

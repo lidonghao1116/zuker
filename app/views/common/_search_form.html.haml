@@ -1,10 +1,15 @@
 - a = params[:q][:aasm_state_eq] if params[:q] && params[:q][:aasm_state_eq]
 - b = params[:q][:house_type_eq] if params[:q] && params[:q][:house_type_eq]
-= search_form_for @q, url: search_path, class: "form-inline ui form" do |f|
-  %div.form-group
-    = f.collection_select :school_id_eq, School.categories, :last, :first, { prompt: '學校' }, { class: 'form-control ui search dropdown' }
-    = f.select :person_eq, House.option_categories('person'), { prompt: '人數' }, { class: 'form-control' }    
-    = f.collection_select :house_type_eq, House.option_categories('house_type'), :last, :first, { selected: b || 2 }, { class: 'form-control' }
-    = f.collection_select :aasm_state_eq, I18n.t('aasm_state_categories'), :first, :last, { selected: a || 'available' }, { class: 'form-control' }
-    = f.button class: 'btn btn-primary btn-lg' do
-      = glyph('search')
+= search_form_for @q, url: search_path, class: "ui form" do |f|
+  .four.fields#inline_search_fields
+    .field= f.collection_select :school_id_eq, School.categories, :last, :first, { prompt: '學校', class: 'ui search dropdown' }, { class: 'ui search dropdown' }
+    .field= f.collection_select :house_type_eq, House.option_categories('house_type'), :last, :first, { selected: b || 2 }
+    .field= f.select :person_eq, House.option_categories('person'), { prompt: '人數' }, { class: 'ui search dropdown' }
+    .field.ui.input
+      = f.collection_select :aasm_state_eq, I18n.t('aasm_state_categories'), :first, :last, { selected: a || 'available' }
+      = f.button class: 'ui icon button' do
+        %i.search.icon
+  .advanced_search_link.pull-right= link_to 'Advanced Search', '#'
+
+  .fields.advanced_search_fields
+    .ten.wide.field= f.search_field :title_cont, type: 'text', placeholder: 'House title'

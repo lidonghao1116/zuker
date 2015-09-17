@@ -21,7 +21,7 @@ module SmsConfirmableActions
       flash[:success] = "Success!"
       redirect_to profile_path
     else
-      flash[:warning] = "Sorry, that wasn't the right pin."
+      flash[:warning] = "Sorry, it is wrong."
       redirect_to phone_verify_user_path(current_user)
     end
   end

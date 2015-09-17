@@ -22,7 +22,7 @@ class HousesController < ApplicationController
     @house = House.find(params[:id])
     @comments = @house.comments.recent#.page params[:page]
     @new_comment = @house.comments.new
-    render layout: "panel"
+    #render layout: "house_panel"
   end
 
   # GET /houses/new
