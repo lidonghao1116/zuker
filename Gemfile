@@ -42,7 +42,6 @@ gem 'omniauth-facebook'
 gem 'momentjs-rails', '~> 2.9',  :github => 'derekprior/momentjs-rails'
 gem 'datetimepicker-rails', github: 'zpaulovics/datetimepicker-rails', branch: 'master', submodules: true
 
-#gem 'puma'
 gem 'twilio-ruby', '~> 4.0'
 
 #gem "paperclip", "~> 4.3"
@@ -87,5 +86,6 @@ end
 group :production do
   #gem 'pg'
   gem 'rails_12factor'
+  gem 'puma'
 end
 
