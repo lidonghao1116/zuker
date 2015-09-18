@@ -35,4 +35,7 @@ module ApplicationHelper
       content_tag :p, text
     end   
   end
+  def horizontal_divider(text)
+    content_tag(:div, text, class: "ui horizontal divider")
+  end
 end

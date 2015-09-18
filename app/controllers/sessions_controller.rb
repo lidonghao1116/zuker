@@ -4,8 +4,11 @@ class SessionsController < ApplicationController
   def create
     if @user = password_is_right
       session[:user_id] = @user.id
-      flash[:success] = "Welcome back. #{@user.first_name}"
-      redirect_to :back
+      #flash[:success] = "Welcome back. #{@user.first_name}"
+      #redirect_to :back
+      respond_to do |format|
+        format.js
+      end
     else
       flash[:danger] = "Wrong phone number or password."
       redirect_to signin_path

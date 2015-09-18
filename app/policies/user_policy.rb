@@ -27,7 +27,7 @@ class UserPolicy < ApplicationPolicy
   private
 
     def correct_user
-      @user && @user == record
+      @user && @user == @record
       #@user.admin? || @user == record
     end
 

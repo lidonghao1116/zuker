@@ -17,7 +17,7 @@
     .content
       .col-lg-3.col-sm-3.ui
         - if current_user.verified?
-          %i.check.circle.icon.big.green
+          = semantic_icon('check', 'circle', 'big', 'green')
         - else current_user.verified?
           = link_to phone_verify_user_path(current_user) do
             %i.warning.circle.icon.big.orange{ data: { content: I18n.t("users.profile.verify") } }

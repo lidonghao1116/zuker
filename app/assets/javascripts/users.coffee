@@ -6,7 +6,7 @@ $ ->
 
   help_block = $('div.user_phone_number p.help-block')
   original_help_text = help_block.html()
-  warning_text = "<strong style='color: red;'>You will get a SMS messege later.</strong>"
+  warning_text = "<strong style='color: red;'>You will get a SMS message later.</strong>"
   $('#user-form-edit #user_phone_number').change ->
     if $(this).val() isnt $(this).attr('value')
       help_block.html(warning_text)

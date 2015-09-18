@@ -20,7 +20,7 @@
       .content
         %span.right.floated
           = link_to root_path do
-            %i.floated.like.icon
+            = semantic_icon('floated', 'like')
           = "#{rand(0..20)} likes"
         .header= number_to_currency(house.price, precision: 0)
         .meta

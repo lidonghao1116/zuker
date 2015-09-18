@@ -1,6 +1,16 @@
-class HousePolicy < ApplicationPolicy
+class HousePolicy# < ApplicationPolicy
+
+  def initialize(user, record)
+    @user = user
+    @record = record
+  end
+
   def index?
-    @user.verified?
+    @user && @user.verified?
+  end
+
+  def show?
+    true
   end
 
   def new?
@@ -8,7 +18,7 @@ class HousePolicy < ApplicationPolicy
   end
 
   def create?
-    @user.verified? && record.owner == @user
+    @user && @user.verified? && @record.owner == @user
   end
 
   def edit?
@@ -44,7 +54,7 @@ class HousePolicy < ApplicationPolicy
   end
 
   def update?
-    @user.verified? && record.owner == @user
+    @user && @user.verified? && @record.owner == @user
   end
 
   # def new_comment?

@@ -8,7 +8,11 @@ class PagesController < ApplicationController
   end
 
   def signin
-    render layout: 'panel'
+    #render layout: 'panel'
+    respond_to do |format|
+      format.js
+      format.html
+    end
   end
 
   def search

@@ -8,7 +8,7 @@
     .field.ui.input
       = f.collection_select :aasm_state_eq, I18n.t('aasm_state_categories'), :first, :last, { selected: a || 'available' }
       = f.button class: 'ui icon button' do
-        %i.search.icon
+        = semantic_icon('search')
   .advanced_search_link.pull-right= link_to 'Advanced Search', '#'
 
   .fields.advanced_search_fields

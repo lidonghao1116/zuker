@@ -1,13 +1,8 @@
-- if policy(@new_comment).new_comment?
-  - if current_user
+- if current_user
+  - if policy(@new_comment).new_comment?
     = render 'comments/form', obj: obj
-  - else
-    %p
-      Want to comment?
-      = render 'common/fb_login_button', text: 'FB登入'
-      or
-      = link_to 'Sign in', signin_path, class:'btn btn-success'
-      Now!
+- else
+  %p.sign_in_link Want to comment?
 
 - @comments.try(:each) do |comment|
   = render 'comments/comment', comment: comment
