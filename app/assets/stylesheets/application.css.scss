@@ -12,6 +12,8 @@
  *
  *= require_self
  */
+
+  // 順序後面的會優先套用
   @import "bootstrap-sprockets";
   @import "bootswatch/lumen/variables";
   @import "bootstrap";
@@ -28,82 +30,4 @@
   @import "users";
   @import "pages";
   @import "nav";
-  
-body {  
-  padding-bottom: 20px;
-  font-family: "ubuntu","Source Sans Pro","华文细黑","STHeiti","微软雅黑","Microsoft YaHei",SimHei,"Helvetica Neue",Helvetica,Arial,sans-serif !important;
-  &.large_padding_top {
-    padding-top: 70px;
-  }
-  &.medium_padding_top {
-    padding-top: 54px;
-  }
-}
-
-.white-text {
-  color: white;
-  a { color: white; }
-}
-
-.ajax-text {
-  font-size: 20px;
-}
-
-h1, h2, h3, h4, h5 {
-  &.inline {
-    display: inline;
-  }
-  &.large {
-    font-size: 46px;
-  }
-  &.bold {
-    font-weight: bold;
-  }
-  font-weight: normal;
-}
-
-h1.panel-title {
-  font-size: 46px;
-  font-family: "ubuntu","Source Sans Pro","华文细黑","STHeiti","微软雅黑","Microsoft YaHei",SimHei,"Helvetica Neue",Helvetica,Arial,sans-serif !important;
-  font-weight: normal !important;
-}
-
-.panel-heading {
-  padding: 60px 15px;
-  //background-color: #FCF7E3;
-}
-
-div.vertically-center {
-  display: table;
-  & > div {
-    display: table-cell;
-    vertical-align: middle;
-    text-align: center;
-  }
-}
-
-.btn {
-  font-size: 16px;
-  font-weight: normal;
-}
-
-.reply_text {
-  margin-right: 10px;
-}
-
-a i {
-  //color: rgb(90, 90, 90);
-}
-
-.margin-bottom {
-  margin-bottom: 0.67em;
-}
-
-.margin-top {
-  margin-top: 0.67em;
-}
-
-.margin-center {
-  margin-left: auto;
-  margin-right: auto;
-}
+  @import "style";

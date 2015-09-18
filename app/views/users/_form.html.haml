@@ -1,4 +1,4 @@
-.col-sm-offset-3.col-sm-6{ id: ('user-form-edit' if current_page?(action: 'edit') if params[:id]) }
+.col-sm-offset-3.col-sm-6{ id: ('user-form-edit' if current_page?(edit_user_path(current_user)) if current_user) }
   = simple_form_for @user, html: { class: 'ui form'}, wrapper: :semantic_form do |f|
     /= f.error_notification
     .ui.error.message
@@ -12,12 +12,13 @@
       = f.input :school, as: :select, collection: School.categories, input_html: { class: 'ui search dropdown' }, label: '我目前就讀'      
       = f.input :phone_number, label: '這是我的手機號碼'
       
-      = f.input :password unless current_page?(action: 'edit') if params[:id]
-      = f.input :password_confirmation unless current_page?(action: 'edit') if params[:id]
+      - if current_page?(signup_path) || (controller_name == 'users' && action_name == 'create')
+        = f.input :password
+        = f.input :password_confirmation
 
     .well
       = f.input :email, label: '填寫電子郵件，讓我們提供您更棒的服務'
       = f.input :sign_with_zuker, :as => :hidden, :input_html => { :value => true }
     
     = f.button :submit, class:'btn btn-primary'
-    = link_to 'Back', profile_path, class:'btn btn-default' if (current_page?(action: 'edit') || current_page?(action: 'update')) if params[:id]
+    = link_to 'Back', profile_path, class:'btn btn-default' if (current_page?(edit_user_path(current_user)) || (controller_name == 'users' && action_name == 'update')) if current_user

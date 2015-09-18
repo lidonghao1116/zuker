@@ -2,7 +2,7 @@ module ApplicationHelper
   def comment ; end
 
   def notice_message
-    alert_types = { alert: :error, notice: :warning }
+    alert_types = { danger: :error, notice: :warning }
  
     #close_button_options = { class: "close", "data-dismiss" => "alert", "aria-hidden" => true }
     close_button = content_tag(:span, '', class: 'close icon')
