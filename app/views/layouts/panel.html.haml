@@ -19,4 +19,5 @@
         .container
           = notice_message
           = yield
+          = render 'pages/signin'
     /= debug(params) if Rails.env.development?

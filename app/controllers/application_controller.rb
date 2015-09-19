@@ -10,6 +10,10 @@ class ApplicationController < ActionController::Base
   include Pundit
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+  rescue_from CustomError::AccessDenied do |exception|
+    logger.error exception.message
+    redirect_to root_path, notice: 'incorrect_password'
+  end
 
   private
 
