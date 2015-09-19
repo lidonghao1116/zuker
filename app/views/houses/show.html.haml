@@ -15,12 +15,7 @@
 
   .col-sm-5
     %h2= "#{ number_to_currency(@house.price, precision: 0) } / month"
-    - if @house.not_available?
-      = warning("This house is not available now.")
-    - else
-      = link_to 'Book Now', root_path, class: "btn btn-danger btn-lg"
-    /= @house.aasm_state
-    /%p= "Last updated at: #{ @house.updated_at.strftime('%Y-%m-%d') }"
+    = render_book_btn(@house)
 
 = link_to @house.owner.last_name, user_path(@house.owner)
 

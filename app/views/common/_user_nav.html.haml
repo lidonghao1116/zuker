@@ -1,0 +1,15 @@
+#navbar.navbar-collapse.collapse
+  %ul.nav.navbar-nav.navbar-right
+    - if current_user         
+      %li
+        = link_to profile_path do
+          = t ".hello", name: current_user.first_name || current_user.uid
+      %li
+        = link_to signout_path do
+          = t '.signout'
+    - else
+      %li.sign_in_link            
+        %a= t '.signin'
+      %li
+        = link_to signup_path, class: 'white-text' do
+          = t '.Register'

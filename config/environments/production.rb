@@ -78,7 +78,7 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   # enable secure webhook in production mode
-  config.middleware.use Rack::TwilioWebhookAuthentication, Rails.application.secrets.twilio_auth_token, '/voice'
+  config.middleware.use Rack::TwilioWebhookAuthentication, ENV["twilio_auth_token"], '/voice'
 
   config.action_view.embed_authenticity_token_in_remote_forms = true
 

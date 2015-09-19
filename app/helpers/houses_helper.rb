@@ -14,7 +14,17 @@ module HousesHelper
     content_tag(:textarea, ddd.join(""))
   end
 
-  def render_space(property)
-    "#{property.bedroom}房#{property.bathroom}廳#{property.bathroom}衛#{property.balcony}陽台"
+  def render_space(house)
+    "#{house.bedroom}房#{house.bathroom}廳#{house.bathroom}衛#{house.balcony}陽台"
   end
+
+  def render_book_btn(house)
+    if house.not_available?
+      #flash[:warning] = "This house is not available now."
+      warning("This house is not available now.")
+    else
+      link_to 'Book Now', root_path, class: "btn btn-danger btn-lg"
+    end
+  end
+
 end

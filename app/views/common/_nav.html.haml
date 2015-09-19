@@ -10,28 +10,4 @@
         = image_tag 'logo.png', width: '20', height: '20'
       = link_to 'Zuker', root_path, class: 'navbar-brand'
 
-    / = search_form_for @q, url: search_path, class: "navbar-form navbar-left", role: "search" do |f|
-    /   %div.form-group
-    /     = f.search_field @criteria, class: "form-control", placeholder: 'Search'
-    /   = f.button 'Go', class: 'btn btn-default'
-    #navbar.navbar-collapse.collapse
-      %ul.nav.navbar-nav.navbar-right
-        - if current_user         
-          %li
-            = link_to profile_path do
-              = t ".hello", name: current_user.first_name || current_user.uid
-          
-          %li
-            = link_to signout_path do
-              = t '.signout'
-        - else
-          / .navbar-form.navbar-right
-          / = simple_form_for :user, url: signin_path, wrapper: :inline_form do |f|
-          /   = f.input :phone_number, hint: false
-          /   = f.input :password, hint: false
-          /   = f.button :submit, "Sign in", class: "btn btn-success"
-          %li.sign_in_link            
-            %a= t '.signin'
-          %li
-            = link_to signup_path, class: 'white-text' do
-              = t '.Register'
+    = render 'common/user_nav'

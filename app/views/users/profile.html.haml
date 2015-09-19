@@ -1,9 +1,8 @@
-.col-lg-3.col-sm-4.text-center#profile-left
-  = image_tag("10477565_10152578368088707_3728282605610964447_o.jpg", class: 'ui small circular image', id: 'avatar')
-
-  .ui.massive.star.rating.margin-bottom.margin-top{ data: { rating: "3" } }
+.col-lg-3.col-md-5.col-sm-5.text-center#profile-left
+  = image_tag("10477565_10152578368088707_3728282605610964447_o.jpg", class: 'ui small circular image margin-bottom', id: 'avatar')
 
   = render 'common/fb_login_button' unless current_user.provider == 'facebook'
+
   - unless current_user.sign_with_zuker
     %span.btn.btn-info#connect-fb
       Connect with Zuker
@@ -15,28 +14,31 @@
     .content
       .header= t '.personal_info'
     .content
-      .col-lg-3.col-sm-3.ui
+      .col-lg-3.col-xs-2.ui 
         - if current_user.verified?
           = semantic_icon('check', 'circle', 'big', 'green')
         - else current_user.verified?
           = link_to phone_verify_user_path(current_user) do
             %i.warning.circle.icon.big.orange{ data: { content: I18n.t("users.profile.verify") } }
-      .col-lg-9.col-sm-9.text-left
-        %strong= t User.human_attribute_name(:phone_number)
-        %p= current_user.phone_number
-        %p= current_user.pin.content
-        %strong= t User.human_attribute_name(:school)
-        %p= current_user.school_name
-        %strong= t User.human_attribute_name(:start_school_year)
-        %p= current_user.start_school_year
-        %strong= t User.human_attribute_name(:email)
-        %p= current_user.email
+      .col-lg-9.col-xs-10.text-left
+        .content
+          %strong= t User.human_attribute_name(:phone_number)
+          - if current_user.phone_number
+            %p= current_user.phone_number
+          - else
+            %p= 'verify now!'
+          %strong= t User.human_attribute_name(:school)
+          %p= current_user.school_name.last
+          %strong= t User.human_attribute_name(:start_school_year)
+          %p= current_user.start_school_year
+          %strong= t User.human_attribute_name(:email)
+          %p= current_user.email
 
   = render "personal_btns"
 
 
 
-.col-lg-9.col-sm-8
+.col-lg-9.col-md-7.col-sm-7
   %h1.panel-title= t '.title', name: current_user.first_name.camelize
   
   %h1= link_to I18n.t('users.my_houses'), houses_path

@@ -25,7 +25,7 @@ zh-TW:
 
   # View
   common:
-    nav:
+    user_nav:
       Register : 加入租客
       signout : 登出
       signin : 登入

@@ -19,15 +19,15 @@ module SmsConfirmable
   end
 
   def twilio_client
-    Twilio::REST::Client.new Rails.application.secrets.twilio_account_sid, Rails.application.secrets.twilio_auth_token
+    Twilio::REST::Client.new Figaro.env.twilio_account_sid, Figaro.env.twilio_auth_token
   end
 
   def send_pin
     number = self.phone_number
     if number
-    #message = twilio_client.account.messages.create from: '+18085183344', to: international_number('TW', number), body: "歡迎來到租客Zuker，您的驗證碼為#{self.pin.content}, 請上www.zuker.com.tw完成您的註冊。"
-    #message.status
-      return true
+      message = twilio_client.account.messages.create from: '+18085183344', to: international_number('TW', number), body: "歡迎來到租客Zuker，您的驗證碼為#{self.pin.content}, 請上www.zuker.com.tw完成您的註冊。"
+      message.status
+      #return true
     else
       return false
     end
@@ -54,8 +54,8 @@ module SmsConfirmable
   def resend_pin
     self.pin.try(:destroy)
     self.create_pin content: random_4_digits
-    self.send_pin
-    return 'resend'
+    return self.send_pin
+    #return 'resend'
   end
 
 end
