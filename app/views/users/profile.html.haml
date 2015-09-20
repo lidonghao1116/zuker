@@ -41,9 +41,12 @@
 .col-lg-9.col-md-7.col-sm-7
   %h1.panel-title= t '.title', name: current_user.first_name.camelize
   
+  = render 'phone_verify_hint'  
+
   %h1= link_to I18n.t('users.my_houses'), houses_path
   .house_table.margin-bottom
     = render 'common/houses', houses: @my_houses
+
 
   #comments-section
     %h1= "評價"

@@ -1,6 +1,6 @@
 .col-lg-2.col-sm-3.text-center
-  = image_tag("#{comment.author.image}")
-  /= image_tag("10477565_10152578368088707_3728282605610964447_o.jpg", class: 'ui tiny circular image')
+  /= image_tag("#{comment.author.image}")
+  = image_tag("10477565_10152578368088707_3728282605610964447_o.jpg", class: 'ui tiny circular image')
 .col-lg-10.col-sm-9
   %blockquote
     = comment.content
@@ -15,11 +15,13 @@
           %span= render 'comments/reply_form', obj: comment
 
 - comment.comments.recent.try(:each) do |reply|
-  %div{ class: "col-sm-offset-1 col-sm-1"}
-    = image_tag("#{reply.author.image}")
-  %div{ class: "col-sm-10"}
-    %blockquote
-      = reply.content
-      %footer
-        %span= "From :#{reply.author.last_name}"
-        %span= "To :#{reply.commentable.author.last_name}"
+  .row
+    %div{ class: "col-lg-offset-1 col-lg-2 col-md-offset-1 col-md-2 col-sm-offset-1 col-sm-3"}
+      = image_tag("10477565_10152578368088707_3728282605610964447_o.jpg", class: 'ui tiny circular image')
+      /= image_tag("#{reply.author.image}")
+    %div{ class: "col-lg-8 col-md-9 col-sm-8"}
+      %blockquote
+        = reply.content
+        %footer
+          %span= "From :#{reply.author.last_name}"
+          %span= "To :#{reply.commentable.author.last_name}"

@@ -25,9 +25,9 @@ module SmsConfirmable
   def send_pin
     number = self.phone_number
     if number
-      message = twilio_client.account.messages.create from: '+18085183344', to: international_number('TW', number), body: "歡迎來到租客Zuker，您的驗證碼為#{self.pin.content}, 請上www.zuker.com.tw完成您的註冊。"
-      message.status
-      #return true
+      #message = twilio_client.account.messages.create from: '+18085183344', to: international_number('TW', number), body: "歡迎來到租客Zuker，您的驗證碼為#{self.pin.content}, 請上www.zuker.com.tw完成您的註冊。"
+      #message.status
+      return true
     else
       return false
     end

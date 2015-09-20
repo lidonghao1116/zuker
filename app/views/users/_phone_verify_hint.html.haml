@@ -1,0 +1,12 @@
+- unless current_user.verified?
+  = link_to phone_verify_user_path(current_user) do
+    .ui.icon.message.orange
+      %i.unlock.icon
+      .content
+        .header
+          Verify phone number to be a real Zuker!
+        %ul.list
+          %li Post your house for free.
+          %li Comment on your favorite houses.
+
+  = current_user.pin.content
