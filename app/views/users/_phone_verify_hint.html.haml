@@ -9,4 +9,4 @@
           %li Post your house for free.
           %li Comment on your favorite houses.
 
-  = current_user.pin.content
+  = current_user.pin.content if current_user.phone_number && current_user.pin

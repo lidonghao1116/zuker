@@ -126,7 +126,7 @@ ActiveRecord::Schema.define(version: 20150826022708) do
     t.string   "phone_number"
     t.string   "password_digest"
     t.boolean  "verified",          default: false
-    t.date     "start_school_year"
+    t.string   "start_school_year"
     t.boolean  "sign_with_zuker"
     t.integer  "school_id"
     t.string   "provider"

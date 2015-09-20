@@ -14,7 +14,7 @@ class Facebook::SessionsController < ApplicationController
       current_user.update_with_omniauth(auth)
       fb_user.destroy if fb_user
       signin(current_user)
-    elsif !zuker && !has_signin && !fb_user
+    elsif !fb_user && !zuker && !has_signin
       signin(User.create_with_omniauth(auth))
     else
       signin(fb_user)

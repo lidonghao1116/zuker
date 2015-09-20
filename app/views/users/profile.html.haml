@@ -41,7 +41,7 @@
 .col-lg-9.col-md-7.col-sm-7
   %h1.panel-title= t '.title', name: current_user.first_name.camelize
   
-  = render 'phone_verify_hint'  
+  = render 'phone_verify_hint'
 
   %h1= link_to I18n.t('users.my_houses'), houses_path
   .house_table.margin-bottom
@@ -49,9 +49,10 @@
 
 
   #comments-section
-    %h1= "評價"
-    .col-lg-12
-      = render "comments/comments_section", obj: current_user
+    .ui.comments
+      %h1.ui.dividing.header= "評價"
+      .comment
+        = render "comments/comments_section", obj: current_user
 
     %h1= "我的房源的評價"
     .col-lg-12

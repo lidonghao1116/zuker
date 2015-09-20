@@ -25,8 +25,9 @@ module Facebookable
           user.fb_url = auth['info']['urls']['Facebook']
           user.location = auth['info']['location']
         end
-        auth['extra']['raw_info']['education'].try(:each) do |school|
-          user.school_name << school['school']['name']
+        if auth['extra']['raw_info']
+          user.school_name << auth['extra']['raw_info'].try(:education).try(:last).try(:school).try(:name)
+          user.start_school_year = auth['extra']['raw_info'].try(:education).try(:last).try(:year).try(:name) || 'Not found.'
         end
       end
     end
@@ -46,8 +47,9 @@ module Facebookable
         user.fb_url = auth['info']['urls']['Facebook']
         user.location = auth['info']['location']
       end
-      auth['extra']['raw_info']['education'].try(:each) do |school|
-        user.school_name << school['school']['name']
+      if auth['extra']['raw_info']
+        user.school_name << auth['extra']['raw_info'].try(:education).try(:last).try(:school).try(:name)
+        user.start_school_year = auth['extra']['raw_info'].try(:education).try(:last).try(:year).try(:name) || 'Not found.'
       end
     end
     self.save

@@ -24,6 +24,14 @@ class UserPolicy < ApplicationPolicy
   def index?
   end
 
+  def destroy?
+    correct_user
+  end
+
+  def profile?
+    correct_user
+  end
+
   private
 
     def correct_user

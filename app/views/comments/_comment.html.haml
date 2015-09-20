@@ -1,27 +1,28 @@
-.col-lg-2.col-sm-3.text-center
+.avatar
   /= image_tag("#{comment.author.image}")
-  = image_tag("10477565_10152578368088707_3728282605610964447_o.jpg", class: 'ui tiny circular image')
-.col-lg-10.col-sm-9
+  = image_tag("10477565_10152578368088707_3728282605610964447_o.jpg")
+.content
   %blockquote
     = comment.content
     %footer
-      %span= comment.author.last_name
+      %span= link_to comment.author.last_name
       %span.pull-right
         = "#{comment.created_at.strftime('%F %R')}"
         = link_to "#{comment.commentable.class.name.camelize}#{comment.commentable.id}", comment.commentable
-      - if policy(@new_reply = comment.comments.new).reply? && comment.comments.size <= 1
-        %span.reply_btn
-          %span.reply_text.pull-right= link_to 'Click to reply', '#'
-          %span= render 'comments/reply_form', obj: comment
+  - if policy(@new_reply = comment.comments.new).reply? && comment.comments.size <= 1
+    .actions.reply_btn
+      = link_to 'Click to reply', '#', class: 'reply_text'
+      %span= render 'comments/reply_form', obj: comment
 
-- comment.comments.recent.try(:each) do |reply|
-  .row
-    %div{ class: "col-lg-offset-1 col-lg-2 col-md-offset-1 col-md-2 col-sm-offset-1 col-sm-3"}
-      = image_tag("10477565_10152578368088707_3728282605610964447_o.jpg", class: 'ui tiny circular image')
-      /= image_tag("#{reply.author.image}")
-    %div{ class: "col-lg-8 col-md-9 col-sm-8"}
-      %blockquote
-        = reply.content
-        %footer
-          %span= "From :#{reply.author.last_name}"
-          %span= "To :#{reply.commentable.author.last_name}"
+.comments
+  - comment.comments.recent.try(:each) do |reply|
+    .comment
+      .avatar
+        = image_tag("10477565_10152578368088707_3728282605610964447_o.jpg")
+        /= image_tag("#{reply.author.image}")
+      .content
+        %blockquote
+          = reply.content
+          %footer
+            %span= "From :#{reply.author.last_name}"
+            %span= "To :#{reply.commentable.author.last_name}"

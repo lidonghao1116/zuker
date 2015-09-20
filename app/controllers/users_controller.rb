@@ -42,7 +42,8 @@ class UsersController < ApplicationController
   end
 
   def profile
-    current_user.reload
+    @user = current_user.reload
+    authorize @user
     @comments = current_user.comments.page params[:page]
     @my_houses = current_user.houses
     @new_comment = current_user.comments.new
@@ -76,6 +77,7 @@ class UsersController < ApplicationController
   # DELETE /users/1.json
   def destroy
     @user = User.find(params[:id])
+    authorize @user
     @user.destroy
     session[:user_id] = nil
     respond_to do |format|

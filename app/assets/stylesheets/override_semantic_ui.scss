@@ -2,3 +2,12 @@
   font-weight: normal;
   font-size: 1.1em;
 }
+
+.ui.comments .comment .avatar img {
+  width: 150%;
+  border-radius: 500rem;
+}
+
+.ui.comments .comment > .avatar ~ .content {
+  margin-left: 4.5em;
+}

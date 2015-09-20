@@ -6,7 +6,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :phone_number, index: true, foreign_key: true
       t.string :password_digest
       t.boolean :verified, :default => false
-      t.date :start_school_year
+      t.string :start_school_year
       t.boolean :sign_with_zuker
       t.references :school, index: true, foreign_key: true
 
