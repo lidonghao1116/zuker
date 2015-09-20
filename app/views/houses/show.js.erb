@@ -1,3 +1,4 @@
 $('#comments-section').html('<%= j(render "comments/comments_section", obj: @house) %>');
 <% if current_user %>
-  $('p.sign_in_link').toggle()
+  $('p.sign_in_link').hide();
+<% end %>

@@ -13,16 +13,17 @@ module Facebookable
       create! do |user|
         user.sign_with_zuker = false # default is nil
         user.password = user.password_confirmation = ""
-        user.password_digest = "facebook-authorized account"
+        user.password_digest = "facebook-authorized-account"
 
         user.provider = auth['provider']
         user.uid = auth['uid']
         if auth['info']
+          Rails.logger.debug(auth)
           user.first_name = auth['info']['first_name']
           user.last_name = auth['info']['last_name']
           user.email = auth['info']['email']
           user.image = auth['info']['image']
-          user.fb_url = auth['info']['urls']['Facebook']
+          #user.fb_url = auth['info']['urls']['Facebook']
           user.location = auth['info']['location']
         end
         if auth['extra']['raw_info']

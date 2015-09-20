@@ -5,6 +5,7 @@ class Facebook::SessionsController < ApplicationController
 
   def create
     auth = request.env["omniauth.auth"]
+    raise request.env["omniauth.auth"].to_yaml
     fb_user = User.where(:provider => auth['provider'],
                        :uid => auth['uid'].to_s).first
     zuker = fb_user.try(:phone_number) && fb_user.try(:sign_with_zuker)
