@@ -22,6 +22,7 @@
 //= require nprogress-turbolinks
 //= require bootstrap-datetimepicker
 //= require pickers
+//= require gmaps
 //= require jquery.twzipcode.min
 //= require turbolinks
 //= require_tree .
