@@ -35,3 +35,34 @@ $(document).ready ->
   $('#twzipcode').twzipcode();
   $("#twzipcode select").change ->
     $('form.edit_house').submit()
+
+
+
+
+  # alert gon.address
+  GMaps.geocode
+    address: gon.address.trim()
+    callback: (results, status) ->
+      if status is 'OK'
+        latlng = results[0].geometry.location
+        map = new GMaps (
+          div: '#map'
+          lat: latlng.lat()
+          lng: latlng.lng()
+        )
+        map.addMarker
+          lat: latlng.lat()
+          lng: latlng.lng() 
+        map.fitZoom
+  # $('#geocoding_form').submit (e) ->
+  #   e.preventDefault()
+  #   GMaps.geocode
+  #     address: gon.address.trim()
+  #     callback: (results, status) ->
+  #       if status is 'OK'
+  #         latlng = results[0].geometry.location
+  #         map.setCenter latlng.lat(), latlng.lng()
+  #         map.addMarker
+  #           lat: latlng.lat()
+  #           lng: latlng.lng()
+  #         map.fitZoom

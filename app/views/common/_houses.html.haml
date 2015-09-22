@@ -3,7 +3,7 @@
     .ui.card
       .content
         = house.title
-      = link_to house, class: "image ui move reveal" do
+      = link_to house, class: "image ui move reveal", 'data-no-turbolink' => true do
         - if house.attachments.exists?
           - house.attachments.each_with_index do |picture, index|
             = image_tag picture.image_url(:thumb), class: "#{index == 2 ? 'visible' : 'hidden'} content"

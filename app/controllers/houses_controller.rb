@@ -19,6 +19,7 @@ class HousesController < ApplicationController
   # GET /houses/1
   # GET /houses/1.json
   def show
+    gon.address = @house.address
     @comments = @house.comments.recent#.page params[:page]
     @new_comment = @house.comments.new
     #render layout: "house_panel"

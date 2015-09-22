@@ -126,6 +126,11 @@ GEM
       sass (~> 3.2)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
+    gon (6.0.1)
+      actionpack (>= 3.0)
+      json
+      multi_json
+      request_store (>= 1.0)
     haml (4.0.7)
       tilt
     haml-rails (0.9.0)
@@ -245,6 +250,7 @@ GEM
       i18n
       polyamorous (~> 1.2)
     rdoc (4.2.0)
+    request_store (1.2.0)
     rmagick (2.15.4)
     rspec-core (3.3.2)
       rspec-support (~> 3.3.0)
@@ -326,6 +332,7 @@ DEPENDENCIES
   datetimepicker-rails!
   figaro
   font-awesome-sass (~> 4.3.0)
+  gon
   haml-rails (~> 0.9)
   jbuilder (~> 2.0)
   jquery-rails
@@ -355,4 +362,4 @@ DEPENDENCIES
   web-console (~> 2.0)
 
 BUNDLED WITH
-   1.10.5
+   1.10.6
