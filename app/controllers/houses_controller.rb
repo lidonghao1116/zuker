@@ -19,7 +19,13 @@ class HousesController < ApplicationController
   # GET /houses/1
   # GET /houses/1.json
   def show
-    gon.address = @house.address
+    gon.datas = {}
+    #gon.info_templates = []
+    #gon.houses = []
+    House.order('created_at desc').limit(3).each do |h|
+      gon.datas[h.address] = h.to_json#{ id: "#{h.id}", price: "#{h.price}" }
+      #gon.info_templates << content_tag(:div, "#{h.price}", id: "house#{h.id}")
+    end
     @comments = @house.comments.recent#.page params[:page]
     @new_comment = @house.comments.new
     #render layout: "house_panel"

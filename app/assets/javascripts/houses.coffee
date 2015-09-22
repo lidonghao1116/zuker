@@ -38,31 +38,45 @@ $(document).ready ->
 
 
 
-
+  map = new GMaps (
+    div: '#map'
+    lat: 23.5
+    lng: 121.0
+  )
   # alert gon.address
-  GMaps.geocode
-    address: gon.address.trim()
-    callback: (results, status) ->
-      if status is 'OK'
-        latlng = results[0].geometry.location
-        map = new GMaps (
-          div: '#map'
-          lat: latlng.lat()
-          lng: latlng.lng()
-        )
-        map.addMarker
-          lat: latlng.lat()
-          lng: latlng.lng() 
-        map.fitZoom
-  # $('#geocoding_form').submit (e) ->
-  #   e.preventDefault()
-  #   GMaps.geocode
-  #     address: gon.address.trim()
-  #     callback: (results, status) ->
-  #       if status is 'OK'
-  #         latlng = results[0].geometry.location
-  #         map.setCenter latlng.lat(), latlng.lng()
-  #         map.addMarker
-  #           lat: latlng.lat()
-  #           lng: latlng.lng()
-  #         map.fitZoom
+  # for address in gon.addresses
+  Object.keys(gon.datas).forEach (key) ->
+    GMaps.geocode
+      address: key.trim()
+      callback: (results, status) ->
+        if status is 'OK'
+          latlng = results[0].geometry.location
+          map.addMarker
+            lat: latlng.lat()
+            lng: latlng.lng()
+            infoWindow: content: gon.datas[key]
+          marker = map.markers[map.markers.length - 1]
+          marker.visible = false
+          (marker.infoWindow).open(map, marker)
+
+          # set template first
+          $('#123').parent().parent().parent().addClass('abcdef')
+
+  map.fitZoom()
+    
+
+  $('#geocoding_form').submit (e) ->
+    e.preventDefault()
+    GMaps.geocode
+      address: $('#address').val().trim()
+      callback: (results, status) ->
+        if status is 'OK'
+          latlng = results[0].geometry.location
+          map.setCenter latlng.lat(), latlng.lng()
+          map.addMarker
+            lat: latlng.lat()
+            lng: latlng.lng()
+            infoWindow: content: '123'
+          map.markers[map.markers.length - 1].visible = false
+          (map.markers[map.markers.length - 1].infoWindow).open(map, map.markers[map.markers.length - 1])
+          map.fitZoom
